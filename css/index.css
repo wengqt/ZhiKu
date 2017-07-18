@@ -1,88 +1,83 @@
-@media only screen and (min-width: 1080px), only screen and (min-device-width:1080px) {
- html,body {
-font-size:20px !important;
- }
- }
-@media only screen and (max-width: 1080px), only screen and (max-device-width:1080px) {
- html,body {
-font-size:16.875px !important;
-  height: 100%; 
- }
- }
- @media only screen and (max-width: 960px), only screen and (max-device-width:960px) {
- html,body {
- font-size:15px !important;
-  height: 100%; 
- }
- }
- @media only screen and (max-width: 800px), only screen and (max-device-width:800px) {
- html,body {
- font-size:12.5px !important;
- }
- }
- @media only screen and (max-width: 720px), only screen and (max-device-width:720px) {
- html,body {
- font-size:11.25px !important;
- }
- }
- @media only screen and (max-width: 640px), only screen and (max-device-width:640px) {
- html,body {
- font-size:10px !important;
- }
- }
- @media only screen and (max-width: 600px), only screen and (max-device-width:600px) {
- html,body {
- font-size:9.375px !important;
- }
- }
- @media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
- html,body {
- font-size:8.4375px !important;
- }
- }
- @media only screen and (max-width: 480px), only screen and (max-device-width:480px) {
- html,body {
- font-size:7.5px !important;
- }
- }
- @media only screen and (max-width: 414px), only screen and (max-device-width:414px) {
- html,body {
- font-size:6.46875px !important;
- }
- }
- @media only screen and (max-width: 400px), only screen and (max-device-width:400px) {
- html,body {
- font-size:6.25px !important;
- }
- }
- @media only screen and (max-width: 375px), only screen and (max-device-width:375px) {
- html,body {
- font-size:5.859375px !important;
- }
- }
- @media only screen and (max-width: 360px), only screen and (max-device-width:360px) {
- html,body {
- font-size:5.625px !important;
- }
- }
- @media only screen and (max-width: 320px), only screen and (max-device-width:320px) {
- html,body {
- font-size:5px !important;
- }
- }
- @media only screen and (max-width: 240px), only screen and (max-device-width:240px) {
- html,body {
- font-size:3.75px !important;
- }
- }
+
+/*@media only screen and (max-width: 1080px), only screen and (max-device-width:1080px) {*/
+    /*html,body {*/
+        /*font-size:16.875px;*/
+    /*}*/
+/*}*/
+/*@media only screen and (max-width: 960px), only screen and (max-device-width:960px) {*/
+    /*html,body {*/
+        /*font-size:15px;*/
+    /*}*/
+/*}*/
+@media only screen and (max-width: 800px), only screen and (max-device-width:800px) {
+    html,body {
+        font-size:12.5px;
+    }
+}
+@media only screen and (max-width: 720px), only screen and (max-device-width:720px) {
+    html,body {
+        font-size:11.25px;
+    }
+}
+@media only screen and (max-width: 640px), only screen and (max-device-width:640px) {
+    html,body {
+        font-size:10px;
+    }
+}
+@media only screen and (max-width: 600px), only screen and (max-device-width:600px) {
+    html,body {
+        font-size:9.375px;
+    }
+}
+@media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
+    html,body {
+        font-size:8.4375px;
+    }
+}
+@media only screen and (max-width: 480px), only screen and (max-device-width:480px) {
+    html,body {
+        font-size:7.5px;
+    }
+}
+@media only screen and (max-width: 414px), only screen and (max-device-width:414px) {
+    html,body {
+        font-size:6.46875px;
+    }
+}
+@media only screen and (max-width: 400px), only screen and (max-device-width:400px) {
+    html,body {
+        font-size:6.25px;
+    }
+}
+@media only screen and (max-width: 375px), only screen and (max-device-width:375px) {
+    html,body {
+        font-size:5.859375px;
+    }
+}
+@media only screen and (max-width: 360px), only screen and (max-device-width:360px) {
+    html,body {
+        font-size:5.625px;
+    }
+}
+@media only screen and (max-width: 320px), only screen and (max-device-width:320px) {
+    html,body {
+        font-size:5px;
+    }
+}
+@media only screen and (max-width: 240px), only screen and (max-device-width:240px) {
+    html, body {
+        font-size: 3.75px;
+    }
+}
 
 
-body{
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   align-content: space-between;
-   
+
+
+
+
+html,body{
+
+   height: 100%;
 }
 
 
@@ -103,7 +98,7 @@ body{
 }
 
 #navBar{
-    height: 2.5rem;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -120,23 +115,23 @@ body{
     align-items: center;
 }
 .logo{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     margin-left: 1rem;
 }
 .zhiku{
-    height: 1.5rem;
-    margin-left: 4rem; 
+    height: 2rem;
+    margin-left: 3rem;
 }
 .account{
     width: 6rem;
     text-align: center;
-    height: 2.5rem;
+    height: 4rem;
     float: right;
     background-color: rgba(135, 206, 250, 0.5);
     color: white;
-    line-height: 2.5rem;
-    font-size: 0.8rem;
+    line-height: 4rem;
+    font-size: 1rem;
 }
 .account:hover{
     background-color: rgba(135, 206, 250, 0.8);
@@ -150,7 +145,7 @@ body{
 }
 
 .big-font{
-    font-size: 3rem;
+    font-size:4rem;
     border-bottom: 0.1rem solid white;
     border-top: 0.1rem solid white;
     width: 100%;
@@ -160,8 +155,8 @@ body{
     
 }
 .big-text{
-    font-size: 1.5rem;
-    line-height: 2.5rem;
+    font-size: 2rem;
+    line-height: 3rem;
     margin-top: 3rem;
 }
 .box-col{
@@ -173,15 +168,15 @@ body{
 }
 
 .three-box{
-    width: 12rem;
-    height: 12rem;
+    width: 16rem;
+    height: 16rem;
     background-color: rgba(248, 248, 255, 0.8);
     box-shadow: 0.2rem 0.2rem 0.5rem  gray;
     
 }
 .footer{
-    /* position: absolute; */
-      margin-top: 5rem;  
+     position: absolute;
+      /*margin-top: 5rem;  */
     width: 100%;
     text-align: center;
     height: 2.5rem;
