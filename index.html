@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
      <script src="js/jquery-1.12.3.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
+     <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
 
  </head>
  <body>
@@ -31,17 +32,17 @@
              <!-- Collect the nav links, forms, and other content for toggling -->
              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                  <ul class="nav navbar-nav">
-                     <li class="active"><a href="#">主页 <span class="sr-only">(current)</span></a></li>
-                     <li><a href="#">资源检索</a></li>
-                     <li><a href="#">动态</a></li>
-                     <li><a href="#">智库原创</a></li>
-                     <li><a href="#">团队建设</a></li>
+                     <li class="ind"><a href="javascript:void(0)">主页 <span class="sr-only">(current)</span></a></li>
+                     <li class="resour"><a href="javascript:void(0)">资源检索</a></li>
+                     <li class="act"><a href="javascript:void(0)">动态</a></li>
+                     <li class="orig"><a href="javascript:void(0)">智库原创</a></li>
+                     <li class="grou"><a href="javascript:void(0)">团队建设</a></li>
                      <li><a href="#" data-toggle="modal" data-target="#myModal">意见反馈</a></li>
                      <li><a href="#">登录</a></li>
-                     <li><a href="#">课内资源</a></li>
-                     <li><a href="#">课外资源</a></li>
-                     <li><a href="#">成员介绍</a></li>
-                     <li><a href="#">关注我们</a></li>
+                     <!--<li><a href="#">课内资源</a></li>-->
+                     <!--<li><a href="#">课外资源</a></li>-->
+                     <li><a href="member.html">成员介绍</a></li>
+                     <li class="about"><a href="javascript:void(0)">关注我们</a></li>
 
                  </ul>
 
@@ -63,7 +64,7 @@
         </div>
     </div>
      <div id="inner">
-         <div class="wrap">
+         <div class="wrap" id="resourse">
              <div class="container" >
                  <div class="title"><div class="line"></div> 资源检索 <div class="line"></div></div>
                  <div class="row" style="text-align: center">
@@ -82,7 +83,7 @@
                  </div>
              </div>
          </div>
-         <div class="wrap">
+         <div class="wrap" id="origin">
              <div class="container" >
                  <div class="title"><div class="line"></div> 智库原创 <div class="line"></div></div>
                  <div class="small-tag">软件人自己编写的知识见解</div>
@@ -186,7 +187,7 @@
 
              </div>
          </div>
-         <div class="wrap">
+         <div class="wrap" id="about-us">
              <div class="container" >
                  <div class="title"><div class="line"></div> 关于我们 <div class="line"></div></div>
                  <div class="row" style="text-align: center">
@@ -252,5 +253,25 @@
     function navToResource(ind) {
         window.location.href='resourse.html?ind='+ind;
     }
+     $(function(){
+         $(".ind").click(function(){
+             $.scrollTo('#index',800);
+         });
+         $(".resour").click(function(){
+             $.scrollTo('#resourse',800);
+         });
+         $(".act").click(function(){
+             $.scrollTo('#activity',1000);
+         });
+         $(".orig").click(function(){
+             $.scrollTo('#origin',1000);
+         });
+         $(".grou").click(function(){
+             $.scrollTo('#group',1200);
+         });
+         $(".about").click(function(){
+             $.scrollTo('#about-us',1200);
+         });
+     });
  </script>
  </html>   

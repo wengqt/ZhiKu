@@ -31,6 +31,7 @@ html,body{
 
 body{
 
+
    padding-top: 70px;
 }
 
@@ -150,6 +151,10 @@ body{
     html,body {
         font-size:12.5px;
     }
+    #member img{
+        width: 100% !important;
+        height: auto !important;
+    }
 }
 @media only screen and (max-width: 720px), only screen and (max-device-width:720px) {
     html,body {
@@ -178,6 +183,7 @@ body{
     html,body {
         font-size:9.375px;
     }
+
 }
 @media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
     html,body {
@@ -227,6 +233,7 @@ body{
     html, body {
         font-size: 3.75px;
     }
+
 }
 
 
@@ -375,4 +382,8 @@ textarea{
 .mb-inner{
     width: 70%;
     margin:0 auto;
+}
+#member img{
+    width: 18vw;
+    height: auto;
 }
