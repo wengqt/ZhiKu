@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>校内资源</title>
+    <title>资源</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/school.css">
     <script src="js/jquery-1.12.3.min.js"></script>
@@ -25,14 +25,14 @@
                 <a class="navbar-brand" href="#">
                     <img alt="Brand" src="imgs/logo.png" style="width: 3rem;height: 3rem;margin-top: -0.75rem;">
                 </a>
-                <img src="imgs/zhiku.png" alt="" style="height: 2rem;">
+                <!--<img src="imgs/zhiku.png" alt="" style="height: 2rem;">-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="margin-left: 10px">
-                    <li class="active"><a href="#">校内资源 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">智库原创</a></li>
+                    <li class="active" id="inner"><a href="javascript:switchSourse(1)">校内资源 <span class="sr-only">(current)</span></a></li>
+                    <li id="outer"><a href="javascript:switchSourse(2)">校外资源</a></li>
 
                 </ul>
                 <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
@@ -52,10 +52,10 @@
 
 
 
-    <div class="container">
+    <div class="container" id="innerRescouse">
         <div class="jumbotron">
             <h1>Hello, world!</h1>
-            <p>每一个不曾起舞的日子都是对声明的浪费</p>
+            <p>每一个不曾起舞的日子都是对生命的浪费</p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
         </div>
 
@@ -95,7 +95,48 @@
         </div>
 
     </div>
+    <div class="container" id="outerResourse" style="display: none">
+        <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <p>每一个不曾起舞的日子都是对生命的浪费</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
 
+
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                类别
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu3">
+                <li><a href="#" onclick="selectAct(this)">计算机技术</a></li>
+                <li><a href="#" onclick="selectAct(this)">英语学习</a></li>
+                <li><a href="#"  onclick="selectAct(this)">通选课</a></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                方向
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" data-drop="dropdownMenu4">
+                <li><a href="#" onclick="selectAct(this)">上学期</a></li>
+                <li><a href="#" onclick="selectAct(this)">下学期</a></li>
+            </ul>
+        </div>
+
+
+        <div class="panel panel-default mt">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+
+    </div>
 
 
 </body>
@@ -104,6 +145,35 @@
         var s1 = a.innerText;
         var k = a.parentNode.parentNode.dataset.drop;
         $(`#${k}`).html(s1+'<span class="caret"></span>')
+    }
+    function switchSourse(indx) {
+        var inner = document.getElementById('innerRescouse');
+        var outer = document.getElementById('outerResourse');
+
+        switch(parseInt(indx)){
+            case 1:
+                inner.style.display = 'block';
+                outer.style.display = 'none';
+                    document.getElementById('inner').className = 'active';
+                    document.getElementById('outer').className = '';
+                break;
+            case 2:
+
+                outer.style.display = 'block';
+                inner.style.display = 'none';
+                document.getElementById('outer').className = 'active';
+                document.getElementById('inner').className = '';
+                break;
+
+        }
+
+    }
+    window.onload = function () {
+        var url = window.location.href;
+        var i = url.indexOf("=");
+        var param = url.substring(i+1,i+2);
+        console.log(param);
+        switchSourse(param);
     }
 </script>
 </html>
