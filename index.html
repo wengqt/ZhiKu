@@ -38,7 +38,7 @@
                      <li class="orig"><a href="javascript:void(0)">智库原创</a></li>
                      <li class="grou"><a href="javascript:void(0)">团队建设</a></li>
                      <li><a href="#" data-toggle="modal" data-target="#myModal">意见反馈</a></li>
-                     <li><a href="#">登录</a></li>
+                     <li><a href="#"  data-toggle="modal" data-target="#login">登录/注册</a></li>
                      <!--<li><a href="#">课内资源</a></li>-->
                      <!--<li><a href="#">课外资源</a></li>-->
                      <li><a href="member.html">成员介绍</a></li>
@@ -68,7 +68,7 @@
              <div class="container" >
                  <div class="title"><div class="line"></div> 资源检索 <div class="line"></div></div>
                  <div class="row" style="text-align: center">
-                     <div class="col-sm-6 col-xs-12" >
+                     <div class="col-sm-6 col-xs-12">
                          <div class="box-item">
                              <h3>课内资源模块</h3>
                              <div class="btn btn-primary entry-btn" onclick="navToResource(1)">进入</div>
@@ -242,7 +242,92 @@
              </div>
          </div>
      </div>
-    
+     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                         &times;
+                     </button>
+                     <h4 class="modal-title">
+                         登录
+                     </h4>
+                 </div>
+                 <div class="modal-body" id="loginbody">
+                     <form class="form-horizontal" role="form">
+                         <div class="form-group" style="margin-top: 3rem">
+                             <label class="col-sm-3 control-label"></label>
+                             <div class="col-sm-6">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入账号">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label  class="col-sm-3 control-label"></label>
+                             <div class="col-sm-6">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入密码">
+                             </div>
+                         </div>
+
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal"  data-toggle="modal" data-target="#regist">点击注册
+                     </button>
+                     <button type="button" class="btn btn-primary">
+                         点击登录
+                     </button>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal -->
+     </div>
+     <div class="modal fade" id="regist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                         &times;
+                     </button>
+                     <h4 class="modal-title">
+                         注册
+                     </h4>
+                 </div>
+                 <div class="modal-body" id="registbody">
+                     <form class="form-horizontal" role="form">
+                         <div class="form-group" >
+                             <label class="col-sm-3 control-label"></label>
+                             <div class="col-sm-6">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入账号">
+                             </div>
+                             <div class="col-sm-6 col-sm-offset-3">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入邮箱">
+                             </div>
+                             <div class="col-sm-6 col-sm-offset-3">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入手机号">
+                             </div>
+                             <div class="col-sm-6 col-sm-offset-3">
+                                 <input type="text" class="form-control"
+                                        placeholder="请输入密码">
+                             </div>
+                         </div>
+
+
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+
+                     <button type="button" class="btn btn-primary">
+                         点击注册
+                     </button>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal -->
+     </div>
+
  </body>
  <script type="text/javascript">
      var ch = window.innerHeight;

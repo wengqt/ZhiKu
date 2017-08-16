@@ -387,3 +387,8 @@ textarea{
     width: 18vw;
     height: auto;
 }
+#loginbody,#registbody{
+    background-image: url("../imgs/login.jpg");
+    height: 30rem;
+    background-size: cover;
+}
