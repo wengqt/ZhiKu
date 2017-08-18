@@ -80,7 +80,7 @@ body{
     margin: 0 auto;
     text-align: center;
     color: white;
-    padding-top: 25%;
+    padding-top: 20%;
 }
 
 .big-font{
@@ -391,4 +391,13 @@ textarea{
     background-image: url("../imgs/login.jpg");
     height: 30rem;
     background-size: cover;
+}
+@media only screen and (orientation:portrait ) {
+    .big-box{
+        /* width: 70%; */
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+        padding-top: 45%;
+    }
 }
