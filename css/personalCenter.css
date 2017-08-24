@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.mt{
+    margin-top: 20px;
+    min-width: 600px;
+}
+.leftblue{
+    border-left: 5px solid #2a809d;
+    height: 20rem;
+}
+.bluefont{
+    color: #2a809d;
+    font-size: 1.8rem;
+}
+.date{
+    color: gray;
+
+}
+.firstLine{
+    display: flex;
+    align-items: baseline;
+}
+.blackline{
+    height: 2rem;
+    line-height: 2rem;
+}
