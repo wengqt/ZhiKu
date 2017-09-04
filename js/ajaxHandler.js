@@ -39,14 +39,17 @@ function AjaxHandler(){
     ajaxHandler.prototype.register = function({username,password,nickname,mail,phone,qq,avator},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+
         $.ajax({
             url:API.register,
             type:'POST',
-            data:{username,password,nickname,mail,phone,qq,avator},
+            data:{username,password,nickname:"111",mail,phone,qq:"1111",avator:"aaa",xid:1,mid:1001},
             dataType:"JSON",
             success:function(data,state){
+                
                 success(data,state)},
             error:function(data,state){
+                
                 failed(data,state)}
         })
     }
@@ -56,6 +59,7 @@ function AjaxHandler(){
     ajaxHandler.prototype.mailcheck = function({username,key},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+
         $.ajax({
             url:API.mailcheck,
             type:'POST',

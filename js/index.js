@@ -23,14 +23,16 @@ function login(){
 
 function register(){
     var user = new AjaxHandler();
-    var username = document.getElementById('r-user');
-    var phone = document.getElementById('r-phone');
-    var email = document.getElementById('r-email');
-    var pw = document.getElementById('r-pw');    
+    var username = document.getElementById('r-user').value;
+    var phone = document.getElementById('r-phone').value;
+    var email = document.getElementById('r-email').value;
+    var pw = document.getElementById('r-pw').value;    
     
-    user.register({username,password:pw,mail:email,phone},function(){
-
-    },function(data,state){
+    user.register({username,password:pw,mail:email,phone},function(data,state){
+        
         console.log(data,state)
+    },function(data,state){
+        console.log(111)
+        console.log(data,state);
     })
 }
