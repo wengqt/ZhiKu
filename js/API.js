@@ -1,28 +1,28 @@
 
 
-var baseUrl = 'http://123.206.229.207:8080/jpidea';
+var baseUrl = 'http://719daze.me:8080';
 var API = {
-    base:baseUrl,
+    
 
 
 
     //common
-    login:`${this.base}/login`,
-    logout:`${this.base}/logout`,
-    register:`${this.base}/register`,
-    mailcheck:`${this.base}/mailcheck`,
+    login:baseUrl+`/login`,
+    logout:`${baseUrl}/logout`,
+    register:`${baseUrl}/register`,
+    mailcheck:`${baseUrl}/mailcheck`,
 
 
     //需要权限
-    uploadFile:`${this.base}/upload`,
-    downloadFile:`${this.base}/filedl/{fid}`,
-    searchDoc:`${this.base}/document/search`,
-    docDetail:`${this.base}/document/detail/{fid}`,
-    majorSearch:`${this.base}/document/coltomajor`,
-    courseSearch:`${this.base}/document/coursesearch`,
-    modifyFile:`${this.base}/document/modify/{fid}`,
-    modifyUserInfo:`${this.base}/usermodify/{uid}`,
-    getCollege:`${this.base}/document/getcollege`
+    uploadFile:`${baseUrl}/upload`,
+    downloadFile:`${baseUrl}/filedl/{fid}`,
+    searchDoc:`${baseUrl}/document/search`,
+    docDetail:`${baseUrl}/document/detail/{fid}`,
+    majorSearch:`${baseUrl}/document/coltomajor`,
+    courseSearch:`${baseUrl}/document/coursesearch`,
+    modifyFile:`${baseUrl}/document/modify/{fid}`,
+    modifyUserInfo:`${baseUrl}/usermodify/{uid}`,
+    getCollege:`${baseUrl}/document/getcollege`
 
 
 
