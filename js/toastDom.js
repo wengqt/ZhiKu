@@ -15,7 +15,7 @@
  */
 
 
-define(function (require) {
+
      class Toast{
 
          constructor(){
@@ -52,13 +52,13 @@ define(function (require) {
 
 
 
-     return new Toast();
 
 
 
 
 
 
-})
+
+
 
 

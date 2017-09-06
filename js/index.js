@@ -14,7 +14,7 @@ function login(){
     var pw = document.getElementById('passwordInput').value;
     
     user.login(username,pw,function(data,state){
-        console.log(state);
+        console.log(data,state);
     },function(data,state){
         console.log(state);
     })
