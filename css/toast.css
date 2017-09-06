@@ -1,0 +1,15 @@
+#toast{
+    position: absolute;
+    top:80%;
+    z-index: 11111;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toast-item{
+    background-color: gray;
+    text-align: center;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+}
