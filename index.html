@@ -12,6 +12,7 @@
      <script src="js/bootstrap.min.js"></script>
      <script src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
      <script src="js/API.js"></script>
+     <script src="js/jquery.cookie.js"></script>
      <script src="js/toastDom.js"></script>
      
      
@@ -43,7 +44,7 @@
                      <li class="orig"><a href="javascript:navToSR()">智库原创</a></li>
                      <li class="grou"><a href="javascript:void(0)">团队建设</a></li>
                      <li><a href="#" data-toggle="modal" data-target="#myModal">意见反馈</a></li>
-                     <li><a href="#"  data-toggle="modal" data-target="#login">登录/注册</a></li>
+                     <li id="loginOption"><a href="#"  data-toggle="modal" data-target="#login">登录/注册</a></li>
                      <!--<li><a href="#">课内资源</a></li>-->
                      <!--<li><a href="#">课外资源</a></li>-->
                      <!--<li><a href="member.html">成员介绍</a></li>-->
@@ -251,7 +252,7 @@
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     <button type="button" class="close" id="closeLogin" data-dismiss="modal" aria-hidden="true">
                          &times;
                      </button>
                      <h4 class="modal-title">
@@ -278,7 +279,7 @@
                      </form>
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal"  data-toggle="modal" data-target="#regist">点击注册
+                     <button type="button" class="btn btn-default" data-dismiss="modal"  data-toggle="modal"  data-target="#regist">点击注册
                      </button>
                      <button type="button" class="btn btn-primary" id="login-btn">
                          点击登录
@@ -291,7 +292,7 @@
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     <button type="button" id="closeRegister" class="close" data-dismiss="modal" aria-hidden="true">
                          &times;
                      </button>
                      <h4 class="modal-title">

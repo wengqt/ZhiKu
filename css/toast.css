@@ -1,6 +1,6 @@
 #toast{
     position: absolute;
-    top:80%;
+    top:50%;
     z-index: 11111;
     left: 50%;
     transform: translateX(-50%);
