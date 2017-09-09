@@ -15,7 +15,7 @@ var API = {
 
     //需要权限
     uploadFile:`${baseUrl}/upload.do`,
-    downloadFile:`${baseUrl}/filedl/{ }`,
+    downloadFile:`${baseUrl}/filedl/{fid}`,
     searchDoc:`${baseUrl}/document/search.do`,
     docDetail:`${baseUrl}/document/detail/{fid}`,
     majorSearch:`${baseUrl}/document/coltomajor.do`,

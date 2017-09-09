@@ -74,10 +74,23 @@ function AjaxHandler(){
 
 
     //有权限请求
-    ajaxHandler.prototype.uploadFile = function(fileElelmentID,success,failed){
+    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{dname,module,docformat,upuid,fileformat,origion,teacher,filedesc},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         var formData = new FormData($( `#${fileElelmentID}` )[0]);
+        var sendData = {
+            name:dname,
+            module:module,
+            file:formData,
+            teacher:teacher,
+            course:course,
+            docformat:docformat,
+            fileformat:fileformat,
+            upuid:upuid,
+            origin:origion,
+            desc:filedesc
+
+        }
         $.ajax({
             url:API.uploadFile,
             type:'POST',

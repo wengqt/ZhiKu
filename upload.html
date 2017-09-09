@@ -7,7 +7,10 @@
     <title>上传资料</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/API.js"></script>
+
     <style>
         .line{
             width: 8rem;
@@ -36,7 +39,7 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control"  placeholder="标题">
+                        <input type="text" id="dname" class="form-control"  placeholder="标题">
                     </div>
                 </div>
 
@@ -44,7 +47,7 @@
 
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">校内/校外</label>
-                    <div class="btn-group" data-toggle="buttons" style="padding-left: 15px">
+                    <div id='module' class="btn-group" data-toggle="buttons" style="padding-left: 15px">
                         <label class="btn btn-primary active">
                             <input type="radio" name="options" id="option1" autocomplete="off" checked> 校内资源
                         </label>
@@ -62,12 +65,12 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">格式</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control"  placeholder="文件格式">
+                        <input type="email" id="fileformat" class="form-control"  placeholder="文件格式">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">是否原创</label>
-                    <div class="btn-group" data-toggle="buttons" style="padding-left: 15px">
+                    <div class="btn-group" id="origion" data-toggle="buttons" style="padding-left: 15px">
                         <label class="btn btn-primary active">
                             <input type="radio" name="options" id="option3" autocomplete="off" checked> 原创
                         </label>
@@ -79,13 +82,13 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">教师</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control"  placeholder="任课教师(选填)">
+                        <input type="email" id="teacher" class="form-control"  placeholder="任课教师(选填)">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">简介</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control"  placeholder="简单的文件描述">
+                        <input type="email" id="filedesc" class="form-control"  placeholder="简单的文件描述">
                     </div>
                 </div>
 
@@ -94,4 +97,30 @@
         </div>
     </div>
 </body>
+<script src="js/ajaxHandler.js"></script>
+<script>
+    var user = new AjaxHandler();
+    function login(){
+        
+    user.login('root',111,function(data,state){
+        console.log(data,state);
+        $.cookie('username', username, { expires: 7, path: '/' });
+    },function(data,state){
+        console.log(state);
+    });}
+    login();
+    var dname = $('#dname').val();
+    var module = $('#module .active').text().trim();
+    var docformat=1;
+    var fileformat = $('#fileformat').val();
+    var origion = $('#origion .active').text().trim();
+    var teacher =$('#teacher').val();
+    var filedesc =$('#filedesc').val();
+    var upuid = $.cookie('username')
+    user.uploadFile('inputFile',{dname,module,docformat,fileformat,origion,upuid,teacher,filedesc},function(data,state){
+        console.log(data);
+    })
+
+
+</script>
 </html>
