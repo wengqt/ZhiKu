@@ -2,11 +2,16 @@
 
 window.onload=function(){
     document.getElementById('login-btn').addEventListener('click',function(){
-    login();})
+        login();
+    });
     document.getElementById('register-btn').addEventListener('click',function(){
-        register();})
-}
+        register();
+    });
+    if($.cookie('username')!==undefined){
+        document.getElementById("loginOption").innerHTML="<a href=personalCenter.html>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>";
+    }
 
+}
 
 function login(){
     var user = new AjaxHandler();
@@ -20,8 +25,9 @@ function login(){
             if(data.status==200){
                 new Toast().showMsg("登录成功",1000);
                 document.getElementById("closeLogin").click();
-                document.getElementById("loginOption").innerHTML="<a href=personalCenter.html>个人中心</a>";
-                // $.cookie('username', username, { expires: 7, path: '/' });
+                document.getElementById("loginOption").innerHTML="<a href=personalCenter.html>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>";
+                $.cookie('username', username, { expires: 7 });
+
             }else{
                 new Toast().showMsg("账号或密码错误",1000);
             }
@@ -69,4 +75,36 @@ function register(){
         })
     }
 
+}
+
+function logout() {
+    var user=new AjaxHandler();
+    console.log(1);
+    user.logout(function (data,state) {
+        new Toast().showMsg("成功退出登录",1000);
+        console.log("退出登录");
+        $.removeCookie('username');
+        document.getElementById("loginOption").innerHTML='<a href="#" data-toggle="modal" data-target="#login">登录/注册</a>';
+    },function(data,state){
+        new Toast().showMsg("网络连接异常",1000);
+
+    })
+
+
+}
+
+
+document.getElementById("loginOption").onmouseover=function(){
+
+
+    if(document.getElementById("loginOption").innerText.trim()=="个人中心"){
+
+        document.getElementById("exitLogin").style.visibility="visible";
+    }
+}
+
+document.getElementById("loginOption").onmouseout=function(){
+    if(document.getElementById("loginOption").innerText.trim()=="个人中心\n退出登录"){
+        document.getElementById("exitLogin").style.visibility="hidden";
+    }
 }

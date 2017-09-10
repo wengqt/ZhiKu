@@ -21,7 +21,7 @@ var API = {
     majorSearch:`${baseUrl}/document/coltomajor.do`,
     courseSearch:`${baseUrl}/document/coursesearch.do`,
     modifyFile:`${baseUrl}/document/modify/{fid}`,
-    modifyUserInfo:`${baseUrl}/usermodify/{uid}`,
+    modifyUserInfo:`${baseUrl}/usermodify/{username}`,
     getCollege:`${baseUrl}/document/getcollege.do`
 
 

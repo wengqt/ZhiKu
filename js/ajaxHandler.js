@@ -106,7 +106,7 @@ function AjaxHandler(){
     ajaxHandler.prototype.downloadFile = function(fileId,success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
-        window.open(matchword(API.downloadFile,fileId))
+            window.open(matchword(API.downloadFile,fileId))
     }
      
 
@@ -162,7 +162,7 @@ function AjaxHandler(){
     }
 
 
-    ajaxHandler.prototype.getCollegeList = function(){
+    ajaxHandler.prototype.getCollegeList = function(success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         $.ajax({
