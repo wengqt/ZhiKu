@@ -196,9 +196,24 @@ function AjaxHandler(){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         $.ajax({
-            url:API.getCollege,
+            url:API.courseSearch,
             type:'GET',
             data:{keyword:keyword},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    }
+
+    ajaxHandler.prototype.searchDoc = function(method,course,college,major,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.searchDoc,
+            type:'GET',
+            data:{method,course,college,major},
             dataType:"JSON",
             success:function(data,state){
                 success(data,state)},
