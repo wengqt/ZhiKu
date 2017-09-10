@@ -185,7 +185,6 @@ function AjaxHandler(){
         var ind = url.indexOf('{');
         var sub = url.substring(0,ind);
         return sub+real+'.do';
-
     }
 
 

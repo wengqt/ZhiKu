@@ -46,13 +46,13 @@
                     <div class="dropdown">
                         <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu5" data-drop="dropdownMenu5">
-                            <li><a href="javascript:void(0)" >大一</a></li>
-                            <li><a href="javascript:void(0)" >大二</a></li>
-                            <li><a href="javascript:void(0)" >大三</a></li>
-                            <li><a href="javascript:void(0)" >大四</a></li>
+                            <li class="topOption"><a href="javascript:topInput(0)" >大一</a></li>
+                            <li class="topOption"><a href="javascript:topInput(1)" >大二</a></li>
+                            <li class="topOption"><a href="javascript:topInput(2)" >大三</a></li>
+                            <li class="topOption"><a href="javascript:topInput(3)" >大四</a></li>
                         </ul>
                     </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
+                    <button  class="btn btn-default">搜索</button>
                 </form>
 
             </div><!-- /.navbar-collapse -->
@@ -87,12 +87,12 @@
         </div>
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                学期
+                学院
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" data-drop="dropdownMenu2">
-                <li><a href="javascript:void(0)" onclick="selectAct(this)">上学期</a></li>
-                <li><a href="javascript:void(0)" onclick="selectAct(this)">下学期</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">软件学院</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">软件学院</a></li>
             </ul>
         </div>
 
@@ -295,16 +295,16 @@
     var keyData ;//存放搜索框数据
     var docList ;//存放搜索到的文档列表
     var user = new AjaxHandler();
-    document.getElementById('dropdownMenu5').onchange = function(){
+    document.getElementById('dropdownMenu5').oninput= function(){
         var key = document.getElementById('dropdownMenu5').value;
-        
+
         user.courseSearch(key,function(data,state){
             if(data.status == 200){
                 console.log(data.data);
                 var innerList ='';
                 var keyData = data.data;
                 data.data.map((item,index)=>{
-                    innerList+=`<li><a href="javascript:void(0)" onclick="searchAll(1,${item.cid})">${item.cname}</a></li>`
+                    innerList+=`<li><a href="javascript:void(0)" class="topOption" onclick="searchAll(1,${item.cid})">${item.cname}</a></li>`
                 })
                 document.getElementById('dropdownMenu5').innerHTML = innerList;
             }else if(data.status == 300){
@@ -330,7 +330,7 @@
                 
             }
         }else{
-            user.searchDoc(method,cid,,,function(data,state){
+            user.searchDoc(method,cid,function(data,state){
                 docList = data.data;
                 showList();
             },function(data,state){
@@ -357,6 +357,9 @@
         </div>`
         });
         document.getElementById('doc').innerHTML = list;
+    }
+    function topInput(i) {
+        document.getElementById('dropdownMenu5').value=document.getElementsByClassName('topOption')[i].innerText
     }
 </script>
 </html>
