@@ -184,15 +184,27 @@ function AjaxHandler(){
     function matchword(url,real){
         var ind = url.indexOf('{');
         var sub = url.substring(0,ind);
-        return sub+real;
+        return sub+real+'.do';
 
     }
 
 
 
            //搜索接口待定
-    ajaxHandler.prototype.search = function(){
-            
+           //关键词搜索返回选项列表
+    ajaxHandler.prototype.courseSearch = function(keyword,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.getCollege,
+            type:'GET',
+            data:{keyword:keyword},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
     }
     
     return new ajaxHandler();

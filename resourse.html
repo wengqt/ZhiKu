@@ -7,9 +7,15 @@
     <title>资源</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/school.css">
+    <link rel="stylesheet" type="text/css" href="css/toast.css">  
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/collapse.js"></script>
+    <script src="js/API.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/ajaxHandler.js"></script>
+    <script src="js/toastDom.js"></script>
+    
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -32,7 +38,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="margin-left: 10px">
                     <li class="active" id="inner"><a href="javascript:switchSourse(1)">校内资源 <span class="sr-only">(current)</span></a></li>
-                    <li id="outer"><a href="javascript:switchSourse(2)">校外资源</a></li>
+                    <!-- <li id="outer"><a href="javascript:switchSourse(2)">校外资源</a></li> -->
 
                 </ul>
                 <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
@@ -40,10 +46,10 @@
                     <div class="dropdown">
                         <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu5" data-drop="dropdownMenu5">
-                            <li><a href="#" >大一</a></li>
-                            <li><a href="#" >大二</a></li>
-                            <li><a href="#" >大三</a></li>
-                            <li><a href="#" >大四</a></li>
+                            <li><a href="javascript:void(0)" >大一</a></li>
+                            <li><a href="javascript:void(0)" >大二</a></li>
+                            <li><a href="javascript:void(0)" >大三</a></li>
+                            <li><a href="javascript:void(0)" >大四</a></li>
                         </ul>
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
@@ -73,10 +79,10 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu1">
-                <li><a href="#" onclick="selectAct(this)">大一</a></li>
-                <li><a href="#" onclick="selectAct(this)">大二</a></li>
-                <li><a href="#"  onclick="selectAct(this)">大三</a></li>
-                <li><a href="#"  onclick="selectAct(this)">大四</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">大一</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">大二</a></li>
+                <li><a href="javascript:void(0)"  onclick="selectAct(this)">大三</a></li>
+                <li><a href="javascript:void(0)"  onclick="selectAct(this)">大四</a></li>
             </ul>
         </div>
         <div class="dropdown">
@@ -85,8 +91,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" data-drop="dropdownMenu2">
-                <li><a href="#" onclick="selectAct(this)">上学期</a></li>
-                <li><a href="#" onclick="selectAct(this)">下学期</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">上学期</a></li>
+                <li><a href="javascript:void(0)" onclick="selectAct(this)">下学期</a></li>
             </ul>
         </div>
 
@@ -161,7 +167,7 @@
 
 
 
-        <div class="dropdown">
+        <!-- <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 类别
                 <span class="caret"></span>
@@ -181,7 +187,7 @@
                 <li><a href="#" onclick="selectAct(this)">上学期</a></li>
                 <li><a href="#" onclick="selectAct(this)">下学期</a></li>
             </ul>
-        </div>
+        </div> -->
 
 
         <div class="panel panel-default mt leftblue">
@@ -260,19 +266,19 @@
         var outer = document.getElementById('outerResourse');
 
         switch(parseInt(indx)){
-            case 1:
-                inner.style.display = 'block';
-                outer.style.display = 'none';
-                    document.getElementById('inner').className = 'active';
-                    document.getElementById('outer').className = '';
-                break;
-            case 2:
+            // case 1:
+            //     inner.style.display = 'block';
+            //     outer.style.display = 'none';
+            //         document.getElementById('inner').className = 'active';
+            //         document.getElementById('outer').className = '';
+            //     break;
+            // case 2:
 
-                outer.style.display = 'block';
-                inner.style.display = 'none';
-                document.getElementById('outer').className = 'active';
-                document.getElementById('inner').className = '';
-                break;
+            //     outer.style.display = 'block';
+            //     inner.style.display = 'none';
+            //     document.getElementById('outer').className = 'active';
+            //     document.getElementById('inner').className = '';
+            //     break;
 
         }
 
@@ -283,6 +289,31 @@
         var param = url.substring(i+1,i+2);
         console.log(param);
         switchSourse(param);
+    }
+    document.getElementById('dropdownMenu5').onchange = function(){
+        var key = document.getElementById('dropdownMenu5').value;
+        var user = new AjaxHandler();
+        user.courseSearch(key,function(data,state){
+            if(data.status == 200){
+                console.log(data.data);
+                var innerList =''
+                data.data.map((item,index)=>{
+                    innerList+=`<li><a href="javascript:void(0)" onclick="searchAll(${item.cid})">${item.cname}</a></li>`
+                })
+                document.getElementById('dropdownMenu5').innerHTML = innerList;
+            }else if(data.status == 300){
+                new Toast().showMsg("没有该课程",1000);
+            }
+        },function(data,state){
+            new Toast().showMsg("网络连接异常",1000);
+        })
+    }
+
+
+    function searchAll(cid){
+        if(cid==undefined){
+            
+        }
     }
 </script>
 </html>
