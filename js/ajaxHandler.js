@@ -145,18 +145,23 @@ function AjaxHandler(){
 
     }
 
-    ajaxHandler.prototype.modifyUserInfo = function(userId,{nickname,oldpwd,newpwd,avator,mail,phone,qq,xid,mid},success,failed){
+    ajaxHandler.prototype.modifyUserInfo = function(username,{nickname,oldpwd,newpwd,avator,mail,phone,qq,xid,mid},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+        console.log(1)
         $.ajax({
-            url:matchword(API.modifyUserInfo,userId),
+            url:matchword(API.modifyUserInfo,username),
             type:'POST',
-            data:{name,model,teacher,course,docformat,fileformat,upuid,origin,desc},
+            data:{nickname,oldpwd,newpwd,avator,mail,phone,qq,xid,mid},
             dataType:"JSON",
             success:function(data,state){
-                success(data,state)},
+                console.log(1);
+                success(data,state);
+
+            },
             error:function(data,state){
-                failed(data,state)}
+                failed(data,state)
+            }
         })
 
     }
@@ -175,9 +180,9 @@ function AjaxHandler(){
             error:function(data,state){
                 failed(data,state)}
         })
-
-
+        
     }
+    
 
 
     //用于匹配{}
@@ -220,7 +225,81 @@ function AjaxHandler(){
                 failed(data,state)}
         })
     }
-    
+    ajaxHandler.prototype.majorSearch=function (xid,success,failed) {
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.majorSearch,
+            type:'get',
+            data:{xid:xid},
+            dataType:'json',
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    }
+    ajaxHandler.prototype.fileDownload=function (success,failed) {
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.fileDownload,
+            type:'GET',
+            data:{},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    };
+
+    ajaxHandler.prototype.getDownloadList=function (username,page,success,failed) {
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.getDownloadList,
+            type:'GET',
+            data:{username,page},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    };
+
+    ajaxHandler.prototype.getUploadList=function (username,page,success,failed) {
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.getUploadList,
+            type:'GET',
+            data:{username,page},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    }
+
+    ajaxHandler.prototype.deleteDocument=function (success,failed) {
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.deleteDocument,
+            type:'GET',
+            data:{},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    }
+
+
     return new ajaxHandler();
 
 }
