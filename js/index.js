@@ -9,7 +9,7 @@ window.onload=function(){
     });
     if($.cookie('username')!==undefined){
         var username=$.cookie('username');
-        document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html?username=${username}'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
+        document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
     }
 
 }
@@ -26,7 +26,7 @@ function login(){
             if(data.status==200){
                 new Toast().showMsg("登录成功",1000);
                 document.getElementById("closeLogin").click();
-                document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html?username=${username}'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
+                document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
                 $.cookie('username', username, { expires: 7 });
 
             }else{

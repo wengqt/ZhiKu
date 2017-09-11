@@ -74,27 +74,24 @@ function AjaxHandler(){
 
 
     //有权限请求
-    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{dname,module,docformat,upuid,fileformat,origion,teacher,filedesc},success,failed){
+    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{name,teacher,upusername,origin,filedesc,course},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
-        var formData = new FormData($( `#${fileElelmentID}` )[0]);
+        var formData = new FormData();
+        formData.append('upload',document.getElementById(`${fileElelmentID}`)[0]);
         var sendData = {
-            name:dname,
-            module:module,
+            name,
             file:formData,
-            teacher:teacher,
-            course:course,
-            docformat:docformat,
-            fileformat:fileformat,
-            upuid:upuid,
-            origin:origion,
-            desc:filedesc
-
-        }
+            teacher,
+            upusername,
+            origin,
+            desc:filedesc,
+            course,
+        };
         $.ajax({
             url:API.uploadFile,
             type:'POST',
-            data:formData,
+            data:sendData,
             dataType:"JSON",
             success:function(data,state){
                 success(data,state)},
@@ -148,14 +145,14 @@ function AjaxHandler(){
     ajaxHandler.prototype.modifyUserInfo = function(username,{nickname,oldpwd,newpwd,avator,mail,phone,qq,xid,mid},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
-        console.log(1)
+
         $.ajax({
             url:matchword(API.modifyUserInfo,username),
             type:'POST',
             data:{nickname,oldpwd,newpwd,avator,mail,phone,qq,xid,mid},
             dataType:"JSON",
             success:function(data,state){
-                console.log(1);
+
                 success(data,state);
 
             },

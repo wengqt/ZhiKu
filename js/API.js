@@ -12,7 +12,7 @@ var API = {
 
     //需要权限
     uploadFile:`${baseUrl}/upload.do`,//
-    downloadFile:`${baseUrl}/getdld`,//
+    downloadFile:`${baseUrl}/getdld.do`,//
     searchDoc:`${baseUrl}/document/search.do`,//
     docDetail:`${baseUrl}/document/detail/{fid}`,//
     majorSearch:`${baseUrl}/document/coltomajor.do`,//
@@ -20,8 +20,8 @@ var API = {
     modifyFile:`${baseUrl}/document/modify/{fid}`,//
     modifyUserInfo:`${baseUrl}/usermodify/{username}`,//
     getCollege:`${baseUrl}/document/getcollege.do`,//
-    fileDownload:`${baseUrl}/filedl/{fid}`,
-    getDownloadList:`${baseUrl}/getdld`,
-    getUploadList:`${baseUrl}/getupld`,
-    deleteDocument:`${baseUrl}/getupld\del\{fid}`,
+    fileDownload:`${baseUrl}/filedl/{fid}.do`,
+    getDownloadList:`${baseUrl}/getdld.do`,
+    getUploadList:`${baseUrl}/getupld.do`,
+    deleteDocument:`${baseUrl}/getupld\del\{fid}.do`,
 }

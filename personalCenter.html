@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/personalCenter.css">
     <link rel="stylesheet" href="css/toast.css">
+
     <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/API.js"></script>
     <script src="js/ajaxHandler.js"></script>
@@ -27,8 +29,8 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li class="active option"><a href="#">修改个人信息</a></li>
-                    <li class="option" id="uploadFile"><a href="#">上传的文件</a></li>
-                    <li class="option" id="downloadFile"><a href="#">下载的文件</a></li>
+                    <li class="option"><a href="#">上传的文件</a></li>
+                    <li class="option"><a href="#">下载的文件</a></li>
                 </ul>
             </div>
         </div>
@@ -90,6 +92,7 @@
             </div>
         </div>
     </div>
+
     <div id="download" style="display: none;">
 
         <div class="panel panel-default mt leftblue">
@@ -161,9 +164,11 @@
     for(var i=0;i<option.length;i++){
         (function(e) {
             option[e].onclick=function () {
+
                 option[e].className="active option";
                 option[(e+1)%option.length].className="option";
                 option[(e+2)%option.length].className="option";
+                option[(e+4)%option.length].className="option";
                 switch(e){
                     case 0:
                         document.getElementById("info").style.display="block";
@@ -174,11 +179,28 @@
                         document.getElementById("info").style.display="none";
                         document.getElementById("collect").style.display="block";
                         document.getElementById("download").style.display="none";
+                        var upload=new AjaxHandler();
+                        var uploadPage=1;
+                        upload.getUploadList(username,uploadPage,function (data,state) {
+                            console.log(data);
+
+                        },function (data,state) {
+                            console.log(data)
+                        })
+
                         break;
                     case 2:
                         document.getElementById("info").style.display="none";
                         document.getElementById("collect").style.display="none";
                         document.getElementById("download").style.display="block";
+                        var download=new AjaxHandler();
+                        var downloadPage=1;
+                        download.getDownloadList(username,downloadPage,function (data,state) {
+                            console.log(data);
+                        },function (data,state) {
+                            console.log(data);
+                        })
+
                         break;
                 }
             }
