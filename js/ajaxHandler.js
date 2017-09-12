@@ -74,26 +74,37 @@ function AjaxHandler(){
 
 
     //有权限请求
-    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{name,teacher,upusername,origin,desc,course},success,failed){
+    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{dname,teacher,username,origion,filedesc,course},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         var formData = new FormData();
-        formData.append('upload',document.getElementById(`${fileElelmentID}`)[0]);
+        var file = document.getElementById(`${fileElelmentID}`).files[0];
+
+        formData.append('file',file);
+        formData.append('name',dname);
+        formData.append('teacher',teacher);
+        formData.append('upusername',username);
+        formData.append('origin',origion);
+        formData.append('desc',filedesc);
+        formData.append('course',course);
+
         var sendData = {
-            name,
+            name:dname,
             file:formData,
             teacher,
-            upusername,
-            origin,
-            desc,
+            upusername:username,
+            origin:origion,
+            desc:filedesc,
             course,
         };
-
+        console.log(document.getElementById(`${fileElelmentID}`).files[0]);
+        console.log(sendData)
         $.ajax({
             url:API.uploadFile,
             type:'POST',
-            data:sendData,
+            data:formData,
             dataType:"JSON",
+            contentType:false,
             processData:false,//为了保证formData能传过去 ，不加会报错
             success:function(data,state){
                 success(data,state)},
@@ -210,13 +221,13 @@ function AjaxHandler(){
         })
     }
 
-    ajaxHandler.prototype.searchDoc = function(method,course,college,major,success,failed){
+    ajaxHandler.prototype.searchDoc = function(method,course,college,major,page,success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         $.ajax({
             url:API.searchDoc,
             type:'GET',
-            data:{method,course,college,major},
+            data:{method,course,college,major,page},
             dataType:"JSON",
             success:function(data,state){
                 success(data,state)},

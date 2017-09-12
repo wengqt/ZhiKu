@@ -64,19 +64,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-2 control-label">格式</label>
+                    <label  class="col-sm-2 control-label">课程</label>
                     <div class="col-sm-6">
-                        <input type="email" id="fileformat" class="form-control"  placeholder="文件格式">
+                        <input type="email" id="fileformat" class="form-control"  placeholder="课程">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">是否原创</label>
                     <div class="btn-group" id="origion" data-toggle="buttons" style="padding-left: 15px">
                         <label class="btn btn-primary active">
-                            <input type="radio" name="options" id="option3" autocomplete="off" checked> 原创
+                            <input type="radio" name="options" id="option3" autocomplete="off" value="1" checked> 原创
                         </label>
                         <label class="btn btn-primary">
-                            <input type="radio" name="options" id="option4" autocomplete="off"> 非原创
+                            <input type="radio" name="options" id="option4" autocomplete="off" value="0"> 非原创
                         </label>
                     </div>
                 </div>
@@ -106,10 +106,11 @@
         var username=$.cookie('username');
         var dname = $('#dname').val();
 
-        var origion = $('#origion .active').text().trim();
+        var origion = $('#origion .active input').val();
+        console.log(origion);
         var teacher =$('#teacher').val();
         var filedesc =$('#filedesc').val();
-        var course='default';
+        var course=1;
         console.log({dname,teacher,username,origion,filedesc,course})
         user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
             console.log(data);
