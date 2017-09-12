@@ -1,6 +1,8 @@
 
 //滚动条在Y轴上的滚动距离
-var page=0;
+var state=0;
+var uploadPage=1;
+var downloadPage=1;
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -35,14 +37,13 @@ function getWindowHeight(){
     return windowHeight;
 }
 window.onscroll = function(){
-    console.log(getScrollTop());
-    console.log(getWindowHeight());
-    console.log(getScrollHeight());
+
     if(getScrollTop() + getWindowHeight()+1 >= getScrollHeight()){
         console.log(++page);
 
     }
 };
+var content='';
 
 
 var username=$.cookie('username');
@@ -88,31 +89,96 @@ for(var i=0;i<option.length;i++){
             switch(e){
                 case 0:
                     document.getElementById("info").style.display="block";
-                    document.getElementById("collect").style.display="none";
+                    document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="none";
                     break;
                 case 1:
+                    state=1;
                     document.getElementById("info").style.display="none";
-                    document.getElementById("collect").style.display="block";
+                    document.getElementById("upload").style.display="block";
                     document.getElementById("download").style.display="none";
                     var upload=new AjaxHandler();
-                    var uploadPage=1;
-                    upload.getUploadList(username,uploadPage,function (data,state) {
-                        console.log(data);
 
+                    upload.getUploadList(username,uploadPage,function (data,state) {
+
+                        console.log(data.data)
+                        for(var i=0;i<data.data.length;i++){
+                            content+=`<div class="panel panel-default mt leftblue">
+                                        <div class="panel-body">
+                                            <div class="row firstLine">
+                                                <div class="col-xs-4 bluefont">${data.data[i].fileinfo.course}</div>
+                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${new Date(data.data[i].fileinfo.uptime*1000).toString()}</div>
+                                                <div class="col-xs-3">课件</div>
+                                            </div>
+                                            <div class="row firstLine">
+                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
+                                                <button type="button" class="btn btn-danger col-xs-1">删除 </button>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">教师：吴彦祖</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">下载量：999</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">需要积分：999</div>
+                                            </div>
+                            
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">
+                                                    0 0
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+                        }
+                        document.getElementById('upload').innerHTML=content;
                     },function (data,state) {
                         console.log(data)
                     })
 
                     break;
                 case 2:
+                    state=2;
                     document.getElementById("info").style.display="none";
-                    document.getElementById("collect").style.display="none";
+                    document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="block";
                     var download=new AjaxHandler();
-                    var downloadPage=1;
+
                     download.getDownloadList(username,downloadPage,function (data,state) {
                         console.log(data);
+                        content='';
+                        for(var i=0;i<data.data.length;i++){
+                            content+=`<div class="panel panel-default mt leftblue">
+                                        <div class="panel-body">
+                                            <div class="row firstLine">
+                                                <div class="col-xs-4 bluefont">${data.data[i].fileinfo}</div>
+                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${new Date(data.data[i].fileinfo.upname*1000).toString()}</div>
+                                                <div class="col-xs-3">课件</div>
+                                            </div>
+                                            <div class="row firstLine">
+                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
+                                                <button type="button" class="btn btn-danger col-xs-1">删除 </button>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">教师：吴彦祖</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">下载量：999</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">需要积分：999</div>
+                                            </div>
+                            
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">
+                                                    0 0
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+                        }
+                        document.getElementById('download').innerHTML=content;
                     },function (data,state) {
                         console.log(data);
                     })
@@ -122,4 +188,37 @@ for(var i=0;i<option.length;i++){
         }
     })(i)
 
+}
+function showContent() {
+    content='';
+    for(var i=0;i<data.data.length;i++){
+        content+=`<div class="panel panel-default mt leftblue">
+                                        <div class="panel-body">
+                                            <div class="row firstLine">
+                                                <div class="col-xs-4 bluefont">${data.data[i].fileinfo}</div>
+                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${new Date(data.data[i].fileinfo.upname*1000).toString()}</div>
+                                                <div class="col-xs-3">课件</div>
+                                            </div>
+                                            <div class="row firstLine">
+                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
+                                                <button type="button" class="btn btn-danger col-xs-1">删除 </button>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">教师：吴彦祖</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">下载量：999</div>
+                                            </div>
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">需要积分：999</div>
+                                            </div>
+                            
+                                            <div class="row blackline">
+                                                <div class="col-xs-12">
+                                                    0 0
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+    }
 }

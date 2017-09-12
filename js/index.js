@@ -76,13 +76,14 @@ function logout() {
     var user=new AjaxHandler();
 
     user.logout(function (data,state) {
+        console.log(data);
         new Toast().showMsg("成功退出登录",1000);
         console.log("退出登录");
         $.removeCookie('username');
         document.getElementById("loginOption").innerHTML='<a href="#" data-toggle="modal" data-target="#login">登录/注册</a>';
 
     },function(data,state){
-
+        console.log(data);
         new Toast().showMsg("网络连接异常",1000);
     })
 }
