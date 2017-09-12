@@ -85,10 +85,9 @@ function AjaxHandler(){
             teacher,
             upusername,
             origin,
-            desc,
+            desc:desc,
             course,
         };
-
         $.ajax({
             url:API.uploadFile,
             type:'POST',

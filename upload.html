@@ -104,15 +104,15 @@
     function submitInfo() {
         var user = new AjaxHandler();
         var username=$.cookie('username');
-        var dname = $('#dname').val();
+        var name = $('#dname').val();
 
         var origion = $('#origion .active').text().trim();
         var teacher =$('#teacher').val();
         var filedesc =$('#filedesc').val();
-        var course='default';
-        console.log({dname,teacher,username,origion,filedesc,course})
-        user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
-            console.log(data);
+        var course='1';
+        console.log({name,teacher,username,origion,filedesc,course})
+        user.uploadFile('inputFile',{name,teacher,username,origion,filedesc,course},function(data,state){
+
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
             }else if(data.status==300){

@@ -159,54 +159,6 @@
 </div>
 
 </body>
-<script>
-    var option=document.getElementsByClassName("option");
-    for(var i=0;i<option.length;i++){
-        (function(e) {
-            option[e].onclick=function () {
 
-                option[e].className="active option";
-                option[(e+1)%option.length].className="option";
-                option[(e+2)%option.length].className="option";
-                option[(e+4)%option.length].className="option";
-                switch(e){
-                    case 0:
-                        document.getElementById("info").style.display="block";
-                        document.getElementById("collect").style.display="none";
-                        document.getElementById("download").style.display="none";
-                        break;
-                    case 1:
-                        document.getElementById("info").style.display="none";
-                        document.getElementById("collect").style.display="block";
-                        document.getElementById("download").style.display="none";
-                        var upload=new AjaxHandler();
-                        var uploadPage=1;
-                        upload.getUploadList(username,uploadPage,function (data,state) {
-                            console.log(data);
-
-                        },function (data,state) {
-                            console.log(data)
-                        })
-
-                        break;
-                    case 2:
-                        document.getElementById("info").style.display="none";
-                        document.getElementById("collect").style.display="none";
-                        document.getElementById("download").style.display="block";
-                        var download=new AjaxHandler();
-                        var downloadPage=1;
-                        download.getDownloadList(username,downloadPage,function (data,state) {
-                            console.log(data);
-                        },function (data,state) {
-                            console.log(data);
-                        })
-
-                        break;
-                }
-            }
-        })(i)
-
-    }
-</script>
 <script src="js/personalCenter.js"></script>
 </html>
