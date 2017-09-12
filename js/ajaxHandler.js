@@ -74,7 +74,7 @@ function AjaxHandler(){
 
 
     //有权限请求
-    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{name,teacher,upusername,origin,filedesc,course},success,failed){
+    ajaxHandler.prototype.uploadFile = function(fileElelmentID,{name,teacher,upusername,origin,desc,course},success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         var formData = new FormData();
@@ -85,14 +85,16 @@ function AjaxHandler(){
             teacher,
             upusername,
             origin,
-            desc:filedesc,
+            desc,
             course,
         };
+
         $.ajax({
             url:API.uploadFile,
             type:'POST',
             data:sendData,
             dataType:"JSON",
+            processData:false,//为了保证formData能传过去 ，不加会报错
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
