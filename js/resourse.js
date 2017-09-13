@@ -43,7 +43,7 @@ function getCollegeList() {
         console.log("获取college success");
         var content='';
          for(var i=0;i<data.data.length;i++){
-             content+=`<li><a href="javascript:void(0)"  onclick="selectAct(this)">${data.data[i].xname}</a></li>`;
+             content+=`<li><a href="javascript:void(0)" value='${data.data[i].xname}'  onclick="selectAct(this)">${data.data[i].xname}</a></li>`;
          }
          document.getElementById('college').innerHTML=content;
     },function () {
