@@ -282,6 +282,7 @@ function AjaxHandler(){
     ajaxHandler.prototype.getUploadList=function (username,page,success,failed) {
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+
         $.ajax({
             url:API.getUploadList,
             type:'GET',
