@@ -295,11 +295,12 @@ function AjaxHandler(){
         })
     }
 
-    ajaxHandler.prototype.deleteDocument=function (success,failed) {
+    ajaxHandler.prototype.deleteDocument=function (fid,success,failed) {
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+        console.log(matchword(API.deleteDocument,fid));
         $.ajax({
-            url:API.deleteDocument,
+            url:matchword(API.deleteDocument,fid),
             type:'GET',
             data:{},
             dataType:"JSON",

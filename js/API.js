@@ -23,5 +23,5 @@ var API = {
     fileDownload:`${baseUrl}/filedl/{fid}.do`,
     getDownloadList:`${baseUrl}/getdld.do`,
     getUploadList:`${baseUrl}/getupld.do`,
-    deleteDocument:`${baseUrl}/getupld\del\{fid}.do`,
+    deleteDocument:`${baseUrl}/del/{fid}`,
 }

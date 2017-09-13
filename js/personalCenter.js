@@ -3,6 +3,7 @@
 var state=0;
 var uploadPage=1;
 var downloadPage=1;
+var uploadDIv=0;
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -89,9 +90,10 @@ function getUpLoadList() {
 
     upload.getUploadList(username,uploadPage,function (data,state) {
 
-        console.log(data.data)
+        console.log(data)
         var content='';
         for(var i=0;i<data.data.length;i++){
+            uploadDIv++;
             content+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
                                             <div class="row firstLine">
@@ -101,7 +103,7 @@ function getUpLoadList() {
                                             </div>
                                             <div class="row firstLine">
                                                 <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
-                                                <button type="button" class="btn btn-danger col-xs-1">删除 </button>
+                                                <button type="button" onclick="deleteDoc(this)" class="btn btn-danger col-xs-1">删除 </button>
                                             </div>
                                             <div class="row blackline">
                                                 <div class="col-xs-12">教师：吴彦祖</div>
@@ -130,7 +132,7 @@ function getUpLoadList() {
 function getDownLoadList() {
     var download=new AjaxHandler();
     download.getDownloadList(username,downloadPage,function (data,state) {
-        console.log(data);
+        console.log(data.data);
         var content='';
         for(var i=0;i<data.data.length;i++){
             content+=`<div class="panel panel-default mt leftblue">
@@ -208,3 +210,21 @@ for(var i=0;i<option.length;i++){
 }
 
 
+function deleteDoc(e) {
+    var user =new AjaxHandler();
+    var fid=e.parentNode.previousSibling.previousSibling.lastChild.previousSibling.innerHTML.substr(2);
+    console.log(fid)
+    user.deleteDocument(fid,function (data,state) {
+        console.log(data)
+        if(data.status==200){
+            new Toast().showMsg('删除成功',1000);
+            e.innerText='已删除'
+        }else if(data.status==300){
+            new Toast().showMsg('文件不存在或已删除',1000)
+        }
+    },function (data,state) {
+        console.log(data);
+        new Toast().showMsg('网络连接超时',1000)
+    })
+    console.log(e.parentNode.previousSibling.previousSibling.lastChild.previousSibling.innerHTML.substr(2))
+}
