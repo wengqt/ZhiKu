@@ -4,6 +4,7 @@ var state=0;
 var uploadPage=1;
 var downloadPage=1;
 var uploadDIv=0;
+var isLoading = false;
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -41,12 +42,24 @@ window.onscroll = function(){
 
     if(getScrollTop() + getWindowHeight()+0.1 >= getScrollHeight()){
         if(state==1){
-            uploadPage++
-            console.log(uploadPage)
-            getUpLoadList();
-        }else if(state==2)
-            downloadPage++
-            getDownLoadList()
+            
+            if(!isLoading){
+                isLoading = true;
+                uploadPage++
+                console.log(uploadPage)
+                getUpLoadList();
+            }
+            
+        }else if(state==2){
+            
+            
+            if(!isLoading){
+                isLoading = true;
+                downloadPage++
+                getDownLoadList();
+            }
+        }
+            
     }
 };
 
@@ -92,13 +105,14 @@ function getUpLoadList() {
 
         console.log(data)
         var content='';
+        if(data.data.length==0) uploadPage--;
         for(var i=0;i<data.data.length;i++){
             uploadDIv++;
             content+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
                                             <div class="row firstLine">
                                                 <div class="col-xs-4 bluefont">${data.data[i].fileinfo.course}</div>
-                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${new Date(data.data[i].fileinfo.uptime*1000).toString()}</div>
+                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${data.data[i].fileinfo.uptime}</div>
                                                 <div class="col-xs-3">课件${data.data[i].fid}</div>
                                             </div>
                                             <div class="row firstLine">
@@ -124,6 +138,7 @@ function getUpLoadList() {
                                     </div>`
         }
         document.getElementById('upload').innerHTML+=content;
+        isLoading = false;
     },function (data,state) {
         console.log(data)
     })
@@ -134,6 +149,7 @@ function getDownLoadList() {
     download.getDownloadList(username,downloadPage,function (data,state) {
         console.log(data.data);
         var content='';
+        if(data.data.length==0) downloadPage--;
         for(var i=0;i<data.data.length;i++){
             content+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
@@ -164,7 +180,9 @@ function getDownLoadList() {
                                         </div>
                                     </div>`
         }
+        
         document.getElementById('download').innerHTML+=content;
+        isLoading = false;
     },function (data,state) {
         console.log(data);
     })

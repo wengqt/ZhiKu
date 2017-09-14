@@ -42,9 +42,10 @@
 
                 </ul>
                 <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
+                <button  class="btn btn-default navbar-btn navbar-right" id='searchBtn'>搜索</button>
                 <form class="navbar-form navbar-right">
                     <div class="dropdown" >
-                        <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" autocomplete="off">
                         <ul class="dropdown-menu" id="dropdown5" aria-labelledby="dropdownMenu5" data-drop="dropdownMenu5">
                             <li class="topOption"><a href="javascript:topInput(0)" >大一</a></li>
                             <li class="topOption"><a href="javascript:topInput(1)" >大二</a></li>
@@ -52,8 +53,9 @@
                             <li class="topOption"><a href="javascript:topInput(3)" >大四</a></li>
                         </ul>
                     </div>
-                    <button  class="btn btn-default">搜索</button>
                 </form>
+                
+                
 
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -90,7 +92,7 @@
                 专业
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" data-drop="dropdownMenu2">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="majorList" data-drop="dropdownMenu2">
                 <li><a href="javascript:void(0)" onclick="selectAct(this)">软件工程</a></li>
                 <li><a href="javascript:void(0)" onclick="selectAct(this)">软件工程</a></li>
             </ul>

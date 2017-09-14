@@ -1,8 +1,18 @@
 var searchPage = 1;
-function selectAct(a) {
+var method,course,xid,mid,page;
+var isLoading = false;
+
+
+function selectAct(a,num,id) {
     var s1 = a.innerText;
     var k = a.parentNode.parentNode.dataset.drop;
-    $(`#${k}`).html(s1+'<span class="caret"></span>')
+    $(`#${k}`).html(s1+'<span class="caret"></span>');
+    if(num==1){
+        getMajorList(id);
+        xid=id;
+    }else{
+        searchBymajor(id);
+    }
 }
 function switchSourse(indx) {
     var inner = document.getElementById('innerRescouse');
@@ -43,7 +53,7 @@ function getCollegeList() {
         console.log("获取college success");
         var content='';
          for(var i=0;i<data.data.length;i++){
-             content+=`<li><a href="javascript:void(0)"  onclick="selectAct(this)">${data.data[i].xname}</a></li>`;
+             content+=`<li><a href="javascript:void(0)"  onclick="selectAct(this,1,${data.data[i].xid})">${data.data[i].xname}</a></li>`;
          }
          document.getElementById('college').innerHTML=content;
     },function () {
@@ -55,19 +65,18 @@ var docList ;//存放搜索到的文档列表
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
     var key = document.getElementById('dropdownMenu5').value;
-
     user.courseSearch(key,function(data,state){
         if(data.status == 200){
-            console.log(data.data);
             var innerList ='';
-            var keyData = data.data;
+            keyData = data.data;
+            // console.log(keyData);
+            
             data.data.map((item,index)=>{
-                console.log(item);
+                
                 innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid})'>${item.cname}</a></li>`
             })
-            console.log(document.getElementById('dropdown5'));
             document.getElementById('dropdown5').innerHTML = innerList;
-            console.log(innerList)
+        
         }else if(data.status == 300){
             new Toast().showMsg("没有该课程",1000);
         }
@@ -75,14 +84,32 @@ document.getElementById('dropdownMenu5').oninput= function(){
         new Toast().showMsg("网络连接异常",1000);
     })
 }
-
+document.getElementById('searchBtn').onclick = function(){
+    if(document.getElementById('dropdownMenu5').value.trim()==''){
+        new Toast().showMsg("请输入课程",1000);
+    }else{
+        searchAll(1);        
+    }
+}
 
 function searchAll(method,cid){
-
+    if(method==1){
+        document.getElementById('dropdownMenu5').text= document.getElementById('dropdownMenu5').value
+    }
     if(cid==undefined){
         for(var i =0;i<keyData.length;i++){
-            if(keyData[i].cname==document.getElementById('dropdownMenu5').value){
+            if(keyData[i].cname.toLowerCase()==document.getElementById('dropdownMenu5').value.toLowerCase()){
                 cid=keyData[i].cid;
+                new Toast().showMsg("正在获取列表",1000);
+        
+                docList ='';
+                method=method;
+                course=cid;
+                xid= 1;
+                mid = 1001 ;
+                searchPage = 1;
+                searchDocument(searchPage);
+                new Toast().showMsg("正在获取列表",1000);
             }
         }
         if(cid==undefined){
@@ -91,15 +118,44 @@ function searchAll(method,cid){
 
         }
     }else{
-        user.searchDoc(method,cid,1,1001,searchPage,function(data,state){
-            docList = data.data;
-            console.log(data)
-            showList();
-        },function(data,state){
+        docList ='';
+        method=method;
+        course=cid;
+        xid= 1;
+        mid = 1001 ;
+        searchPage = 1;
+        searchDocument(searchPage);
+        new Toast().showMsg("正在获取列表",1000);
+        // user.searchDoc(method,cid,1,1001,searchPage,function(data,state){
+        //     docList = data.data;
+        //     // console.log(data)
 
-        })
+        //     showList();
+        // },function(data,state){
+
+        // })
     }
 }
+function searchBymajor(mid){
+    docList ='';
+    method=2;
+    course=null;
+    mid = mid ;
+    searchPage = 1;
+    searchDocument(2,null,xid,mid,searchPage);
+}
+function searchDocument(page){
+    var user =new AjaxHandler();
+    user.searchDoc(method,course,xid,mid,page,function(data){
+        if(data.status==200){
+            docList = data.data;
+            showList();
+            console.log(docList);
+            isLoading = false;
+        }
+    },function(){})
+}
+
 function showList(){
     var list ='';
     docList.map((item,index)=>{
@@ -118,8 +174,86 @@ function showList(){
             </div>
         </div>`
     });
-    document.getElementById('doc').innerHTML = list;
+    document.getElementById('doc').innerHTML += list;
 }
 function topInput(i) {
     document.getElementById('dropdownMenu5').value=document.getElementsByClassName('topOption')[i].innerText
 }
+
+
+
+
+function getMajorList(xid){
+    var user =new AjaxHandler();
+    user.majorSearch(xid,function(data){
+        if(data.status==200){
+            console.log(data.data);
+            var majorList ='';
+            for(var j = 0;j<data.data.length;j++){
+                majorList +=`<li><a href="javascript:void(0)"  onclick="selectAct(this,2,${data.data[j].mid})">${data.data[j].mname}</a></li>`
+                
+            }
+            document.getElementById('majorList').innerHTML = majorList;
+        }
+    },function(){
+
+    })   
+}
+
+
+//瀑布流加载
+
+
+function getScrollTop(){
+    var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+    if(document.body){
+        bodyScrollTop = document.body.scrollTop;
+    }
+    if(document.documentElement){
+        documentScrollTop = document.documentElement.scrollTop;
+    }
+    scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+    return scrollTop;
+}
+//文档的总高度
+function getScrollHeight(){
+    var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+    if(document.body){
+        bodyScrollHeight = document.body.scrollHeight;
+    }
+    if(document.documentElement){
+        documentScrollHeight = document.documentElement.scrollHeight;
+    }
+    scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    return scrollHeight;
+}
+//浏览器视口的高度
+function getWindowHeight(){
+    var windowHeight = 0;
+    if(document.compatMode == "CSS1Compat"){
+        windowHeight = document.documentElement.clientHeight;
+    }else{
+        windowHeight = document.body.clientHeight;
+    }
+    return windowHeight;
+}
+window.onscroll = function(){
+
+    if(getScrollTop() + getWindowHeight()+0.1 >= getScrollHeight()){
+        
+            
+            if(!isLoading){
+                isLoading = true;
+                searchPage++
+                console.log(searchPage)
+                searchDocument(searchPage);
+            }
+            
+        
+            
+            
+            
+        
+            
+    }
+};

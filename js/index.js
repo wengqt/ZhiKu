@@ -9,8 +9,15 @@ window.onload=function(){
     });
     if($.cookie('username')!==undefined){
         var username=$.cookie('username');
-        document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
-    }
+        document.getElementById("loginOption").className = 'dropdown';
+        document.getElementById("loginOption").innerHTML=`
+        
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+        <ul class="dropdown-menu" style="z-index:1111">
+            <li><a href="personalCenter.html" >个人中心</a></li>
+            <li><a href="javascript:logout()" >退出登录</a></li>
+        </ul>
+      `;}
 
 }
 
@@ -26,8 +33,17 @@ function login(){
             if(data.status==200){
                 new Toast().showMsg("登录成功",1000);
                 document.getElementById("closeLogin").click();
-                document.getElementById("loginOption").innerHTML=`<a href='personalCenter.html'>个人中心</a><a onclick='logout()' id=\"exitLogin\">退出登录</a>`;
-                $.cookie('username', username, { expires: 7 });
+                document.getElementById("loginOption").className = 'dropdown';
+                document.getElementById("loginOption").innerHTML=`
+                
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                <ul class="dropdown-menu" style="z-index:1111">
+                    <li><a href="personalCenter.html" >个人中心</a></li>
+                    <li><a href="javascript:logout()" >退出登录</a></li>
+                </ul>
+              `;
+
+                $.cookie('username', username,{path:"/"});
 
             }else{
                 new Toast().showMsg("账号或密码错误",1000);
@@ -89,17 +105,17 @@ function logout() {
 }
 
 
-document.getElementById("loginOption").onmouseover=function(){
+// document.getElementById("loginOption").onmouseover=function(){
 
 
-    if(document.getElementById("loginOption").innerText.trim()=="个人中心"){
+//     if(document.getElementById("loginOption").innerText.trim()=="个人中心"){
 
-        document.getElementById("exitLogin").style.display="inline";
-    }
-}
+//         // document.getElementById("exitLogin").style.display="inline";
+//     }
+// }
 
-document.getElementById("loginOption").onmouseout=function(){
-    if(document.getElementById("loginOption").innerText.trim()=="个人中心\n退出登录"){
-        document.getElementById("exitLogin").style.display="none";
-    }
-}
+// document.getElementById("loginOption").onmouseout=function(){
+//     if(document.getElementById("loginOption").innerText.trim()=="个人中心\n退出登录"){
+//         document.getElementById("exitLogin").style.display="none";
+//     }
+// }
