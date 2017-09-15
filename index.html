@@ -349,25 +349,20 @@
      function navTomember() {
          window.location.href='member.html';
      }
+     function ScrollTo(click,position,duration) {
+
+         $(click).click(function () {
+             $.scrollTo(position,duration);
+         })
+     }
      $(function(){
-         $(".ind").click(function(){
-             $.scrollTo('#index',800);
-         });
-         $(".resour").click(function(){
-             $.scrollTo('#resourse',800);
-         });
-         $(".act").click(function(){
-             $.scrollTo('#activity',1000);
-         });
-         $(".orig").click(function(){
-             $.scrollTo('#origin',1000);
-         });
-         $(".grou").click(function(){
-             $.scrollTo('#group',1200);
-         });
-         $(".about").click(function(){
-             $.scrollTo('#about-us',1200);
-         });
+         ScrollTo('.ind','#index',800);
+         ScrollTo('.resour','#resourse',800)
+         ScrollTo(".act",'#activity',1000);
+         ScrollTo(".orig",'#origin',1000)
+         ScrollTo(".grou",'#group',1200)
+         ScrollTo(".about",'#about-us',1200)
+
      });
  </script>
  <script src="js/ajaxHandler.js"></script>
