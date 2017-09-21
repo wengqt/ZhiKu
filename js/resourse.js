@@ -144,6 +144,7 @@ function searchBymajor(mid){
     searchPage = 1;
     searchDocument(2,null,xid,mid,searchPage);
 }
+
 function searchDocument(page){
     var user =new AjaxHandler();
     user.searchDoc(method,course,xid,mid,page,function(data){
