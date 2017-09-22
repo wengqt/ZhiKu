@@ -105,7 +105,7 @@ function getUpLoadList() {
 
         console.log(data)
         var content='';
-        if(data.data.length==0) uploadPage--;
+        // if(data.data.length==0) uploadPage--;
         for(var i=0;i<data.data.length;i++){
             uploadDIv++;
             content+=`<div class="panel panel-default mt leftblue">
@@ -149,7 +149,8 @@ function getDownLoadList() {
     download.getDownloadList(username,downloadPage,function (data,state) {
         console.log(data.data);
         var content='';
-        if(data.data.length==0) downloadPage--;
+        console.log(downloadPage);
+        // if(data.data.length==0) downloadPage--;
         for(var i=0;i<data.data.length;i++){
             content+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
@@ -208,6 +209,7 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="block";
                     document.getElementById("download").style.display="none";
+                    
                     getUpLoadList();
 
 
@@ -218,6 +220,7 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="block";
+                    
                     getDownLoadList();
 
                     break;

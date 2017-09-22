@@ -20,7 +20,7 @@ var API = {
     modifyFile:`${baseUrl}/document/modify/{fid}`,//
     modifyUserInfo:`${baseUrl}/usermodify/{username}`,//
     getCollege:`${baseUrl}/document/getcollege.do`,//
-    fileDownload:`${baseUrl}/filedl/{fid}.do`,
+    filedownload:`${baseUrl}/filedl/{fid}.do`,
     getDownloadList:`${baseUrl}/getdld.do`,
     getUploadList:`${baseUrl}/getupld.do`,
     deleteDocument:`${baseUrl}/del/{fid}`,

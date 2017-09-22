@@ -249,15 +249,18 @@ function AjaxHandler(){
                 failed(data,state)}
         })
     }
-    ajaxHandler.prototype.fileDownload=function (success,failed) {
+    ajaxHandler.prototype.fileDownload=function (fileId,success,failed) {
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
+        console.log(matchword(API.filedownload,fileId));
         $.ajax({
-            url:API.fileDownload,
+            url:matchword(API.filedownload,fileId),
             type:'GET',
             data:{},
             dataType:"JSON",
             success:function(data,state){
+            onsole.log(fileId);
+        
                 success(data,state)},
             error:function(data,state){
                 failed(data,state)}

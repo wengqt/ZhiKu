@@ -117,7 +117,7 @@
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
             }else if(data.status==300){
-                new Toast().showMsg('添加文件过大(>100MB)')
+                new Toast().showMsg(data.message,1000);
             }
         },function (data,state) {
             new Toast().showMsg('网络连接超时',1000)

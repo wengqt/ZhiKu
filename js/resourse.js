@@ -147,14 +147,17 @@ function searchBymajor(mid){
 
 function searchDocument(page){
     var user =new AjaxHandler();
-    user.searchDoc(method,course,xid,mid,page,function(data){
-        if(data.status==200){
-            docList = data.data;
-            showList();
-            console.log(docList);
-            isLoading = false;
-        }
-    },function(){})
+    if(method!=undefined){
+        user.searchDoc(method,course,xid,mid,page,function(data){
+            if(data.status==200){
+                docList = data.data;
+                showList();
+                console.log(docList);
+                isLoading = false;
+            }
+        },function(){})
+    }
+    
 }
 
 function showList(){
@@ -170,7 +173,7 @@ function showList(){
                 </div>
                 <div class="row firstLine">
                     <div class="col-xs-9 date small">${item.fileinfo.desc}</div>
-                    <button type="button" class="btn btn-success col-xs-1">下载 </button>
+                    <button type="button" onclick='downloadfile(${item.fid})' class="btn btn-success col-xs-1">下载 </button>
                 </div>
             </div>
         </div>`
@@ -258,3 +261,17 @@ window.onscroll = function(){
             
     }
 };
+function downloadfile(fid){
+    var user =new AjaxHandler();
+    console.log(fid);
+    user.fileDownload(fid,function(data,state){
+        
+        console.log(data,state);
+        // var a = document.createElement('a');
+        // var url = API.fileDownload+`${fid}.do`;
+        // a.href = url;
+       //  a.download = fileName;
+        // a.click();
+    },function(){})
+    
+}
