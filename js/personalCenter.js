@@ -5,6 +5,8 @@ var uploadPage=1;
 var downloadPage=1;
 var uploadDIv=0;
 var isLoading = false;
+var upContent='';
+var downContent='';
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -104,11 +106,11 @@ function getUpLoadList() {
     upload.getUploadList(username,uploadPage,function (data,state) {
 
         console.log(data)
-        var content='';
+        // var content='';
         // if(data.data.length==0) uploadPage--;
         for(var i=0;i<data.data.length;i++){
             uploadDIv++;
-            content+=`<div class="panel panel-default mt leftblue">
+            upContent+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
                                             <div class="row firstLine">
                                                 <div class="col-xs-4 bluefont">${data.data[i].fileinfo.course}</div>
@@ -137,7 +139,7 @@ function getUpLoadList() {
                                         </div>
                                     </div>`
         }
-        document.getElementById('upload').innerHTML+=content;
+        document.getElementById('upload').innerHTML=upContent;
         isLoading = false;
     },function (data,state) {
         console.log(data)
@@ -148,20 +150,20 @@ function getDownLoadList() {
     var download=new AjaxHandler();
     download.getDownloadList(username,downloadPage,function (data,state) {
         console.log(data.data);
-        var content='';
+        // var content='';
         console.log(downloadPage);
         // if(data.data.length==0) downloadPage--;
         for(var i=0;i<data.data.length;i++){
-            content+=`<div class="panel panel-default mt leftblue">
+            downContent+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
                                             <div class="row firstLine">
-                                                <div class="col-xs-4 bluefont">${data.data[i].fileinfo}</div>
-                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${new Date(data.data[i].fileinfo.upname*1000).toString()}</div>
+                                                <div class="col-xs-4 bluefont">${data.data[i].fileinfo.name}</div>
+                                                <div class="col-xs-5 small date">${data.data[i].upuid} 上传于 ${data.data[i].fileinfo.uptime}</div>
                                                 <div class="col-xs-3">课件</div>
                                             </div>
                                             <div class="row firstLine">
-                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
-                                                <button type="button" class="btn btn-danger col-xs-1">删除 </button>
+                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.course}</div>
+                                                <button type="button" onclick='downloadfile(${data.data[i].fid})' class="btn btn-success col-xs-1">下载 </button>
                                             </div>
                                             <div class="row blackline">
                                                 <div class="col-xs-12">教师：吴彦祖</div>
@@ -182,7 +184,7 @@ function getDownLoadList() {
                                     </div>`
         }
         
-        document.getElementById('download').innerHTML+=content;
+        document.getElementById('download').innerHTML=downContent;
         isLoading = false;
     },function (data,state) {
         console.log(data);
@@ -209,7 +211,8 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="block";
                     document.getElementById("download").style.display="none";
-                    
+                    upContent='';
+                    downContent='';
                     getUpLoadList();
 
 
@@ -220,7 +223,8 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="block";
-                    
+                    upContent='';
+                    downContent='';
                     getDownLoadList();
 
                     break;
@@ -248,4 +252,20 @@ function deleteDoc(e) {
         new Toast().showMsg('网络连接超时',1000)
     })
     console.log(e.parentNode.previousSibling.previousSibling.lastChild.previousSibling.innerHTML.substr(2))
+}
+
+
+function downloadfile(fid){
+    var user =new AjaxHandler();
+    console.log(fid);
+    user.downloadFile(fid,function(data,state){
+        
+        console.log(data,state);
+        // var a = document.createElement('a');
+        // var url = API.fileDownload+`${fid}.do`;
+        // a.href = url;
+       //  a.download = fileName;
+        // a.click();
+    },function(){})
+    
 }

@@ -1,5 +1,6 @@
 var searchPage = 1;
 var method,course,xid,mid,page;
+var lastMethod;
 var isLoading = false;
 
 
@@ -62,6 +63,8 @@ function getCollegeList() {
 }
 var keyData ;//存放搜索框数据
 var docList ;//存放搜索到的文档列表
+
+
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
     var key = document.getElementById('dropdownMenu5').value;
@@ -92,8 +95,9 @@ document.getElementById('searchBtn').onclick = function(){
     }
 }
 
-function searchAll(method,cid){
-    if(method==1){
+function searchAll(meth,cid){
+    console.log(meth);
+    if(meth==1){
         document.getElementById('dropdownMenu5').text= document.getElementById('dropdownMenu5').value
     }
     if(cid==undefined){
@@ -102,8 +106,8 @@ function searchAll(method,cid){
                 cid=keyData[i].cid;
                 new Toast().showMsg("正在获取列表",1000);
         
-                docList ='';
-                method=method;
+                docList =[];
+                method=meth;
                 course=cid;
                 xid= 1;
                 mid = 1001 ;
@@ -118,8 +122,8 @@ function searchAll(method,cid){
 
         }
     }else{
-        docList ='';
-        method=method;
+        docList =[];
+        method=meth;
         course=cid;
         xid= 1;
         mid = 1001 ;
@@ -136,23 +140,27 @@ function searchAll(method,cid){
         // })
     }
 }
-function searchBymajor(mid){
-    docList ='';
+function searchBymajor(maid){
+    docList =[];
     method=2;
     course=null;
-    mid = mid ;
+    mid = maid ;
     searchPage = 1;
-    searchDocument(2,null,xid,mid,searchPage);
+    searchDocument(searchPage);
 }
 
 function searchDocument(page){
     var user =new AjaxHandler();
+    console.log(method);
+
     if(method!=undefined){
         user.searchDoc(method,course,xid,mid,page,function(data){
             if(data.status==200){
-                docList = data.data;
+                docList = docList.concat(data.data);
+                console.log(data.data);
+                console.log(docList)
+                console.log(method,course,xid,mid,page);
                 showList();
-                console.log(docList);
                 isLoading = false;
             }
         },function(){})
@@ -178,7 +186,7 @@ function showList(){
             </div>
         </div>`
     });
-    document.getElementById('doc').innerHTML += list;
+    document.getElementById('doc').innerHTML = list;
 }
 function topInput(i) {
     document.getElementById('dropdownMenu5').value=document.getElementsByClassName('topOption')[i].innerText
@@ -264,7 +272,7 @@ window.onscroll = function(){
 function downloadfile(fid){
     var user =new AjaxHandler();
     console.log(fid);
-    user.fileDownload(fid,function(data,state){
+    user.downloadFile(fid,function(data,state){
         
         console.log(data,state);
         // var a = document.createElement('a');

@@ -116,6 +116,9 @@
 
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
+                setTimeout(function(){
+                    window.location.href='/resourse.html?ind=1';
+                },2000)
             }else if(data.status==300){
                 new Toast().showMsg(data.message,1000);
             }

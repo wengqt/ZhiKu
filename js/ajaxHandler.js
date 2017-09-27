@@ -116,7 +116,8 @@ function AjaxHandler(){
     ajaxHandler.prototype.downloadFile = function(fileId,success,failed){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
-            window.open(matchword(API.downloadFile,fileId))
+        console.log(matchword(API.filedownload,fileId))
+            window.open(matchword(API.filedownload,fileId))
     }
      
 
