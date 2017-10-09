@@ -102,7 +102,8 @@
 <script src="js/ajaxHandler.js"></script>
 <script>
     function submitInfo() {
-        var user = new AjaxHandler();
+        if($.cookie('username')){
+            var user = new AjaxHandler();
         var username=$.cookie('username');
         var dname = $('#dname').val();
 
@@ -117,7 +118,7 @@
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
                 setTimeout(function(){
-                    window.location.href='/resourse.html?ind=1';
+                    window.location.href='/JPidea/resourse.html?ind=1';
                 },2000)
             }else if(data.status==300){
                 new Toast().showMsg(data.message,1000);
@@ -125,6 +126,10 @@
         },function (data,state) {
             new Toast().showMsg('网络连接超时',1000)
         })
+        }else{
+            new Toast().showMsg('请先登录',1000)
+        }
+        
 
     }
 

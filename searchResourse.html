@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/API.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/ajaxHandler.js"></script>
+    <script src="js/resourse.js"></script>
 </head>
 <body style="margin: 0 ; padding: 0;height: 100%;background-color: #fbf8f0;">
 <div class="wrap" id="resourse">
@@ -37,33 +41,46 @@
             <div class="col-sm-4 col-xs-6" >
                 <div class="or-item">
                     <h3>数据结构</h3>
-                    <div class="btn btn-primary entry-btn">下载</div>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
                 </div>
             </div>
             <div class="col-sm-4 col-xs-6">
                 <div class="or-item">
                     <h3>离散数学</h3>
-                    <div class="btn btn-primary entry-btn">下载</div>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
                 </div>
             </div>
             <div class="col-sm-4 col-xs-6">
                 <div class="or-item">
-                    <h3>离散数学</h3>
-                    <div class="btn btn-primary entry-btn">下载</div>
+                    <h3>PTA</h3>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
                 </div>
             </div>
             <div class="col-sm-4 col-xs-6">
                 <div class="or-item">
-                    <h3>离散数学</h3>
-                    <div class="btn btn-primary entry-btn">下载</div>
+                    <h3>计算机组成原理</h3>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
                 </div>
             </div>
             <div class="col-sm-4 col-xs-6">
                 <div class="or-item">
-                    <h3>离散数学</h3>
-                    <div class="btn btn-primary entry-btn">下载</div>
+                    <h3>面向对象开发技术</h3>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
                 </div>
             </div>
+            <div class="col-sm-4 col-xs-6">
+                <div class="or-item">
+                    <h3>操作系统</h3>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <div class="or-item">
+                    <h3>数据库系统</h3>
+                    <div class="btn btn-primary entry-btn" onclick='downloadfile()'>下载</div>
+                </div>
+            </div>
+            
 
         </div>
     </div>
@@ -73,7 +90,7 @@
 </body>
 <script>
     function navToResource(ind) {
-        window.location.href='resourse.html?ind='+ind;
+        window.location.href='/JPidea/resourse.html?ind='+ind;
     }
 </script>
 </html>

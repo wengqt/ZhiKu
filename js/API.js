@@ -1,6 +1,6 @@
 
 
-var baseUrl = 'http://localhost:8080/JPidea';
+var baseUrl = 'http://719daze.me:8080/JPidea';
 var API = {
 
     //common
