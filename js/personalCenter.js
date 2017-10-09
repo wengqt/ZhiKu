@@ -73,7 +73,7 @@ var username=$.cookie('username');
 document.getElementById('saveInfo').onclick=function () {
 
         var nickname='default';
-        var newpwd='default';
+        var newpwd='';
         var avator='default';
         var qq='default';
         var xid='default';
