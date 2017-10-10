@@ -193,6 +193,9 @@ body{
         width: 100%!important;
         margin:0 auto;
     }
+    .firstLine{
+        flex-direction: column;
+    }
 
 }
 @media only screen and (max-width: 480px), only screen and (max-device-width:480px) {

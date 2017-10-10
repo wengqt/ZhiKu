@@ -174,14 +174,14 @@ function showList(){
         list +=`<div class="panel panel-default mt leftblue">
 
             <div class="panel-body">
-                <div class="row firstLine">
-                    <div class="col-xs-4 bluefont">${item.fileinfo.name}</div>
-                    <div class="col-xs-5 small date">${item.upperinfo.nickname} 上传于 ${item.fileinfo.uptime}</div>
-                    <div class="col-xs-3">课件</div>
+                <div class=" firstLine">
+                    <div class="col-xs-12 col-ms-4 bluefont">${item.fileinfo.name}</div>
+                    <div class="col-xs-12 col-ms-5 small date">${item.upperinfo.nickname} 上传于 ${item.fileinfo.uptime}</div>
+                    <div class="col-xs-12 col-ms-3">课件</div>
                 </div>
-                <div class="row firstLine">
+                <div class=" firstLine">
                     <div class="col-xs-9 date small">${item.fileinfo.desc}</div>
-                    <button type="button" onclick='downloadfile(${item.fid})' class="btn btn-success col-xs-1">下载 </button>
+                    <button type="button" onclick='downloadfile(${item.fid})' class="btn btn-success">下载 </button>
                 </div>
             </div>
         </div>`

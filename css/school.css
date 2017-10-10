@@ -10,7 +10,7 @@
 }
 .mt{
     margin-top: 20px;
-    min-width: 550px;
+    /* min-width: 550px; */
 }
 html,body{
     background-color:  #fbf8f0;
@@ -40,4 +40,11 @@ html,body{
 }
 #searchBtn{
     margin-right: 20px;
+}
+@media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
+    
+    .firstLine{
+        flex-direction: column;
+    }
+
 }

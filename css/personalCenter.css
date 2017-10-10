@@ -4,7 +4,7 @@
 }
 .mt{
     margin-top: 20px;
-    min-width: 550px;
+    /* min-width: 550px; */
 }
 .leftblue{
     border-left: 5px solid #2a809d;
@@ -25,4 +25,11 @@
 .blackline{
     height: 2rem;
     line-height: 2rem;
+}
+@media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
+    
+    .firstLine{
+        flex-direction: column;
+    }
+
 }
