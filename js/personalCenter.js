@@ -185,6 +185,8 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("download").style.display="none";
                     upContent='';
                     downContent='';
+                    uploadPage=1;
+                    downloadPage=1;
                     getUpLoadList();
 
 
@@ -197,6 +199,8 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("download").style.display="block";
                     upContent='';
                     downContent='';
+                    uploadPage=1;
+                    downloadPage=1;
                     getDownLoadList();
 
                     break;
