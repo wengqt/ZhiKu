@@ -204,6 +204,11 @@ body{
     html,body {
         font-size:6.46875px;
     }
+
+
+    .navbar-default .navbar-nav>li>a {
+        font-size:2.3rem;
+    }
 }
 @media only screen and (max-width: 400px), only screen and (max-device-width:400px) {
     html,body {
@@ -409,4 +414,7 @@ textarea{
     position: absolute;
     top: 50px;
     background-color: #f8f8f8;
+}
+#loginbody{
+    min-height: 400px;
 }

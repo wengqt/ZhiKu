@@ -121,21 +121,7 @@ function getUpLoadList() {
                                                 <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
                                                 <button type="button" onclick="deleteDoc(this)" class="btn btn-danger col-xs-1">删除 </button>
                                             </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">教师：吴彦祖</div>
-                                            </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">下载量：999</div>
-                                            </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">需要积分：999</div>
-                                            </div>
-                            
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">
-                                                    0 0
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>`
         }
@@ -165,21 +151,7 @@ function getDownLoadList() {
                                                 <div class="col-xs-9 date small">${data.data[i].fileinfo.course}</div>
                                                 <button type="button" onclick='downloadfile(${data.data[i].fid})' class="btn btn-success col-xs-1">下载 </button>
                                             </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">教师：吴彦祖</div>
-                                            </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">下载量：999</div>
-                                            </div>
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">需要积分：999</div>
-                                            </div>
-                            
-                                            <div class="row blackline">
-                                                <div class="col-xs-12">
-                                                    0 0
-                                                </div>
-                                            </div>
+                                          
                                         </div>
                                     </div>`
         }
@@ -243,7 +215,8 @@ function deleteDoc(e) {
         console.log(data)
         if(data.status==200){
             new Toast().showMsg('删除成功',1000);
-            e.innerText='已删除'
+            e.innerText='已删除';
+
         }else if(data.status==300){
             new Toast().showMsg('文件不存在或已删除',1000)
         }
