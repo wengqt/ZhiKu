@@ -119,7 +119,7 @@ function getUpLoadList() {
                                             </div>
                                             <div class=" firstLine">
                                                 <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
-                                                <button type="button" onclick="deleteDoc(this)" class="btn btn-danger col-xs-1">删除 </button>
+                                                <button type="button" onclick="deleteDoc(this)" class="btn btn-danger ">删除 </button>
                                             </div>
                                             
                                         </div>
@@ -149,7 +149,7 @@ function getDownLoadList() {
                                             </div>
                                             <div class=" firstLine">
                                                 <div class="col-xs-9 date small">${data.data[i].fileinfo.course}</div>
-                                                <button type="button" onclick='downloadfile(${data.data[i].fid})' class="btn btn-success col-xs-1">下载 </button>
+                                                <button type="button" onclick='downloadfile(${data.data[i].fid})' class="btn btn-success">下载 </button>
                                             </div>
                                           
                                         </div>

@@ -79,6 +79,8 @@ function register(){
 
                 new Toast().showMsg("注册成功",1000);
                 document.getElementById("closeRegister").click();
+            }else if(data.message=="mail format error!"){
+                new Toast().showMsg("邮箱格式不正确",1000);
             }
         },function(data,state){
             new Toast().showMsg("网络连接异常",1000);

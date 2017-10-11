@@ -63,7 +63,7 @@ function getCollegeList() {
 }
 var keyData ;//存放搜索框数据
 var docList ;//存放搜索到的文档列表
-
+var keycname ;
 
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
@@ -76,7 +76,7 @@ document.getElementById('dropdownMenu5').oninput= function(){
             
             data.data.map((item,index)=>{
                 
-                innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid})'>${item.cname}</a></li>`
+                innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
             })
             document.getElementById('dropdown5').innerHTML = innerList;
         
@@ -95,10 +95,12 @@ document.getElementById('searchBtn').onclick = function(){
     }
 }
 
-function searchAll(meth,cid){
+function searchAll(meth,cid,kcnm){
     console.log(meth);
     if(meth==1){
-        document.getElementById('dropdownMenu5').text= document.getElementById('dropdownMenu5').value
+        console.log(kcnm)
+        document.getElementById('dropdownMenu5').value= kcnm
+        console.log(document.getElementById('dropdownMenu5').value);
     }
     if(cid==undefined){
         for(var i =0;i<keyData.length;i++){

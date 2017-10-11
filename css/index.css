@@ -418,6 +418,6 @@ textarea{
     top: 50px;
     background-color: #f8f8f8;
 }
-#loginbody{
+#loginbody,#registbody{
     min-height: 400px;
 }
