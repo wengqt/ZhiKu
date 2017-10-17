@@ -65,8 +65,11 @@
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">课程</label>
-                    <div class="col-sm-6">
-                        <input type="email" id="fileformat" class="form-control"  placeholder="课程">
+                    
+                    <div class="dropdown col-sm-6" >
+                        <input type="text" class="form-control dropdown-toggle" placeholder="输入关键字检索课程" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" autocomplete="off">
+                        <ul class="dropdown-menu" style="margin-left:15px" id="dropdown5" aria-labelledby="dropdownMenu5" data-drop="dropdownMenu5">
+                        </ul>
                     </div>
                 </div>
                 <div class="form-group">
@@ -101,6 +104,42 @@
 </body>
 <script src="js/ajaxHandler.js"></script>
 <script>
+var course;
+var user = new AjaxHandler();
+document.getElementById('dropdownMenu5').oninput= function(){
+    var key = document.getElementById('dropdownMenu5').value;
+    // if(key!=''){
+        user.courseSearch(key,function(data,state){
+        if(data.status == 200){
+            var innerList ='';
+            keyData = data.data;
+            // console.log(keyData);
+            
+            data.data.map((item,index)=>{
+                
+                innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='upcourse(${item.cid},"${item.cname}")'>${item.cname}</a></li>`
+            })
+            document.getElementById('dropdown5').innerHTML = innerList;
+        
+        }else if(data.status == 300){
+            new Toast().showMsg("没有该课程",1000);
+        }
+    },function(data,state){
+        new Toast().showMsg("网络连接异常",1000);
+    })
+    // }
+   
+}
+
+function upcourse(courseid,kcnm){
+    course = courseid;
+    document.getElementById('dropdownMenu5').value= kcnm;
+}
+
+
+
+
+
     function submitInfo() {
         if($.cookie('username')){
             var user = new AjaxHandler();
@@ -108,12 +147,16 @@
         var dname = $('#dname').val();
 
         var origion = $('#origion .active input').val();
-        console.log(origion);
+        // console.log(origion);
         var teacher =$('#teacher').val();
         var filedesc =$('#filedesc').val();
-        var course=1;
-
-        user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
+        
+        if(course==undefined){
+            new Toast().showMsg('请选择有效课程',1000)
+        }else if(document.getElementById(`inputFile`).files[0]==undefined){
+            new Toast().showMsg('请选择文件',1000)
+        }else{
+            user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
 
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
@@ -121,11 +164,15 @@
                     window.location.href='/JPidea/resourse.html?ind=1';
                 },2000)
             }else if(data.status==300){
+                
                 new Toast().showMsg(data.message,1000);
             }
         },function (data,state) {
             new Toast().showMsg('网络连接超时',1000)
         })
+        }
+
+        
         }else{
             new Toast().showMsg('请先登录',1000)
         }

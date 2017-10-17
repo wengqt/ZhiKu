@@ -43,7 +43,10 @@ window.onload = function () {
     var param = url.substring(i+1,i+2);
     console.log(param);
     switchSourse(param);
-    getCollegeList();
+    if(url.substr(-19)!='searchResourse.html'){
+        getCollegeList();
+        
+    }
 }
 
 function getCollegeList() {
@@ -66,34 +69,38 @@ var docList ;//存放搜索到的文档列表
 var keycname ;
 
 var user = new AjaxHandler();
-document.getElementById('dropdownMenu5').oninput= function(){
-    var key = document.getElementById('dropdownMenu5').value;
-    user.courseSearch(key,function(data,state){
-        if(data.status == 200){
-            var innerList ='';
-            keyData = data.data;
-            // console.log(keyData);
-            
-            data.data.map((item,index)=>{
+if(document.getElementById('dropdownMenu5')){
+    document.getElementById('dropdownMenu5').oninput= function(){
+        var key = document.getElementById('dropdownMenu5').value;
+        user.courseSearch(key,function(data,state){
+            if(data.status == 200){
+                var innerList ='';
+                keyData = data.data;
+                // console.log(keyData);
                 
-                innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
-            })
-            document.getElementById('dropdown5').innerHTML = innerList;
-        
-        }else if(data.status == 300){
-            new Toast().showMsg("没有该课程",1000);
+                data.data.map((item,index)=>{
+                    
+                    innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
+                })
+                document.getElementById('dropdown5').innerHTML = innerList;
+            
+            }else if(data.status == 300){
+                new Toast().showMsg("没有该课程",1000);
+            }
+        },function(data,state){
+            new Toast().showMsg("网络连接异常",1000);
+        })
+    }
+    document.getElementById('searchBtn').onclick = function(){
+        if(document.getElementById('dropdownMenu5').value.trim()==''){
+            new Toast().showMsg("请输入课程",1000);
+        }else{
+            searchAll(1);        
         }
-    },function(data,state){
-        new Toast().showMsg("网络连接异常",1000);
-    })
-}
-document.getElementById('searchBtn').onclick = function(){
-    if(document.getElementById('dropdownMenu5').value.trim()==''){
-        new Toast().showMsg("请输入课程",1000);
-    }else{
-        searchAll(1);        
     }
 }
+
+
 
 function searchAll(meth,cid,kcnm){
     console.log(meth);
