@@ -72,34 +72,56 @@ var username=$.cookie('username');
 
 document.getElementById('saveInfo').onclick=function () {
 
-        var nickname='default';
+        var nickname=document.getElementsByTagName('input')[0].value;
         var newpwd='';
-        var avator='default';
-        var qq='default';
-        var xid='default';
-        var mid='default';
-        var email=document.getElementsByTagName('input')[0].value;
-        var phoneNumber=document.getElementsByTagName('input')[1].value;
-        var oldpwd=document.getElementsByTagName('input')[2].value;
+        var avator='';
+        var qq=document.getElementsByTagName('input')[3].value;
+        var xid='';
+        var mid='';
+        var email=document.getElementsByTagName('input')[1].value;
+        var phoneNumber=document.getElementsByTagName('input')[2].value;
+        var oldpwd=document.getElementsByTagName('input')[4].value;
 
 
         var user =new AjaxHandler();
-
-        user.modifyUserInfo(username,{nickname,oldpwd,newpwd,avator,email,phoneNumber,qq,xid,mid},function (data,state) {
-
-            console.log(data);
-            if(data.status==200){
-                new Toast().showMsg('修改信息成功',1000);
-            }else if(data.status==300){
-                new Toast().showMsg('密码输出错误',1000);
-            }
-
-        },function (data,state) {
-            new Toast().showMsg('网络连接异常',1000);
-
-        })
+        if(oldpwd.toString().trim!=''){
+            user.modifyUserInfo(username,{nickname,oldpwd,newpwd,avator,email,phoneNumber,qq,xid,mid},function (data,state) {
+                
+                            console.log(data);
+                            if(data.status==200){
+                                new Toast().showMsg('修改信息成功',1000);
+                            }else if(data.status==300){
+                                new Toast().showMsg('密码输出错误',1000);
+                            }
+                
+                        },function (data,state) {
+                            new Toast().showMsg('网络连接异常',1000);
+                
+                        })
+        }else{
+            new Toast().showMsg('请输入密码再修改信息',1000);
+        }
+        
 }
 
+function getInfo (){
+    var user = new AjaxHandler();
+    user.getUserInfo(username,function(data){
+        if(data.status==200){
+            var info = data.data;
+            document.getElementsByTagName('input')[0].placeholder = info.nickname;
+            document.getElementsByTagName('input')[1].placeholder = info.mail;
+            document.getElementsByTagName('input')[2].placeholder = info.phone;
+            document.getElementsByTagName('input')[3].placeholder = info.qq;
+
+        }else if(data.status==300){
+            new Toast().showMsg('获取个人信息失败',1000);
+        }
+    },function(data){
+        new Toast().showMsg('网络连接异常',1000);
+    })
+}
+getInfo();
 function getUpLoadList() {
     var upload=new AjaxHandler();
 

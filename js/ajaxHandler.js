@@ -112,6 +112,22 @@ function AjaxHandler(){
                 failed(data,state)}
         })
     }
+    ajaxHandler.prototype.getUserInfo = function(userName,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+
+        $.ajax({
+            url:matchword(API.gerUserInfo,userName),
+            type:'GET',
+            data:{},
+            dataType:"JSON",
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+
+    }
 
     ajaxHandler.prototype.downloadFile = function(fileId,success,failed){
         success = typeof success ==='function'?success:new Function();
