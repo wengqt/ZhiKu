@@ -84,9 +84,9 @@ document.getElementById('saveInfo').onclick=function () {
 
 
         var user =new AjaxHandler();
-        if(oldpwd.toString().trim!=''){
+        if(oldpwd.trim!=''){
             user.modifyUserInfo(username,{nickname,oldpwd,newpwd,avator,email,phoneNumber,qq,xid,mid},function (data,state) {
-                
+                         
                             console.log(data);
                             if(data.status==200){
                                 new Toast().showMsg('修改信息成功',1000);
@@ -99,6 +99,7 @@ document.getElementById('saveInfo').onclick=function () {
                 
                         })
         }else{
+            console.log('请输入密码再修改信息');
             new Toast().showMsg('请输入密码再修改信息',1000);
         }
         

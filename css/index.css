@@ -298,7 +298,7 @@ body{
     background-position:center;
     background-size: cover;
     position: relative;
-    margin-top: -20px;
+    /* margin-top: -20px; */
 }
 .search{
     font-size: 3rem;
