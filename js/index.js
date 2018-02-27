@@ -112,6 +112,10 @@ function register(){
 
                 new Toast().showMsg("注册成功",2000);
                 document.getElementById("closeRegister").click();
+                setTimeout(function(){
+                             document.getElementsByTagName('body')[0].style.paddingRight=0
+                        },400)
+
             }else if(data.message=="mail format error!"){
                 new Toast().showMsg("邮箱格式不正确",2000);
             }
@@ -122,7 +126,11 @@ function register(){
     }
 
 }
-
+document.getElementById("closeRegister").onclick=function(){
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.paddingRight=0
+    },400)
+}
 function logout() {
     var user=new AjaxHandler();
 
