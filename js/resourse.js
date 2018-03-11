@@ -186,7 +186,8 @@ function showList(){
                 <div class=" firstLine">
                     <div class="col-xs-12 col-ms-4 bluefont">${item.fileinfo.name}</div>
                     <div class="col-xs-12 col-ms-5 small date">${item.upperinfo.nickname} 上传于 ${item.fileinfo.uptime}</div>
-                    <div class="col-xs-12 col-ms-3">课件</div>
+                    <div class="col-xs-12 col-ms-3">课件 下载量${item.fileinfo.dncnt}</div>
+                    
                 </div>
                 <div class=" firstLine">
                     <div class="col-xs-9 date small">${item.fileinfo.desc}</div>
@@ -279,6 +280,10 @@ window.onscroll = function(){
     }
 };
 function downloadfile(fid){
+    if(!$.cookie(username)){
+        new Toast().showMsg('请先登录',1000);
+        return;
+    }
     var user =new AjaxHandler();
     console.log(fid);
     user.downloadFile(fid,function(data,state){

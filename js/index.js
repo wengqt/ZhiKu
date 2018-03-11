@@ -46,7 +46,7 @@ function login(){
                 $.cookie('username', username,{path:"/"});
 
             }else{
-                new Toast().showMsg("账号或密码错误",1000);
+                new Toast().showMsg(data.message,1000);
             }
         },function(data,state){
             console.log(state);
@@ -63,19 +63,10 @@ function register(){
     var phone = document.getElementById('r-phone').value;
     var email = document.getElementById('r-email').value;
     var pw = document.getElementById('r-pw').value;
-    if(username==""||phone==""||email==""||pw==""){
-        new Toast().showMsg("输入信息有误",1000);
 
-    }else {
         user.register({username,password:pw,mail:email,phone},function(data,state){
             console.log(data,state);
-            if(data.message=="Mail has been used"){
-
-                new Toast().showMsg("该邮箱已被注册",1000);
-            }else if(data.message=="Username has been used"){
-
-                new Toast().showMsg("用户名已存在",1000);
-            }else if(data.status==200){
+           if(data.status==200){
 
                 new Toast().showMsg("注册成功",1000);
                 document.getElementById("closeRegister").click();
@@ -83,14 +74,15 @@ function register(){
                              document.getElementsByTagName('body')[0].style.paddingRight=0
                         },400)
 
-            }else if(data.message=="mail format error!"){
-                new Toast().showMsg("邮箱格式不正确",1000);
+            }else{
+
+               new Toast().showMsg(data.message,1000);
             }
         },function(data,state){
             new Toast().showMsg("网络连接异常",1000);
             console.log(data,state);
         })
-    }
+
 
 }
 document.getElementById("closeRegister").onclick=function(){
