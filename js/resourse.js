@@ -12,7 +12,12 @@ function selectAct(a,num,id) {
         getMajorList(id);
         xid=id;
     }else{
-        searchBymajor(id);
+        if(window.location.pathname=='/personalCenter.html'){
+            changeMajor(xid,id)
+        }else{
+            searchBymajor(id);
+        }
+        
     }
 }
 function switchSourse(indx) {

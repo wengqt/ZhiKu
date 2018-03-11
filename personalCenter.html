@@ -74,28 +74,26 @@
                     <input type="password" class="form-control" placeholder="修改信息请务必输入当前密码">
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    学院
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" id="college" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu1">
-                    <!-- <li><a href="javascript:void(0)" onclick="selectAct(this)">软件学院</a></li>
-                    <li><a href="javascript:void(0)" onclick="selectAct(this)">软件学院</a></li>
-                    <li><a href="javascript:void(0)"  onclick="selectAct(this)">软件学院</a></li>
-                    <li><a href="javascript:void(0)"  onclick="selectAct(this)">软件学院</a></li> -->
-                </ul>
+            <div class="form-group">
+                    <label  class="col-sm-2 control-label">学院和专业</label>
+                <div class="dropdown" style="display:inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        学院
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="college" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu1">
+                    </ul>
+                </div>
+                <div class="dropdown" style="display:inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        专业
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="majorList" data-drop="dropdownMenu2">
+                    </ul>
+                </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    专业
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="majorList" data-drop="dropdownMenu2">
-                    <!-- <li><a href="javascript:void(0)" onclick="selectAct(this)">软件工程</a></li>
-                    <li><a href="javascript:void(0)" onclick="selectAct(this)">软件工程</a></li> -->
-                </ul>
-            </div>
+            
 
             <button type="button" style="float: right" id="saveInfo" class="btn btn-success">保存修改信息</button>
         </form>

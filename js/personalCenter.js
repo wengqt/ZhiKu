@@ -7,6 +7,7 @@ var uploadDIv=0;
 var isLoading = false;
 var upContent='';
 var downContent='';
+var mid,xid;
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -76,8 +77,7 @@ document.getElementById('saveInfo').onclick=function () {
         var newpwd=document.getElementsByTagName('input')[3].value==''?null:document.getElementsByTagName('input')[3].value;
         var avator='';
         var qq=document.getElementsByTagName('input')[2].value==''?null:document.getElementsByTagName('input')[2].value;
-        var xid='';
-        var mid='';
+        
         // var email=document.getElementsByTagName('input')[1].value;
         var phone=document.getElementsByTagName('input')[1].value==''?null:document.getElementsByTagName('input')[1].value;
         var oldpwd=document.getElementsByTagName('input')[4].value;
@@ -134,6 +134,8 @@ function getInfo (){
             document.getElementsByTagName('input')[0].placeholder = info.nickname;
             document.getElementsByTagName('input')[1].placeholder = info.phone;
             document.getElementsByTagName('input')[2].placeholder = info.qq;
+            xid=info.xid;
+            mid=info.mid;
             // document.getElementsByTagName('input')[3].placeholder = info.qq;
 
         }else if(data.status==300){
@@ -289,4 +291,10 @@ function downloadfile(fid){
         // a.click();
     },function(){})
     
+}
+
+
+function changeMajor(xxid,mmid){
+    xid=xxid;
+    mid=mmid;
 }
