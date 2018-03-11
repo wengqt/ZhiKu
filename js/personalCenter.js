@@ -7,6 +7,7 @@ var uploadDIv=0;
 var isLoading = false;
 var upContent='';
 var downContent='';
+var mid,xid;
 function getScrollTop(){
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
     if(document.body){
@@ -72,21 +73,40 @@ var username=$.cookie('username');
 
 document.getElementById('saveInfo').onclick=function () {
 
-        var nickname=document.getElementsByTagName('input')[0].value;
-        var newpwd='';
+        var nickname=document.getElementsByTagName('input')[0].value==''?null:document.getElementsByTagName('input')[0].value;
+        var newpwd=document.getElementsByTagName('input')[3].value==''?null:document.getElementsByTagName('input')[3].value;
         var avator='';
-        var qq=document.getElementsByTagName('input')[3].value;
-        var xid='';
-        var mid='';
-        var email=document.getElementsByTagName('input')[1].value;
-        var phoneNumber=document.getElementsByTagName('input')[2].value;
+        var qq=document.getElementsByTagName('input')[2].value==''?null:document.getElementsByTagName('input')[2].value;
+        
+        // var email=document.getElementsByTagName('input')[1].value;
+        var phone=document.getElementsByTagName('input')[1].value==''?null:document.getElementsByTagName('input')[1].value;
         var oldpwd=document.getElementsByTagName('input')[4].value;
-
+        var obj={nickname,oldpwd,newpwd,avator,phone,qq,xid,mid}
+        if(newpwd!=null){
+            if(newpwd.length<6||newpwd.length>18){
+                console.log("密码长度必须是6-18位");
+                new Toast().showMsg("密码长度必须是6-18位",2000);
+                return;
+            }
+        }else{
+           obj={nickname,oldpwd,avator,phone,qq,xid,mid}
+        }
+        var reg1 =/^\d*$/g;
+    if(phone!=null){
+        if(phone.length!==11||!reg1.test(phone)){
+            console.log("手机号有误");
+            new Toast().showMsg("手机号有误",2000);
+            return;
+        }
+    }
+        
+        
 
         var user =new AjaxHandler();
-        if(oldpwd.toString().trim!=''){
-            user.modifyUserInfo(username,{nickname,oldpwd,newpwd,avator,email,phoneNumber,qq,xid,mid},function (data,state) {
-                
+        if(oldpwd.trim()!=''){
+            console.log(obj)
+            user.modifyUserInfo(username,obj,function (data,state) {
+                         
                             console.log(data);
                             if(data.status==200){
                                 new Toast().showMsg('修改信息成功',1000);
@@ -99,6 +119,7 @@ document.getElementById('saveInfo').onclick=function () {
                 
                         })
         }else{
+            console.log('请输入密码再修改信息');
             new Toast().showMsg('请输入密码再修改信息',1000);
         }
         
@@ -109,10 +130,13 @@ function getInfo (){
     user.getUserInfo(username,function(data){
         if(data.status==200){
             var info = data.data;
+            console.log(info)
             document.getElementsByTagName('input')[0].placeholder = info.nickname;
-            document.getElementsByTagName('input')[1].placeholder = info.mail;
-            document.getElementsByTagName('input')[2].placeholder = info.phone;
-            document.getElementsByTagName('input')[3].placeholder = info.qq;
+            document.getElementsByTagName('input')[1].placeholder = info.phone;
+            document.getElementsByTagName('input')[2].placeholder = info.qq;
+            xid=info.xid;
+            mid=info.mid;
+            // document.getElementsByTagName('input')[3].placeholder = info.qq;
 
         }else if(data.status==300){
             new Toast().showMsg('获取个人信息失败',1000);
@@ -267,4 +291,10 @@ function downloadfile(fid){
         // a.click();
     },function(){})
     
+}
+
+
+function changeMajor(xxid,mmid){
+    xid=xxid;
+    mid=mmid;
 }

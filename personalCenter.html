@@ -43,12 +43,12 @@
                     <input type="email" class="form-control"  placeholder="nickname">
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label  class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control"  placeholder="Email">
                 </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label  class="col-sm-2 control-label">phoneNumber</label>
@@ -62,12 +62,38 @@
                         <input type="text" class="form-control" placeholder="qq">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" placeholder="可不必修改">
+                    </div>
+                </div>
             <div class="form-group">
                 <label  class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" placeholder="修改信息请务必输入密码">
+                    <input type="password" class="form-control" placeholder="修改信息请务必输入当前密码">
                 </div>
             </div>
+            <div class="form-group">
+                    <label  class="col-sm-2 control-label">学院和专业</label>
+                <div class="dropdown" style="display:inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        学院
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="college" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu1">
+                    </ul>
+                </div>
+                <div class="dropdown" style="display:inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        专业
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="majorList" data-drop="dropdownMenu2">
+                    </ul>
+                </div>
+            </div>
+            
 
             <button type="button" style="float: right" id="saveInfo" class="btn btn-success">保存修改信息</button>
         </form>
@@ -169,6 +195,7 @@
 </div>
 
 </body>
-
+<script src="js/resourse.js"></script>
 <script src="js/personalCenter.js"></script>
+
 </html>
