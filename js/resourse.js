@@ -285,7 +285,7 @@ window.onscroll = function(){
     }
 };
 function downloadfile(fid){
-    if(!$.cookie(username)){
+    if(!$.cookie('username')){
         new Toast().showMsg('请先登录',1000);
         return;
     }
