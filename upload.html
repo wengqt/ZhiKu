@@ -161,7 +161,7 @@ function upcourse(courseid,kcnm){
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
                 setTimeout(function(){
-                    window.location.href='/JPidea/resourse.html?ind=1';
+                    window.location.href='resourse.html?ind=1';
                 },2000)
             }else if(data.status==300){
                 
@@ -174,7 +174,11 @@ function upcourse(courseid,kcnm){
 
         
         }else{
-            new Toast().showMsg('请先登录',1000)
+            new Toast().showMsg('请先登录,正在跳转',1000);
+            setTimeout(function(){
+                window.location.href='index.html';
+            },2000)
+            
         }
         
 

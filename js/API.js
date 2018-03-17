@@ -1,6 +1,9 @@
 
 
 var baseUrl = 'http://719daze.me:8080/JPidea';
+var prefix =
+         '';
+        // '/JPidea';
 var API = {
 
     //common

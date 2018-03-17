@@ -1,4 +1,4 @@
-console.log(API)
+// console.log(API)
 function AjaxHandler(){
     function ajaxHandler(){
 
@@ -8,7 +8,7 @@ function AjaxHandler(){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         
-        console.log({username,password})
+        // console.log({username,password})
         $.ajax({
             url:API.login,
             type:'POST',

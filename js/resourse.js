@@ -12,7 +12,9 @@ function selectAct(a,num,id) {
         getMajorList(id);
         xid=id;
     }else{
-        if(window.location.pathname=='/personalCenter.html'){
+        console.log(window.location.pathname)
+        if(window.location.pathname==`${prefix}/personalCenter.html`){
+           
             changeMajor(xid,id)
         }else{
             searchBymajor(id);
