@@ -152,6 +152,11 @@ document.getElementById("closeRegister").onclick=function(){
     }
 
 
+
+document.getElementById('return-login').onclick=function(){
+    document.getElementById("closeRegister").click();
+}
+
 // document.getElementById("loginOption").onmouseover=function(){
 
 
