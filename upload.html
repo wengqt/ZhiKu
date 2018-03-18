@@ -156,7 +156,8 @@ function upcourse(courseid,kcnm){
         }else if(document.getElementById(`inputFile`).files[0]==undefined){
             new Toast().showMsg('请选择文件',1000)
         }else{
-            var to=new Toast().showMsg('正在上传，请稍等')
+            var to=new Toast();
+            to.showMsg('正在上传，请稍等');
             user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
                 to.removeMsg();
             if(data.status==200){
