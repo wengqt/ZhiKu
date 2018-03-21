@@ -54,6 +54,24 @@ function AjaxHandler(){
         })
     }
 
+    ajaxHandler.prototype.news = function(num,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+
+        $.ajax({
+            url:API.news,
+            type:'POST',
+            data:{number:num},
+            dataType:"JSON",
+            success:function(data,state){
+                
+                success(data,state)},
+            error:function(data,state){
+                
+                failed(data,state)}
+        })
+    }
+
 
 
     ajaxHandler.prototype.mailcheck = function({username,key},success,failed){
