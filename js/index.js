@@ -6,6 +6,7 @@ window.onload=function(){
     document.getElementById('register-btn').addEventListener('click',function(){
         register();
     });
+    loadNews();
     if($.cookie('username')!==undefined){
         var username=$.cookie('username');
         document.getElementById("loginOption").className = 'dropdown';
@@ -171,3 +172,28 @@ document.getElementById('return-login').onclick=function(){
 //         document.getElementById("exitLogin").style.display="none";
 //     }
 // }
+
+
+function loadNews(){
+    var dom = document.getElementById('activity');
+    new AjaxHandler().news(3,function(data,state){
+        if(data.status==200){
+            data.data.map(function(item,index){
+                var div = document.createElement('div');
+                div.innerHTML=`<div class="row row-line">
+                <div class="col-xs-12 col-sm-6" >
+                    <h3>${item.title}</h3>
+                    <small class="that-blue">${new Date(item.date).toLocaleString()}</small>
+                    <p class="details">${item.details}</p>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <img src="${item.url}" alt="" style="width: 80%;height: auto;">
+                </div>
+            </div>`
+            dom.appendChild(div);
+            })
+        }
+    },function(){
+        new Toast().showMsg('网络连接异常,获取动态失败',2000)
+    })
+}

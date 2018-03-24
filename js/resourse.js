@@ -79,24 +79,27 @@ var user = new AjaxHandler();
 if(document.getElementById('dropdownMenu5')){
     document.getElementById('dropdownMenu5').oninput= function(){
         var key = document.getElementById('dropdownMenu5').value;
-        user.courseSearch(key,function(data,state){
-            if(data.status == 200){
-                var innerList ='';
-                keyData = data.data;
-                // console.log(keyData);
-                
-                data.data.map((item,index)=>{
+        if(key.trim()!=''){
+            user.courseSearch(key,function(data,state){
+                if(data.status == 200){
+                    var innerList ='';
+                    keyData = data.data;
+                    // console.log(keyData);
                     
-                    innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
-                })
-                document.getElementById('dropdown5').innerHTML = innerList;
-            
-            }else if(data.status == 300){
-                new Toast().showMsg("没有该课程",1000);
-            }
-        },function(data,state){
-            new Toast().showMsg("网络连接异常",1000);
-        })
+                    data.data.map((item,index)=>{
+                        
+                        innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
+                    })
+                    document.getElementById('dropdown5').innerHTML = innerList;
+                
+                }else if(data.status == 300){
+                    new Toast().showMsg("没有该课程",1000);
+                }
+            },function(data,state){
+                new Toast().showMsg("网络连接异常",1000);
+            })
+        }
+        
     }
     document.getElementById('searchBtn').onclick = function(){
         if(document.getElementById('dropdownMenu5').value.trim()==''){
