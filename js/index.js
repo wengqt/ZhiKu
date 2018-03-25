@@ -176,7 +176,7 @@ document.getElementById('return-login').onclick=function(){
 
 function loadNews(){
     var dom = document.getElementById('activity');
-    new AjaxHandler().news(3,function(data,state){
+      AjaxHandler().news(3,function(data,state){
         if(data.status==200){
             data.data.map(function(item,index){
                 var div = document.createElement('div');

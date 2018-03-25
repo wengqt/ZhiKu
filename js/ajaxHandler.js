@@ -71,6 +71,25 @@ function AjaxHandler(){
                 failed(data,state)}
         })
     }
+    ajaxHandler.prototype.pushNews = function(url,date,title,details,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+
+        $.ajax({
+            url:API.pushNews,
+            type:'POST',
+            data:{url,date,title,details},
+            dataType:"JSON",
+            success:function(data,state){
+
+                success(data,state)},
+            error:function(data,state){
+
+                failed(data,state)}
+        })
+    }
+
+
 
 
 
