@@ -159,12 +159,12 @@ function getUpLoadList() {
             upContent+=`<div class="panel panel-default mt leftblue">
                                         <div class="panel-body">
                                             <div class=" firstLine">
-                                                <div class="col-xs-12 col-ms-4 bluefont">${data.data[i].fileinfo.course}</div>
+                                                <div class="col-xs-12 col-ms-4 bluefont">${data.data[i].fileinfo.name}</div>
                                                 <div class="col-xs-12 col-ms-5 small date">${data.data[i].upuid} 上传于 ${data.data[i].fileinfo.uptime}</div>
                                                 <div class="col-xs-12 col-ms-3">课件${data.data[i].fid}</div>
                                             </div>
                                             <div class=" firstLine">
-                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.name}</div>
+                                                <div class="col-xs-9 date small">${data.data[i].fileinfo.course}</div>
                                                 <button type="button" onclick="deleteDoc(this)" class="btn btn-danger ">删除 </button>
                                             </div>
                                             

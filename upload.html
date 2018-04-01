@@ -37,12 +37,12 @@
         <div class="title"><div class="line"></div> 文件上传 <div class="line"></div></div>
         <div id="info">
             <form class="form-horizontal">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label  class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-6">
                         <input type="text" id="dname" class="form-control"  placeholder="标题">
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -144,7 +144,7 @@ function upcourse(courseid,kcnm){
         if($.cookie('username')){
             var user = new AjaxHandler();
         var username=$.cookie('username');
-        var dname = $('#dname').val();
+        // var dname = $('#dname').val();
 
         var origion = $('#origion .active input').val();
         // console.log(origion);
@@ -158,7 +158,7 @@ function upcourse(courseid,kcnm){
         }else{
             var to=new Toast();
             to.showMsg('正在上传，请稍等');
-            user.uploadFile('inputFile',{dname,teacher,username,origion,filedesc,course},function(data,state){
+            user.uploadFile('inputFile',{teacher,username,origion,filedesc,course},function(data,state){
                 to.removeMsg();
             if(data.status==200){
                 new Toast().showMsg('上传成功',1000);
