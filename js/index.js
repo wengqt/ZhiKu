@@ -178,6 +178,9 @@ function loadNews(){
     var dom = document.getElementById('activity');
       AjaxHandler().news(3,function(data,state){
         if(data.status==200){
+            if(data.data===null){
+                return;
+            }
             data.data.map(function(item,index){
                 var div = document.createElement('div');
                 div.innerHTML=`<div class="row row-line">

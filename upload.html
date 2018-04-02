@@ -108,7 +108,7 @@ var course;
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
     var key = document.getElementById('dropdownMenu5').value;
-    // if(key!=''){
+    if(key!=''){
         user.courseSearch(key,function(data,state){
         if(data.status == 200){
             var innerList ='';
@@ -127,7 +127,7 @@ document.getElementById('dropdownMenu5').oninput= function(){
     },function(data,state){
         new Toast().showMsg("网络连接异常",1000);
     })
-    // }
+}
    
 }
 
@@ -168,6 +168,11 @@ function upcourse(courseid,kcnm){
             }else if(data.status==300){
                 
                 new Toast().showMsg(data.message,1000);
+                if(data.message=='需要登录才可上传文件!'){
+                    setTimeout(function(){
+                 window.location.href='index.html';
+                    },2000)
+                }
             }
         },function (data,state) {
             new Toast().showMsg('网络连接超时',1000)
@@ -178,8 +183,8 @@ function upcourse(courseid,kcnm){
         }else{
             new Toast().showMsg('请先登录,正在跳转',1000);
             setTimeout(function(){
-                window.location.href='index.html';
-            },2000)
+                 window.location.href='index.html';
+                    },2000)
             
         }
         
