@@ -8,13 +8,21 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/personalCenter.css">
     <link rel="stylesheet" href="css/toast.css">
-
+    <style>
+        .small-gray{
+            color: gray;
+        }
+        .read{
+            float: right;
+        }
+    </style>
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/API.js"></script>
     <script src="js/ajaxHandler.js"></script>
     <script src="js/toastDom.js"></script>
+    <script src="js/observerNotice.js"></script>
 </head>
 <body style="margin: 0 ; padding: 0;height: 100%;background-color: #fbf8f0;">
 <div class="container" >
@@ -31,6 +39,7 @@
                     <li class="active option"><a href="#">修改个人信息</a></li>
                     <li class="option"><a href="#">上传的文件</a></li>
                     <li class="option"><a href="#">下载的文件</a></li>
+                    <li class="option"><a href="#">站内信</a></li>
                 </ul>
             </div>
         </div>
@@ -192,8 +201,30 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div> -->
+        </div> -->
+    </div> 
+    <div id="notice" style="display:none;">
+        <div class="panel panel-info ">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                
+                <p>From:  xxx    <small class="small-gray">xxxxxxxxxx</small> </p>
+                <p>For the sake of this demonstration, we are using <code>data-loading-text</code> and <code>$().button('loading')</code>, but that's not the only state you can use. <a href="#buttons-methods">See more on this below in the <code>$().button(string)</code> documentation</a>.</p>              
+                <button class="btn btn-info left-bottom read" >标记为已读</button>
+            </div>
+          </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                <p>From:  xxx    <small class="small-gray">xxxxxxxxxx</small> </p>
+                <p>For the sake of this demonstration, we are using <code>data-loading-text</code> and <code>$().button('loading')</code>, but that's not the only state you can use. <a href="#buttons-methods">See more on this below in the <code>$().button(string)</code> documentation</a>.</p>              
+            </div>
+          </div>
+    </div>
 </div>
 
 </body>

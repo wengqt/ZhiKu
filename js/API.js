@@ -28,5 +28,7 @@ var API = {
     getDownloadList:`${baseUrl}/getdld.do`,
     getUploadList:`${baseUrl}/getupld.do`,
     deleteDocument:`${baseUrl}/del/{fid}`,
-    gerUserInfo:`${baseUrl}/userinfo/{fid}`
+    gerUserInfo:`${baseUrl}/userinfo/{fid}`,
+    getNotification:`getNotification/{userid}.do`,
+    readNotification:`readNotification/{userid}.do`
 }

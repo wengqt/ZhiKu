@@ -171,6 +171,44 @@ function AjaxHandler(){
         })
 
     }
+    ajaxHandler.prototype.getNotification = function(userName,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        console.log(userName)
+        $.ajax({
+            url:matchword(API.getNotification,userName),
+            type:'GET',
+            data:{},
+            dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+
+    }
+    ajaxHandler.prototype.readNotification = function(userName,nid,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+
+        $.ajax({
+            url:matchword(API.readNotification,userName),
+            type:'GET',
+            data:{"noticeId":nid},
+            dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
+            success:function(data,state){
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+
+    }
 
     ajaxHandler.prototype.downloadFile = function(fileId,success,failed){
         success = typeof success ==='function'?success:new Function();

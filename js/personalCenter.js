@@ -213,22 +213,25 @@ var option=document.getElementsByClassName("option");
 for(var i=0;i<option.length;i++){
     (function(e) {
         option[e].onclick=function () {
-
+            
             option[e].className="active option";
             option[(e+1)%option.length].className="option";
             option[(e+2)%option.length].className="option";
-            option[(e+4)%option.length].className="option";
+            option[(e+3)%option.length].className="option";
+            option[(e+5)%option.length].className="option";
             switch(e){
                 case 0:
                     document.getElementById("info").style.display="block";
                     document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="none";
+                    document.getElementById("notice").style.display="none";
                     break;
                 case 1:
                     state=1;
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="block";
                     document.getElementById("download").style.display="none";
+                    document.getElementById("notice").style.display="none";
                     upContent='';
                     downContent='';
                     uploadPage=1;
@@ -242,6 +245,7 @@ for(var i=0;i<option.length;i++){
                     state=2;
                     document.getElementById("info").style.display="none";
                     document.getElementById("upload").style.display="none";
+                    document.getElementById("notice").style.display="none";
                     document.getElementById("download").style.display="block";
                     upContent='';
                     downContent='';
@@ -249,6 +253,13 @@ for(var i=0;i<option.length;i++){
                     downloadPage=1;
                     getDownLoadList();
 
+                    break;
+                case 3:
+                    document.getElementById("info").style.display="none";
+                    document.getElementById("upload").style.display="none";
+                    document.getElementById("notice").style.display="block";
+                    document.getElementById("download").style.display="none";
+                    getNotice();
                     break;
             }
         }
@@ -298,3 +309,31 @@ function changeMajor(xxid,mmid){
     xid=xxid;
     mid=mmid;
 }
+
+
+function getNotice() {
+    new AjaxHandler().getNotification($.cookie('username'),function(data){
+        if(data.status===200){
+            notice.data=data.data;
+        }else{
+            new Toast().showMsg(data.message,1000)
+        }
+        
+    },function(){
+        new Toast().showMsg('网络异常',1000)
+    })
+  }
+
+
+  function readNotice(nid){
+        new AjaxHandler().readNotification($.cookie('username'),nid,function(data){
+            if(data.status===200){
+                new Toast().showMsg(data.message,1000)
+                getNotice();
+            }else{
+                new Toast().showMsg(data.message,1000)
+            }
+        },function () { 
+            new Toast().showMsg('网络异常',1000)
+         })
+  }
