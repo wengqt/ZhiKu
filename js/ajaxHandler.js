@@ -14,6 +14,9 @@ function AjaxHandler(){
             type:'POST',
             data:{username,password},
             dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
@@ -134,8 +137,8 @@ function AjaxHandler(){
             desc:filedesc,
             course,
         };
-        console.log(document.getElementById(`${fileElelmentID}`).files[0]);
-        console.log(sendData)
+        // console.log(document.getElementById(`${fileElelmentID}`).files[0]);
+        // console.log(sendData)
         $.ajax({
             url:API.uploadFile,
             type:'POST',
@@ -158,6 +161,9 @@ function AjaxHandler(){
             type:'GET',
             data:{},
             dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
@@ -329,6 +335,9 @@ function AjaxHandler(){
             type:'GET',
             data:{username,page},
             dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
@@ -345,6 +354,9 @@ function AjaxHandler(){
             type:'GET',
             data:{username,page},
             dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
@@ -361,6 +373,9 @@ function AjaxHandler(){
             type:'GET',
             data:{},
             dataType:"JSON",
+            xhrFields: {
+                withCredentials: true
+             },
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){

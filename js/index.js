@@ -11,7 +11,7 @@ window.onload=function(){
         var username=$.cookie('username');
         document.getElementById("loginOption").className = 'dropdown';
         document.getElementById("loginOption").innerHTML=`
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">hi,${username} <span class="caret"></span></a>
         <ul class="dropdown-menu" style="z-index:1111">
             <li><a href="personalCenter.html" >个人中心</a></li>
             <li><a href="javascript:logout()" >退出登录</a></li>
@@ -30,19 +30,21 @@ function login(){
         user.login(username,pw,function(data,state){
             console.log(data);
             if(data.status==200){
+                
                 new Toast().showMsg("登录成功",1000);
+                $.cookie('username', username,{path:"/"});
                 document.getElementById("closeLogin").click();
                 document.getElementById("loginOption").className = 'dropdown';
                 document.getElementById("loginOption").innerHTML=`
                 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">hi,${$.cookie('username')} <span class="caret"></span></a>
                 <ul class="dropdown-menu" style="z-index:1111">
                     <li><a href="personalCenter.html" >个人中心</a></li>
                     <li><a href="javascript:logout()" >退出登录</a></li>
                 </ul>
               `;
 
-                $.cookie('username', username,{path:"/"});
+                
 
             }else{
                 new Toast().showMsg(data.message,1000);
