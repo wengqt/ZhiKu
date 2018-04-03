@@ -116,7 +116,7 @@ function register(){
                 new Toast().showMsg("注册成功", 2000);
                 document.getElementById("closeRegister").click();
                 setTimeout(function () {
-                    document.getElementsByTagName('body')[0].style.paddingRight = 0
+                    document.getElementsByTagName('body')[0].style.paddingRight = 0;
                 }, 400)
 
 
