@@ -281,7 +281,7 @@
                      </form>
                  </div>
                  <div class="modal-footer">
-                     <button type="button" id="findPassword" class="btn btn-info">
+                     <button type="button" id="findPassword" data-dismiss="modal"  data-toggle="modal"  data-target="#findPwd" class="btn btn-info">
                          找回密码
                      </button>
                      <button type="button" class="btn btn-default" data-dismiss="modal"  data-toggle="modal"  data-target="#regist">点击注册
@@ -340,6 +340,40 @@
              </div><!-- /.modal-content -->
          </div><!-- /.modal -->
      </div>
+     <div class="modal fade" id="findPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" id="closeFind" class="close" data-dismiss="modal" aria-hidden="true">
+                         &times;
+                     </button>
+                     <h4 class="modal-title">
+                         找回密码
+                     </h4>
+                 </div>
+                 <div class="modal-body content"  >
+                     <form class="form-horizontal" role="form">
+                         <div class="form-group" >
+                             <label class="col-sm-3 control-label"></label>
+                             <div class="col-sm-6">
+                                 <input id="findEmail" type="text" class="form-control"
+                                        placeholder="请输入邮箱">
+                             </div>
+                         </div>
+
+
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+
+                     <button type="button" id="findBtn" class="btn btn-primary">
+                         找回密码
+                     </button>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal -->
+     </div>
+
 
  </body>
  <script type="text/javascript">
@@ -369,6 +403,8 @@
          ScrollTo(".about",'#about-us',1200)
 
      });
+
+
  </script>
  <script src="js/ajaxHandler.js"></script>
  <script src="js/index.js"></script>
