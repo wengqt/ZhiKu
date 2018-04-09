@@ -30,5 +30,7 @@ var API = {
     deleteDocument:`${baseUrl}/del/{fid}`,
     gerUserInfo:`${baseUrl}/userinfo/{fid}`,
     getNotification:`getNotification/{userid}.do`,
-    readNotification:`readNotification/{userid}.do`
+    readNotification:`readNotification/{userid}.do`,
+    forgetPwd:`${baseUrl}/forgetpwd`
+    
 }

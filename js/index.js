@@ -116,7 +116,7 @@ function register(){
                 new Toast().showMsg("注册成功", 2000);
                 document.getElementById("closeRegister").click();
                 setTimeout(function () {
-                    document.getElementsByTagName('body')[0].style.paddingRight = 0
+                    document.getElementsByTagName('body')[0].style.paddingRight = 0;
                 }, 400)
 
 
@@ -158,6 +158,37 @@ document.getElementById("closeRegister").onclick=function(){
 
 document.getElementById('return-login').onclick=function(){
     document.getElementById("closeRegister").click();
+}
+document.getElementById('findPassword').onclick=function () {
+    document.getElementById("closeRegister").click();
+}
+
+document.getElementById('findBtn').onclick=function () {
+    let email=document.getElementById('findEmail').value;
+    if(email==''){
+        new Toast('输入不能为空',1000)
+        document.getElementById('findEmail').focus();
+        return;
+    }
+    const reg =/\w+@\w+\.\w+/;
+    if(!reg.test(email)){
+        new Toast('邮箱格式有误',1000)
+        document.getElementById('findEmail').focus();
+        return;
+    }
+    fetch(API.forgetPwd,{
+        method:'POST',
+        data:{mail:email}
+    }).then(data=>{
+        if(data.status==300){
+            new Toast('输入邮箱有误',1000)
+            return;
+        }
+        new Toast('请前往个人邮箱查看',1000)
+    }).catch(err=>{
+        new Toast('找回失败',1000);
+        console.log(err)
+    })
 }
 
 // document.getElementById("loginOption").onmouseover=function(){
