@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/school.css">
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <title>预览文件</title>
+    <script type="text/javascript" src="js/pdf.js"></script>
+    
+</head>
+<body>
+    <div id="container">
+        <div id="pop" style="text-align: center;"></div>
+    </div>
+    
+</body>
+<script type="text/javascript"> 
+    // pdfjsLib.getDocument('http://127.0.0.1:8080/java.pdf').then(function(page){
+    //     var scale = 1.5;
+    // var viewport = page.getViewport(scale);
+
+    // var canvas = document.getElementById('the-canvas');
+    // var context = canvas.getContext('2d');
+    // canvas.height = viewport.height;
+    // canvas.width = viewport.width;
+
+    // var renderContext = {
+    // canvasContext: context,
+    // viewport: viewport
+    // };
+    // page.render(renderContext);
+    // })
+    function showPdf() {
+            var container = document.getElementById("container");
+            container.style.display = "block";
+            var url = 'http://127.0.0.1:8080/java.pdf';
+            // convertDataURIToBinary('${encodeBase64}');//encodeBase64是后台传递的base64编码的二进制字符串
+
+            pdfjsLib.workerSrc = 'js/pdf.worker.js';
+            pdfjsLib.getDocument(url).then(function getPdfHelloWorld(pdf) {
+            	var $pop = $('#pop');
+                var shownPageCount = pdf.numPages < 50 ? pdf.numPages : 50;//设置显示的编码
+                var getPageAndRender = function (pageNumber) {
+                	 pdf.getPage(pageNumber).then(function getPageHelloWorld(page) {
+                         var scale = 1.2;
+                         var viewport = page.getViewport(scale);
+                         var $canvas = $('<canvas></canvas>').attr({
+                             'height': viewport.height,
+                             'width': viewport.width,
+                         });
+                         $pop.append($canvas);
+                         
+                         page.render({
+                             canvasContext: $canvas[0].getContext('2d'),
+                             viewport: viewport
+                         });
+                     });
+                	 if (pageNumber < shownPageCount) {
+                         pageNumber++;
+                         getPageAndRender(pageNumber);
+                     }  
+                };
+                getPageAndRender(1);        		   
+            });
+            
+        }
+  function convertDataURIToBinary(dataURI) { //将encodeBase64解码
+            var raw = window.atob(dataURI);
+            var rawLength = raw.length;
+            //转换成pdf.js能直接解析的Uint8Array类型,见pdf.js-4068
+            var array = new Uint8Array(new ArrayBuffer(rawLength));  
+            for(i = 0; i < rawLength; i++) {
+              array[i] = raw.charCodeAt(i);
+            }
+            return array;
+         } 
+
+
+
+         showPdf();
+</script>
+</html>
