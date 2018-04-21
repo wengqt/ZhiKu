@@ -31,6 +31,6 @@ var API = {
     gerUserInfo:`${baseUrl}/userinfo/{fid}`,
     getNotification:`getNotification/{userid}.do`,
     readNotification:`readNotification/{userid}.do`,
-    forgetPwd:`${baseUrl}/forgetpwd`
+    forgetPwd:`${baseUrl}/forgetpwd.do`
     
 }

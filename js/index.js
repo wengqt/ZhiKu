@@ -166,28 +166,34 @@ document.getElementById('findPassword').onclick=function () {
 document.getElementById('findBtn').onclick=function () {
     let email=document.getElementById('findEmail').value;
     if(email==''){
-        new Toast('输入不能为空',1000)
+        new Toast().showMsg('输入不能为空',1000)
         document.getElementById('findEmail').focus();
         return;
     }
     const reg =/\w+@\w+\.\w+/;
     if(!reg.test(email)){
-        new Toast('邮箱格式有误',1000)
+        new Toast().showMsg('邮箱格式有误',1000)
         document.getElementById('findEmail').focus();
         return;
     }
-    fetch(API.forgetPwd,{
-        method:'POST',
-        data:{mail:email}
-    }).then(data=>{
-        if(data.status==300){
-            new Toast('输入邮箱有误',1000)
-            return;
+    
+    $.ajax({
+        url:API.forgetPwd,
+        type:'POST',
+        data:{mail:email},
+        dataType:"JSON",
+        success:function(data,state){
+            if(data.status==300){
+                new Toast().showMsg('输入邮箱有误',1000)
+                return;
+            }
+            new Toast().showMsg('请前往个人邮箱查看',1000)
+
+        },
+        error:function(data,state){
+            new Toast().showMsg('找回失败',1000);
+        console.log(data)
         }
-        new Toast('请前往个人邮箱查看',1000)
-    }).catch(err=>{
-        new Toast('找回失败',1000);
-        console.log(err)
     })
 }
 
