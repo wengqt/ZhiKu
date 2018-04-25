@@ -1,5 +1,5 @@
 #toast{
-    position: absolute;
+    position: fixed;
     top:50%;
     z-index: 11111;
     left: 50%;

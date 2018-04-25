@@ -134,10 +134,11 @@
              <div class="container" id="activity">
                  <div class="title"><div class="line"></div> 动态 <div class="line"></div></div>
                  <div class="small-tag">记录我们的点点滴滴</div>
-                 <!-- <div class="row row-line">
+                 <div class="row row-line">
                      <div class="col-xs-12 col-sm-6" >
                         <h3>Python101 线下女性编程活动</h3>
-                         <small class="that-blue">2017年8月6日</small>
+                         <small class="that-blue">2018年5月6日</small>
+                        <div><div class="btn btn-primary entry-btn" id='join'>点击参与</div></div>
                      </div>
                      <div class="col-xs-12 col-sm-6">
                          <img src="imgs/133.jpg" alt="" style="width: 80%;height: auto;">
@@ -147,12 +148,13 @@
                      <div class="col-xs-12 col-sm-6" >
                          <h3>智库操作系统数据库发布</h3>
                          <small class="that-blue">2017年10月6日</small>
+                         <div><div class="btn btn-primary entry-btn disabled" alt="活动已过期">点击参与</div></div>
                      </div>
                      <div class="col-xs-12 col-sm-6">
                          <img src="imgs/148.jpg" alt="" style="width: 80%;height: auto;">
                      </div>
-                 </div> -->
-
+                 </div>
+                 <div><div class="btn btn-primary entry-btn" id="create">创建活动</div></div>
              </div>
          </div>
          <div class="wrap">
@@ -324,6 +326,10 @@
                                  <input id="r-pw" type="password" class="form-control"
                                         placeholder="请输入密码">
                              </div>
+                             <div class="col-sm-6 col-sm-offset-3">
+                                <input id="r-c" type="number" class="form-control"
+                                       placeholder="请输入学号">
+                            </div>
                          </div>
 
 
@@ -404,6 +410,26 @@
 
      });
 
+     document.getElementById('create').onclick=function(){
+        
+         if($.cookie('username')){
+            window.location.href='./back.html';
+         }else{
+             new Toast().showMsg('请先登录!',2000)
+         }
+         
+     }
+     document.getElementById('join').onclick=function(){
+        
+        if($.cookie('username')){
+            new Toast().showMsg('参与成功!',2000)
+            document.getElementById('join').className+=' disabled';
+            document.getElementById('join').innerText='已参与';
+        }else{
+            new Toast().showMsg('请先登录!',2000)
+        }
+        
+    }
 
  </script>
  <script src="js/ajaxHandler.js"></script>
