@@ -134,8 +134,8 @@ function getInfo (){
             document.getElementsByTagName('input')[0].placeholder = info.nickname;
             document.getElementsByTagName('input')[1].placeholder = info.phone;
             document.getElementsByTagName('input')[2].placeholder = info.qq;
-        $('#dropdownMenu1').html(`${xname}<span class="caret"></span>`)
-        $('#dropdownMenu2').html(`${mname}<span class="caret"></span>`)
+        $('#dropdownMenu1').html(`${info.xname}<span class="caret"></span>`)
+        $('#dropdownMenu2').html(`${info.mname}<span class="caret"></span>`)
            
             xid=info.xid;
             mid=info.mid;
