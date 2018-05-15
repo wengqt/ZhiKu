@@ -21,7 +21,7 @@ Object.defineProperty(notice,"data",{
         return data;
     },
     set:function(value){
-        notice.data=value;
+        data=value;
         console.log("set:",data);
         updataNotice();
     }

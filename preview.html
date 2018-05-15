@@ -66,16 +66,16 @@
             });
             
         }
-  function convertDataURIToBinary(dataURI) { //将encodeBase64解码
-            var raw = window.atob(dataURI);
-            var rawLength = raw.length;
-            //转换成pdf.js能直接解析的Uint8Array类型,见pdf.js-4068
-            var array = new Uint8Array(new ArrayBuffer(rawLength));  
-            for(i = 0; i < rawLength; i++) {
-              array[i] = raw.charCodeAt(i);
-            }
-            return array;
-         } 
+//   function convertDataURIToBinary(dataURI) { //将encodeBase64解码
+//             var raw = window.atob(dataURI);
+//             var rawLength = raw.length;
+//             //转换成pdf.js能直接解析的Uint8Array类型,见pdf.js-4068
+//             var array = new Uint8Array(new ArrayBuffer(rawLength));  
+//             for(i = 0; i < rawLength; i++) {
+//               array[i] = raw.charCodeAt(i);
+//             }
+//             return array;
+//          } 
 
 
 
