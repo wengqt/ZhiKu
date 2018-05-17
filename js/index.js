@@ -64,11 +64,11 @@ function register(){
     var phone = document.getElementById('r-phone').value;
     var email = document.getElementById('r-email').value;
     var pw = document.getElementById('r-pw').value;
-    var id = document.getElementById('r-c').value;
-    if(id.length!=12){
-        new Toast().showMsg("学号格式不正确",2000);
-        return;
-    }
+    // var id = document.getElementById('r-c').value;
+    // if(id.length!=12){
+    //     new Toast().showMsg("学号格式不正确",2000);
+    //     return;
+    // }
     if(username==""||phone==""||email==""||pw==""){
         console.log("输入信息不完全");
         new Toast().showMsg("输入信息不完全",2000);

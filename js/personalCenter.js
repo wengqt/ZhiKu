@@ -155,6 +155,9 @@ function getUpLoadList() {
     upload.getUploadList(username,uploadPage,function (data,state) {
 
         console.log(data)
+        if(data.data==null){
+            data.data=[]
+        }
         // var content='';
         // if(data.data.length==0) uploadPage--;
         for(var i=0;i<data.data.length;i++){
@@ -187,6 +190,9 @@ function getDownLoadList() {
         console.log(data.data);
         // var content='';
         console.log(downloadPage);
+        if(data.data==null){
+            data.data=[]
+        }
         // if(data.data.length==0) downloadPage--;
         for(var i=0;i<data.data.length;i++){
             downContent+=`<div class="panel panel-default mt leftblue">

@@ -46,7 +46,7 @@ function AjaxHandler(){
         $.ajax({
             url:API.register,
             type:'POST',
-            data:{username,password,nickname:"111",mail,phone,qq:"1111",avator:"aaa",xid:1,mid:1001},
+            data:{username,password,nickname:null,mail,phone,qq:null,avator:null,xid:null,mid:null},
             dataType:"JSON",
             success:function(data,state){
                 
