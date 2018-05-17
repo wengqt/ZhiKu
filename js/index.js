@@ -32,7 +32,7 @@ function login(){
             if(data.status==200){
                 
                 new Toast().showMsg("登录成功",1000);
-                $.cookie('username', username,{path:"/"});
+                // $.cookie('username', username,{path:"/"});
                 document.getElementById("closeLogin").click();
                 document.getElementById("loginOption").className = 'dropdown';
                 document.getElementById("loginOption").innerHTML=`
