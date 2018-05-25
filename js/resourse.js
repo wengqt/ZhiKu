@@ -80,25 +80,29 @@ if(document.getElementById('dropdownMenu5')){
     document.getElementById('dropdownMenu5').oninput= function(){
         var key = document.getElementById('dropdownMenu5').value;
         if(key.trim()!=''){
-            user.courseSearch(key,function(data,state){
-                if(data.status == 200){
-                    var innerList ='';
-                    keyData = data.data;
-                    // console.log(keyData);
-                    
-                    data.data.map((item,index)=>{
-                        
-                        innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
-                    })
-                    document.getElementById('dropdown5').innerHTML = innerList;
-                
-                }else if(data.status == 300){
-                    new Toast().showMsg("没有该课程",1000);
-                }
-            },function(data,state){
-                new Toast().showMsg("网络连接异常",1000);
-            })
+            
+        }else{
+            key='ALL';
+            console.log(key)
         }
+        user.courseSearch(key,function(data,state){
+            if(data.status == 200){
+                var innerList ='';
+                keyData = data.data;
+                // console.log(keyData);
+                
+                data.data.map((item,index)=>{
+                    
+                    innerList +=`<li><a href="javascript:void(0)" class="topOption" onclick='searchAll(1,${item.cid},"${item.cname}")'>${item.cname}</a></li>`
+                })
+                document.getElementById('dropdown5').innerHTML = innerList;
+            
+            }else if(data.status == 300){
+                new Toast().showMsg("没有该课程",1000);
+            }
+        },function(data,state){
+            new Toast().showMsg("网络连接异常",1000);
+        })
         
     }
     document.getElementById('searchBtn').onclick = function(){
@@ -200,7 +204,8 @@ function showList(){
                     
                 </div>
                 <div class=" firstLine">
-                    <div class="col-xs-9 date small">${item.fileinfo.desc}</div>
+                    <div class="col-xs-8 date small">${item.fileinfo.desc}</div>
+                    <button type="button" onclick='preview(${item.fid})' class="btn btn-info" style="margin-right:5px"> 预览 </button>
                     <button type="button" onclick='downloadfile(${item.fid})' class="btn btn-success">下载 </button>
                 </div>
             </div>
@@ -306,4 +311,9 @@ function downloadfile(fid){
         // a.click();
     },function(){})
     
+}
+
+function preview(fid){
+    window.location.href = 'preview.html?'+fid;
+
 }

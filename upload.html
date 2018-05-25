@@ -90,9 +90,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-2 control-label">简介</label>
+                    <label  class="col-sm-2 control-label">文件标签</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="filedesc" rows="3" placeholder="简单的文件描述"></textarea>
+                        <textarea class="form-control" id="filedesc" rows="3" placeholder="请务必填写相关的文件标签"></textarea>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -104,6 +104,14 @@
 </body>
 <script src="js/ajaxHandler.js"></script>
 <script>
+    window.onload=function(){
+        if(!$.cookie('username')){
+            new Toast().showMsg('请先登录,正在跳转',1000);
+            setTimeout(function(){
+                 window.location.href='index.html';
+                    },2000)
+        }
+    }
 var course;
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
@@ -155,6 +163,8 @@ function upcourse(courseid,kcnm){
             new Toast().showMsg('请选择有效课程',1000)
         }else if(document.getElementById(`inputFile`).files[0]==undefined){
             new Toast().showMsg('请选择文件',1000)
+        }else if(filedesc.trim()==''){
+            new Toast().showMsg('请务必填写相关的文件标签',1000)
         }else{
             var to=new Toast();
             to.showMsg('正在上传，请稍等');

@@ -117,7 +117,7 @@ function register(){
             } else if (data.status == 200) {
 
 
-                new Toast().showMsg("注册成功", 2000);
+                new Toast().showMsg("注册成功,请前往邮箱激活", 2000);
                 document.getElementById("closeRegister").click();
                 setTimeout(function () {
                     document.getElementsByTagName('body')[0].style.paddingRight = 0;
