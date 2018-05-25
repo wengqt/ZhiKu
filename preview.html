@@ -44,7 +44,7 @@
             var container = document.getElementById("container");
             container.style.display = "block";
             // var url = 'http://127.0.0.1:8080/java.pdf';
-            var url = baseUrl+load;
+            var url = baseUrl+'/'+load;
             // convertDataURIToBinary('${encodeBase64}');//encodeBase64是后台传递的base64编码的二进制字符串
 
             pdfjsLib.workerSrc = 'js/pdf.worker.js';
@@ -82,7 +82,7 @@
          showPdf(loadurl);
 
 
-         document.getElementById('getDown').onclick= function getDown(fid){
+         document.getElementById('getDown').onclick= function getDown(){
 
             if(!$.cookie('username')){
                 new Toast().showMsg('请先登录',1000);
