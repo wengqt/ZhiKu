@@ -314,6 +314,6 @@ function downloadfile(fid){
 }
 
 function preview(fid){
-    window.location.href = 'preview.html?'+fid;
+    window.open('preview.html?'+fid);
 
 }
