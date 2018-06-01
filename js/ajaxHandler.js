@@ -149,7 +149,25 @@ function AjaxHandler(){
             success:function(data,state){
                 success(data,state)},
             error:function(data,state){
-                failed(data,state)}
+                failed(data,state)},
+            xhr:function () {
+                this_xhr = $.ajaxSettings.xhr();
+                if(this_xhr.upload){
+                    this_xhr.upload.addEventListener('progress',function(e){
+                        if (e.lengthComputable) {
+                            var percent = Math.floor(e.loaded/e.total*100);
+                            if(percent <= 100) {
+                              console.log('set progress', percent);
+                             
+                            }
+                            if(percent >= 100) {
+                              console.log('文件上传完毕，请等待...');
+                             
+                            }
+                          }
+                    },false)
+                }
+              }
         })
     }
     ajaxHandler.prototype.getUserInfo = function(userName,success,failed){

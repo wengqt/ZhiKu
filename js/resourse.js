@@ -105,13 +105,13 @@ if(document.getElementById('dropdownMenu5')){
         })
         
     }
-    document.getElementById('searchBtn').onclick = function(){
-        if(document.getElementById('dropdownMenu5').value.trim()==''){
-            new Toast().showMsg("请输入课程",1000);
-        }else{
-            searchAll(1);        
-        }
-    }
+    // document.getElementById('searchBtn').onclick = function(){
+    //     if(document.getElementById('dropdownMenu5').value.trim()==''){
+    //         new Toast().showMsg("请输入课程",1000);
+    //     }else{
+    //         searchAll(1);        
+    //     }
+    // }
 }
 
 
