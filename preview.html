@@ -17,7 +17,7 @@
     
     
 </head>
-<body>
+<body style="background-color: #fbf8f0">
     <button id="getDown" type="button" class="btn btn-success" style="float: right;margin:10px 20px">下载 </button>    
     <div id="container">   
         <div id="pop" style="text-align: center;"></div>
@@ -41,6 +41,7 @@
     // page.render(renderContext);
     // })
     function showPdf(load) {
+            console.time('load');
             var container = document.getElementById("container");
             container.style.display = "block";
             // var url = 'http://127.0.0.1:8080/java.pdf';
@@ -49,6 +50,7 @@
 
             pdfjsLib.workerSrc = 'js/pdf.worker.js';
             pdfjsLib.getDocument(url).then(function getPdfHelloWorld(pdf) {
+                
             	var $pop = $('#pop');
                 var shownPageCount = pdf.numPages < 50 ? pdf.numPages : 50;//设置显示的编码
                 var getPageAndRender = function (pageNumber) {
@@ -71,11 +73,12 @@
                          getPageAndRender(pageNumber);
                      }  
                 };
-                getPageAndRender(1);        		   
+                getPageAndRender(1);
+                console.timeEnd('load');        		   
             });
             
         }
-        new Toast().showMsg('首次加载时间稍长，请耐心等候',1000)
+        new Toast().showMsg('首次加载时间稍长，请耐心等候',1500)
 
         var fid = window.location.search.substr(1);
         var loadurl = 'getFileDetails/'+fid+'.do';
