@@ -185,6 +185,8 @@ function searchDocument(page){
                 console.log(method,course,xid,mid,page);
                 showList();
                 isLoading = false;
+            }else{
+                console.log('no file')
             }
         },function(){})
     }

@@ -347,6 +347,7 @@ function AjaxHandler(){
             data:{method,course,college,major,page},
             dataType:"JSON",
             success:function(data,state){
+                // console.log(data,state)
                 success(data,state)},
             error:function(data,state){
                 failed(data,state)}

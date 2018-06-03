@@ -2,5 +2,9 @@
     "presets": [
       "es2015"
     ],
-    "plugins": []
+    "plugins": [],
+    "ignore": [
+      "pdf.js",
+      "pdf.worker.js"
+    ]
   }
