@@ -158,15 +158,19 @@ function AjaxHandler(){
                             var percent = Math.floor(e.loaded/e.total*100);
                             if(percent <= 100) {
                               console.log('set progress', percent);
-                             
+                             document.getElementById('pro').style.display='block';
+                             $('#process').attr('aria-valuenow',percent).css('width',percent+'%').text(percent);
+
                             }
                             if(percent >= 100) {
                               console.log('文件上传完毕，请等待...');
+                              document.getElementById('pro').style.display='none';
                              
                             }
                           }
                     },false)
                 }
+                return this_xhr;
               }
         })
     }
@@ -377,7 +381,7 @@ function AjaxHandler(){
             data:{},
             dataType:"JSON",
             success:function(data,state){
-            onsole.log(fileId);
+            console.log(fileId);
         
                 success(data,state)},
             error:function(data,state){
