@@ -11,9 +11,10 @@ function AjaxHandler(){
     }
     function getToken(){
         if(!!localStorage.getItem('token')){
-            return null;
+            return localStorage.getItem('token');
         }
-        return localStorage.getItem('token');
+        
+        return null;
     }
     function handleTokenFailed(code){
         if(code==401){
