@@ -87,7 +87,7 @@
 
          document.getElementById('getDown').onclick= function getDown(){
 
-            if(checkLogin()){
+            if(!checkLogin()){
                 new Toast().showMsg('请先登录',1000);
                 return;
             }

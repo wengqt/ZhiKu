@@ -118,7 +118,7 @@
 <script src="js/ajaxHandler.js"></script>
 <script>
     window.onload=function(){
-        if(checkLogin()){
+        if(!checkLogin()){
             new Toast().showMsg('请先登录,正在跳转',1000);
             setTimeout(function(){
                  window.location.href='index.html';
