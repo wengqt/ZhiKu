@@ -7,7 +7,7 @@ window.onload=function(){
         register();
     });
     loadNews();
-    if($.cookie('username')!==undefined){
+    if(checkLogin()){
         var username=$.cookie('username');
         document.getElementById("loginOption").className = 'dropdown';
         document.getElementById("loginOption").innerHTML=`
@@ -32,6 +32,7 @@ function login(){
             if(data.status==200){
                 
                 new Toast().showMsg("登录成功",1000);
+                localStorage.setItem('token', data.token);
                 // $.cookie('username', username,{path:"/"});
                 document.getElementById("closeLogin").click();
                 document.getElementById("loginOption").className = 'dropdown';
@@ -150,6 +151,7 @@ document.getElementById("closeRegister").onclick=function(){
             new Toast().showMsg("成功退出登录",1000);
             console.log("退出登录");
             $.removeCookie('username');
+            localStorage.clear();
             document.getElementById("loginOption").innerHTML='<a href="#" data-toggle="modal" data-target="#login">登录/注册</a>';
 
         },function(data,state){

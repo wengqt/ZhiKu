@@ -118,7 +118,7 @@
 <script src="js/ajaxHandler.js"></script>
 <script>
     window.onload=function(){
-        if(!$.cookie('username')){
+        if(checkLogin()){
             new Toast().showMsg('请先登录,正在跳转',1000);
             setTimeout(function(){
                  window.location.href='index.html';
@@ -164,7 +164,7 @@ function upcourse(courseid,kcnm){
     function submitInfo() {
         var $btn = $('#submitBtn');
         $btn.button('loading');
-        if($.cookie('username')){
+        if(checkLogin()){
             var user = new AjaxHandler();
         var username=$.cookie('username');
         // var dname = $('#dname').val();
