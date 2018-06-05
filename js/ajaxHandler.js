@@ -264,7 +264,7 @@ function AjaxHandler(){
         success = typeof success ==='function'?success:new Function();
         failed = typeof failed ==='function'?failed:new Function();
         console.log(matchword(API.filedownload,fileId))
-            window.open(matchword(API.filedownload,fileId)+`token=${getToken()}`)
+            window.open(matchword(API.filedownload,fileId)+`?token=${getToken()}`)
     }
      
     //弃用
