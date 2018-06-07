@@ -281,7 +281,10 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("notice").style.display="none";
                     document.getElementById("download").style.display="none";
                     document.getElementById("data").style.display="block";
-                    console.log('data')
+                    // console.log('data')
+                    let _word = wordChart();
+                    let _line = initLine();
+                    let _pie = initPie();
                     break;
             }
         }
