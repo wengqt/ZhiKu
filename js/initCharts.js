@@ -127,7 +127,7 @@ function wordChart() {
         id: 'word',
         // width: 500,
         forceFit: true,
-        height: 500,
+        height: 300,
         padding: 0
     });
     chart.legend(false);
@@ -212,7 +212,7 @@ function initLine() {
         id: 'line',
         forceFit: true,
         // width: 700,
-        height: 500
+        height: 300
     });
     chart2.source(dv2, {
         month: {
@@ -273,7 +273,7 @@ function initPie() {
     var chart = new G2.Chart({
         id: 'pie',
         forceFit: true,
-        height: 500
+        height: 300
     });
     chart.source(dv, {
         percent: {

@@ -106,162 +106,33 @@
         <!-- <a href="http://localhost:8080/java.pdf">aaaaa</a> -->
         <div id="doc">
             
-            <!-- <div class="panel panel-default mt leftblue">
-                
-                            <div class="panel-body">
-                                <div class="row firstLine">
-                                    <div class="col-xs-4 bluefont">机组课件、作业、project</div>
-                                    <div class="col-xs-5 small date">xx 上传于 2017年8月23日21:29:35</div>
-                                    <div class="col-xs-3">课件</div>
-                                </div>
-                                <div class="row firstLine">
-                                    <div class="col-xs-9 date small">机组课件与project.zip</div>
-                                    <button type="button" class="btn btn-success col-xs-1">下载 </button>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">教师：吴彦祖</div>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">下载量：999</div>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">需要积分：999</div>
-                                </div>
-                
-                                <div class="row blackline">
-                                    <div class="col-xs-12">
-                                        0 0
-                
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="panel panel-default mt leftblue">
-                
-                            <div class="panel-body">
-                                <div class="row firstLine">
-                                    <div class="col-xs-4 bluefont">机组课件、作业、project</div>
-                                    <div class="col-xs-5 small date">xx 上传于 2017年8月23日21:29:35</div>
-                                    <div class="col-xs-3">课件</div>
-                                </div>
-                                <div class="row firstLine">
-                                    <div class="col-xs-9 date small">机组课件与project.zip</div>
-                                    <button type="button" class="btn btn-success col-xs-1">下载 </button>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">教师：吴彦祖</div>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">下载量：999</div>
-                                </div>
-                                <div class="row blackline">
-                                    <div class="col-xs-12">需要积分：999</div>
-                                </div>
-                
-                                <div class="row blackline">
-                                    <div class="col-xs-12">
-                                        0 0
-                
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recommend">推荐</button>
                         
         </div>
+        <div class="modal fade bs-example-modal-lg" id="recommend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="margin-top: 100px">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">猜你喜欢</h4>
+                    </div>
+                    <div class="modal-body row">
+                        <div id="doc-recom" class="alert alert-success col-sm-6" role="alert" >
+                            文档推荐：
+                        </div>
+                        <div id="blog-recom" class="alert alert-info col-sm-6" role="alert">
+                            博客推荐：
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                  </div>
+            </div>
+          </div>
     </div>
-    <!-- <div class="container" id="outerResourse" style="display: none">
-        <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>每一个不曾起舞的日子都是对生命的浪费</p>
-            <p><a class="btn btn-primary btn-lg" href="upload.html" role="button">上传资料</a></p>
-        </div>
-
-
-
-         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                类别
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-drop="dropdownMenu3">
-                <li><a href="#" onclick="selectAct(this)">计算机技术</a></li>
-                <li><a href="#" onclick="selectAct(this)">英语学习</a></li>
-                <li><a href="#"  onclick="selectAct(this)">通选课</a></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                方向
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" data-drop="dropdownMenu4">
-                <li><a href="#" onclick="selectAct(this)">上学期</a></li>
-                <li><a href="#" onclick="selectAct(this)">下学期</a></li>
-            </ul>
-        </div> -->
-
-
-        <!-- <div class="panel panel-default mt leftblue">
-
-            <div class="panel-body">
-                <div class="row firstLine">
-                    <div class="col-xs-4 bluefont">机组课件、作业、project</div>
-                    <div class="col-xs-5 small date">xx 上传于 2017年8月23日21:29:35</div>
-                    <div class="col-xs-3">课件</div>
-                </div>
-                <div class="row firstLine">
-                    <div class="col-xs-9 date small">机组课件与project.zip</div>
-                    <button type="button" class="btn btn-success col-xs-1">下载 </button>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">教师：吴彦祖</div>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">下载量：999</div>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">需要积分：999</div>
-                </div>
-
-                <div class="row blackline">
-                    <div class="col-xs-12">
-                        0 0
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default mt leftblue">
-
-            <div class="panel-body">
-                <div class="row firstLine">
-                    <div class="col-xs-4 bluefont">机组课件、作业、project</div>
-                    <div class="col-xs-5 small date">xx 上传于 2017年8月23日21:29:35</div>
-                    <div class="col-xs-3">课件</div>
-                </div>
-                <div class="row firstLine">
-                    <div class="col-xs-9 date small">机组课件与project.zip</div>
-                    <button type="button" class="btn btn-success col-xs-1">下载 </button>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">教师：吴彦祖</div>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">下载量：999</div>
-                </div>
-                <div class="row blackline">
-                    <div class="col-xs-12">需要积分：999</div>
-                </div>
-
-                <div class="row blackline">
-                    <div class="col-xs-12">
-                        0 0
-
-                    </div>
-                </div>
-            </div>
-        </div> --> 
-
+    
     </div>
 
 
