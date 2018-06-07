@@ -227,13 +227,15 @@ for(var i=0;i<option.length;i++){
             option[(e+1)%option.length].className="option";
             option[(e+2)%option.length].className="option";
             option[(e+3)%option.length].className="option";
-            option[(e+5)%option.length].className="option";
+            option[(e+4)%option.length].className="option";
+            // console.log(option[(e+1)%option.length])
             switch(e){
                 case 0:
                     document.getElementById("info").style.display="block";
                     document.getElementById("upload").style.display="none";
                     document.getElementById("download").style.display="none";
                     document.getElementById("notice").style.display="none";
+                    document.getElementById("data").style.display="none";
                     break;
                 case 1:
                     state=1;
@@ -241,6 +243,7 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("upload").style.display="block";
                     document.getElementById("download").style.display="none";
                     document.getElementById("notice").style.display="none";
+                    document.getElementById("data").style.display="none";
                     upContent='';
                     downContent='';
                     uploadPage=1;
@@ -256,6 +259,7 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("upload").style.display="none";
                     document.getElementById("notice").style.display="none";
                     document.getElementById("download").style.display="block";
+                    document.getElementById("data").style.display="none";
                     upContent='';
                     downContent='';
                     uploadPage=1;
@@ -268,7 +272,16 @@ for(var i=0;i<option.length;i++){
                     document.getElementById("upload").style.display="none";
                     document.getElementById("notice").style.display="block";
                     document.getElementById("download").style.display="none";
+                    document.getElementById("data").style.display="none";
                     getNotice();
+                    break;
+                case 4:
+                    document.getElementById("info").style.display="none";
+                    document.getElementById("upload").style.display="none";
+                    document.getElementById("notice").style.display="none";
+                    document.getElementById("download").style.display="none";
+                    document.getElementById("data").style.display="block";
+                    console.log('data')
                     break;
             }
         }
