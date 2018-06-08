@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,11 @@
     <link rel="stylesheet" type="text/css" href="css/personalCenter.css">
     <link rel="stylesheet" href="css/toast.css">
     <style>
-        .small-gray{
+        .small-gray {
             color: gray;
         }
-        .read{
+
+        .read {
             float: right;
         }
     </style>
@@ -24,71 +26,83 @@
     <script src="js/toastDom.js"></script>
     <script src="js/observerNotice.js"></script>
 </head>
+
 <body style="margin: 0 ; padding: 0;height: 100%;background-color: #fbf8f0;">
-<div class="container" >
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
                     <img alt="Brand" src="imgs/Logo.png" style="width: 3rem;height: 3rem;margin-top: -0.75rem;">
                 </a>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">个人中心</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active option"><a href="#">修改个人信息</a></li>
-                    <li class="option"><a href="#">上传的文件</a></li>
-                    <li class="option"><a href="#">下载的文件</a></li>
-                    <li class="option"><a href="#">站内信</a></li>
-                    <li class="option"><a href="#">个人数据</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="info">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label  class="col-sm-2 control-label">昵称</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control"  placeholder="nickname">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">个人中心</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active option">
+                            <a href="#">修改个人信息</a>
+                        </li>
+                        <li class="option">
+                            <a href="#">上传的文件</a>
+                        </li>
+                        <li class="option">
+                            <a href="#">下载的文件</a>
+                        </li>
+                        <li class="option">
+                            <a href="#">站内信</a>
+                        </li>
+                        <li class="option">
+                            <a href="#">个人数据</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- <div class="form-group">
+        </nav>
+        <div id="info">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="nickname">
+                    </div>
+                </div>
+                <!-- <div class="form-group">
                 <label  class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control"  placeholder="Email">
                 </div>
             </div> -->
 
-            <div class="form-group">
-                <label  class="col-sm-2 control-label">phoneNumber</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="phoneNumber">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">phoneNumber</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="phoneNumber">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                    <label  class="col-sm-2 control-label">qq</label>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">qq</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" placeholder="qq">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-2 control-label">新密码</label>
+                    <label class="col-sm-2 control-label">新密码</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" placeholder="可不必修改">
                     </div>
                 </div>
-            <div class="form-group">
-                <label  class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" placeholder="修改信息请务必输入当前密码">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" placeholder="修改信息请务必输入当前密码">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                    <label  class="col-sm-2 control-label">学院和专业</label>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">学院和专业</label>
                     <div class="col-sm-10">
                         <div class="dropdown" style="display:inline-block">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
                                 学院
                                 <span class="caret"></span>
                             </button>
@@ -96,7 +110,8 @@
                             </ul>
                         </div>
                         <div class="dropdown" style="display:inline-block">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
                                 专业
                                 <span class="caret"></span>
                             </button>
@@ -104,14 +119,14 @@
                             </ul>
                         </div>
                     </div>
-            </div>
-            
+                </div>
 
-            <button type="button" style="float: right" id="saveInfo" class="btn btn-success">保存修改信息</button>
-        </form>
-    </div>
-    <div id="upload" style="display: none">
-        <!-- <div class="panel panel-default mt leftblue">
+
+                <button type="button" style="float: right" id="saveInfo" class="btn btn-success">保存修改信息</button>
+            </form>
+        </div>
+        <div id="upload" style="display: none">
+            <!-- <div class="panel panel-default mt leftblue">
             <div class="panel-body">
                 <div class="row firstLine">
                     <div class="col-xs-4 bluefont">机组课件、作业、project</div>
@@ -139,11 +154,11 @@
                 </div>
             </div>
         </div> -->
-    </div>
+        </div>
 
-    <div id="download" style="display: none;">
+        <div id="download" style="display: none;">
 
-        <!-- <div class="panel panel-default mt leftblue">
+            <!-- <div class="panel panel-default mt leftblue">
 
             <div class="panel-body">
                 <div class="row firstLine">
@@ -203,9 +218,9 @@
                 </div>
             </div>
         </div> -->
-    </div> 
-    <div id="notice" style="display:none;">
-        <!-- <div class="panel panel-info ">
+        </div>
+        <div id="notice" style="display:none;">
+            <!-- <div class="panel panel-info ">
             <div class="panel-heading">
               <h3 class="panel-title">Panel title</h3>
             </div>
@@ -225,13 +240,35 @@
                 <p>For the sake of this demonstration, we are using <code>data-loading-text</code> and <code>$().button('loading')</code>, but that's not the only state you can use. <a href="#buttons-methods">See more on this below in the <code>$().button(string)</code> documentation</a>.</p>              
             </div>
           </div> -->
+        </div>
+        <div id="data" style="display: none;">
+            <div class="row">
+                <div class="col-sm-5 panel panel-info" style="margin:0 15px;padding: 0">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Panel heading</div>
+                    <div class="panel-body">
+                        <p>...</p>
+                    </div>
+
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+                <div id="word" class="col-sm-5"></div>
+            </div>
+            <div class="row">
+                <div id="line" class="col-sm-5"></div>
+                <div id="pie" class="col-sm-5"></div>
+            </div>
+
+
+        </div>
     </div>
-    <div id="data" class="row" style="display: none;">
-        <div id="word" class="col-sm-5"></div>
-        <div id="line" class="col-sm-5"></div>
-        <div id="pie" class="col-sm-6"></div>
-    </div>
-</div>
 
 </body>
 <script src="js/resourse.js"></script>
@@ -240,4 +277,5 @@
 <script src="https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.7/data-set.min.js"></script>
 <!-- <script src="https://gw.alipayobjects.com/os/antv/assets/lib/lodash-4.17.4.min.js"></script> -->
 <script src="js/initCharts.js"></script>
+
 </html>
