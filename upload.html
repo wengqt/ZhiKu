@@ -197,6 +197,7 @@ function upcourse(courseid,kcnm){
             }else if(data.status==300){
                 
                 new Toast().showMsg(data.message,1000);
+                $btn.button('reset');
                 if(data.message=='需要登录才可上传文件!'){
                     setTimeout(function(){
                  window.location.href='index.html';

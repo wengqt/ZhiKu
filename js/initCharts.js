@@ -106,7 +106,7 @@ function wordChart() {
         type: 'tag-cloud',
         fields: ['text', 'value'], // 参与标签云layout的字段集
         font: 'Verdana', // 标签字体
-        size: [500, 500], // 画布size，[ width, height ]
+        size: [400, 300], // 画布size，[ width, height ]
         padding: 0,
         spiral: 'rectangular', // 标签螺旋排布规律函数 'archimedean' || 'rectangular' || {function}
         fontSize(d) {
