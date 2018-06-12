@@ -1,4 +1,30 @@
-function wordChart() {
+
+function getCharts(){
+    var user =new AjaxHandler();
+    user.statistics(function (data,state) { 
+        let all_graph = data.data;
+        let _word = wordChart(all_graph.graph3);
+        let _line = initLine(all_graph.graph2);
+        let _pie = initPie(all_graph.graph1);
+     },function(data,state){
+        new Toast().showMsg('网络连接超时',1500);
+         wordChart([]);
+        initLine([]);
+        initPie([]);
+    })
+}
+
+
+
+
+
+function wordChart(data1) {
+    //console.log(!Array.isArray(data1)||data1.length==0)
+    if(!Array.isArray(data1)||data1.length==0 ){
+        document.getElementById('word').innerHTML=`<p style="font-size:30px;color:lightgray;text-align:center;margin-top:100px;">暂无词云</p>`;
+        return;
+    }
+    document.getElementById('word').innerHTML='';
     // 给point注册一个词云的shape
     function getTextAttrs(cfg) {
         return Object.assign({}, {
@@ -26,87 +52,17 @@ function wordChart() {
         }
     });
 
-    let da = [{
-            text: '111',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '333',
-            value: Math.random(),
-            category: 'b'
-        },
-        {
-            text: '222',
-            value: Math.random(),
-            category: 'b'
-        },
-        {
-            text: '444',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        },
-        {
-            text: '555',
-            value: Math.random(),
-            category: 'a'
-        }
-    ]
+    
 
-    let dv = new DataSet.View().source(da)
+    let dv = new DataSet.View().source(data1)
     var range = dv.range('value');
     var min = range[0];
     var max = range[1];
     dv.transform({
         type: 'tag-cloud',
         fields: ['text', 'value'], // 参与标签云layout的字段集
-        font: 'Verdana', // 标签字体
-        size: [400, 300], // 画布size，[ width, height ]
+        font: 'Verdana', 
+        size: [400, 300], 
         padding: 0,
         spiral: 'rectangular', // 标签螺旋排布规律函数 'archimedean' || 'rectangular' || {function}
         fontSize(d) {
@@ -114,7 +70,7 @@ function wordChart() {
                 return (d.value - min) / (max - min) * (80 - 24) + 24;
             }
             return 0;
-        }, // 计算标签字体大小的回调函数，d为一行数据
+        }, 
         text(d) {
             return d.text
         }, // 生成标签文本的回调函数，d为一行数据
@@ -150,63 +106,20 @@ function wordChart() {
 
 
 
-function initLine() {
-    var data2 = [{
-        month: 'Jan',
-        Tokyo: 7.0,
-        London: 3.9
-    }, {
-        month: 'Feb',
-        Tokyo: 6.9,
-        London: 4.2
-    }, {
-        month: 'Mar',
-        Tokyo: 9.5,
-        London: 5.7
-    }, {
-        month: 'Apr',
-        Tokyo: 14.5,
-        London: 8.5
-    }, {
-        month: 'May',
-        Tokyo: 18.4,
-        London: 11.9
-    }, {
-        month: 'Jun',
-        Tokyo: 21.5,
-        London: 15.2
-    }, {
-        month: 'Jul',
-        Tokyo: 25.2,
-        London: 17.0
-    }, {
-        month: 'Aug',
-        Tokyo: 26.5,
-        London: 16.6
-    }, {
-        month: 'Sep',
-        Tokyo: 23.3,
-        London: 14.2
-    }, {
-        month: 'Oct',
-        Tokyo: 18.3,
-        London: 10.3
-    }, {
-        month: 'Nov',
-        Tokyo: 13.9,
-        London: 6.6
-    }, {
-        month: 'Dec',
-        Tokyo: 9.6,
-        London: 4.8
-    }];
+function initLine(data2) {
+    if(!Array.isArray(data2)||data2.length==0 ){
+        document.getElementById('line').innerHTML=`<p style="font-size:30px;color:lightgray;text-align:center;margin-top:100px;">暂无上传下载动态</p>`;
+        return;
+    }
+//    console.log(data2)
+document.getElementById('line').innerHTML='';
     var ds = new DataSet();
     var dv2 = ds.createView().source(data2);
     dv2.transform({
         type: 'fold',
-        fields: ['Tokyo', 'London'], // 展开字段集
-        key: 'city', // key字段
-        value: 'temperature' // value字段
+        fields: ['upload', 'download'], // 展开字段集
+        key: '上传/下载', // key字段
+        value: '个数' // value字段
     });
     var chart2 = new G2.Chart({
         id: 'line',
@@ -224,15 +137,15 @@ function initLine() {
             type: 'line'
         }
     });
-    chart2.axis('temperature', {
+    chart2.axis('个数', {
         label: {
             formatter: function formatter(val) {
-                return val + '°C';
+                return val + '个';
             }
         }
     });
-    chart2.line().position('month*temperature').color('city');
-    chart2.point().position('month*temperature').color('city').size(4).shape('circle').style({
+    chart2.line().position('month*个数').color('上传/下载');
+    chart2.point().position('month*个数').color('上传/下载').size(4).shape('circle').style({
         stroke: '#fff',
         lineWidth: 1
     });
@@ -243,26 +156,16 @@ function initLine() {
 
 
 
-function initPie() {
+function initPie(data) {
+    if(!Array.isArray(data)||data.length==0 ){
+        document.getElementById('pie').innerHTML=`<p style="font-size:30px;color:lightgray;text-align:center;margin-top:100px;">暂无饼图数据</p>`;
+        return;
+    }
+    document.getElementById('pie').innerHTML='';
     var _DataSet = DataSet,
         DataView = _DataSet.DataView;
 
-    var data = [{
-        item: '事例一',
-        count: 40
-    }, {
-        item: '事例二',
-        count: 21
-    }, {
-        item: '事例三',
-        count: 17
-    }, {
-        item: '事例四',
-        count: 13
-    }, {
-        item: '事例五',
-        count: 9
-    }];
+    
     var dv = new DataView();
     dv.source(data).transform({
         type: 'percent',

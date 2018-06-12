@@ -91,8 +91,13 @@
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">文件标签</label>
-                    <div class="col-sm-6">
-                        <textarea class="form-control" id="filedesc" rows="3" placeholder="请务必填写相关的文件标签"></textarea>
+                    <div class="col-sm-5">
+                        <input class="form-control" id="filedesc" rows="3" placeholder="请务必填写相关的文件标签（最多5个）"></input>
+                    </div>
+                    <button type="button" id="add" class="btn btn-info">添加</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-2" id='tags'>
                     </div>
                 </div>
                 <div class="alert alert-success" role="alert" id="pro" style="display: none;">
@@ -125,6 +130,44 @@
                     },2000)
         }
     }
+    var tag =[];
+    document.getElementById('add').onclick=function(){
+        let t = $('#filedesc').val();
+        if(tag.length>5){
+            new Toast().showMsg('标签最多5个',2000)
+            return;
+        }
+        if(t!=''){
+            tag.push(t);
+            mapTags();
+            document.getElementById('filedesc').value='';
+        }
+    }
+    function mapTags() {
+        let tags_div=document.getElementById('tags');
+        tags_div.innerHTML='';
+        tag.map(function (item,index) {
+            let abtn = document.createElement('button');
+            abtn.type="button";
+            abtn.className='btn btn-default';
+            abtn.innerText=item+' ';
+            let tag_a=document.createElement('a');
+            tag_a.style='color: lightgray;width:20px;display:inline-block;';
+            tag_a.dataset.index=index;
+            tag_a.className='remove';
+            tag_a.innerText=' x';
+            abtn.appendChild(tag_a)
+            tags_div.appendChild(abtn);
+          })
+          
+          $('.remove').click(function(e){
+            e.stopPropagation();
+        var ind = e.target.dataset.index;
+        tag.splice(ind,1);
+        mapTags();
+    })
+      }
+    
 var course;
 var user = new AjaxHandler();
 document.getElementById('dropdownMenu5').oninput= function(){
@@ -172,8 +215,8 @@ function upcourse(courseid,kcnm){
         var origion = $('#origion .active input').val();
         // console.log(origion);
         var teacher =$('#teacher').val();
-        var filedesc =$('#filedesc').val();
-        
+        var filedesc =tag.join(',');
+        console.log(filedesc)
         if(course==undefined){
             new Toast().showMsg('请选择有效课程',1000)
             $btn.button('reset');

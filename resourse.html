@@ -118,10 +118,10 @@
 
         <!-- <div id="handout_wrap_inner"></div> -->
         <!-- <a href="http://localhost:8080/java.pdf">aaaaa</a> -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recommend" id="recommend-btn" >推荐</button>
         <div id="doc">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recommend">推荐</button>
-
+           
         </div>
         <div class="modal fade bs-example-modal-lg" id="recommend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             style="margin-top: 100px">
@@ -137,21 +137,30 @@
                         <div id="doc-recom" class="alert alert-success col-sm-6" role="alert">
                             文档推荐：
                             <div style="margin: 10px;"></div>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item active">
-                                    Cras justo odio
+                            <div class="list-group" id="doc-list">
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">List group item heading</h4>
+                                    <p class="list-group-item-text">...List group item heading</p>
                                 </a>
-                                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                                <a href="#" class="list-group-item">Morbi leo risus</a>
-                                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                                <a href="#" class="list-group-item">Vestibulum at eros</a>
+                                <a href="#" class="list-group-item ">
+                                    <h4 class="list-group-item-heading">List group item heading</h4>
+                                    <p class="list-group-item-text">...List group \t item heading</p>
+                                </a>
+                                <a href="#" class="list-group-item ">
+                                    <h4 class="list-group-item-heading">List group item heading</h4>
+                                    <p class="list-group-item-text">...List group item heading</p>
+                                </a>
+                                <a href="#" class="list-group-item ">
+                                    <h4 class="list-group-item-heading">List group item heading</h4>
+                                    <p class="list-group-item-text">...List group item heading</p>
+                                </a>
                             </div>
                         </div>
                         <div id="blog-recom" class="alert alert-info col-sm-6" role="alert">
                             博客推荐：
                             <div style="margin: 10px;"></div>
 
-                            <div class="list-group">
+                            <div class="list-group" id="blog-list">
                                 <a href="#" class="list-group-item">
                                     <h4 class="list-group-item-heading">List group item heading</h4>
                                     <p class="list-group-item-text">...List group item heading</p>
@@ -164,10 +173,7 @@
                                     <h4 class="list-group-item-heading">List group item heading</h4>
                                     <p class="list-group-item-text">...List group item heading</p>
                                 </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>
