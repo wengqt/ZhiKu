@@ -6,14 +6,29 @@ function getCharts(){
         let _word = wordChart(all_graph.graph3);
         let _line = initLine(all_graph.graph2);
         let _pie = initPie(all_graph.graph1);
+        showTable(all_graph.form);
      },function(data,state){
         new Toast().showMsg('网络连接超时',1500);
+        showTable([]);
          wordChart([]);
         initLine([]);
         initPie([]);
     })
 }
-
+function showTable(data){
+    if(!Array.isArray(data)||data.length==0 ){
+        document.getElementById('m_table').innerHTML='<li class="list-group-item">暂无数据统计</li>';
+        return;
+    }
+    var table =document.getElementById('m_table');
+    table.innerHTML='';
+    var temp='';
+    table.map(function(item){
+        temp+=`<li class="list-group-item">${item.content}：\t${item.value}</li>`
+        
+    })
+    table.innerHTML=temp;
+}
 
 
 
