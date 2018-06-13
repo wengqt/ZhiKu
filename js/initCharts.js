@@ -186,7 +186,7 @@ function initLine(data2) {
 //    console.log(data2)
 document.getElementById('line').innerHTML='';
     var ds = new DataSet();
-    var dv2 = ds.createView().source(data2);
+    var dv2 = ds.createView().source(usedData);
     dv2.transform({
         type: 'fold',
         fields: ['upload', 'download'], // 展开字段集
