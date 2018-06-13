@@ -111,6 +111,63 @@ function initLine(data2) {
         document.getElementById('line').innerHTML=`<p style="font-size:30px;color:lightgray;text-align:center;margin-top:100px;">暂无上传下载动态</p>`;
         return;
     }
+    var usedData = [{
+        month: 1,
+        upload: 0,
+        download:0
+    }, {
+        month: 2,
+        upload: 0,
+        download: 0
+    }, {
+        month: 3,
+        upload: 0,
+        download: 0
+    }, {
+        month: 4,
+        upload: 0,
+        download: 0
+    }, {
+        month: 5,
+        upload: 0,
+        download: 0
+    }, {
+        month: 6,
+        upload: 0,
+        download: 0
+    }, {
+        month: 7,
+        upload: 0,
+        download: 0
+    }, {
+        month: 8,
+        upload: 0,
+        download: 0
+    }, {
+        month: 9,
+        upload: 0,
+        download: 0
+    }, {
+        month: 10,
+        upload: 0,
+        download: 0
+    }, {
+        month: 11,
+        upload: 0,
+        download: 0
+    }, {
+        month: 12,
+        upload: 0,
+        download: 0
+    }];
+    data2.map(function(item){
+        for(let i=1;i<=12;i++){
+            if(item.month==usedData[i].month){
+                usedData[i]=item;
+                break;
+            }
+        }
+    })
 //    console.log(data2)
 document.getElementById('line').innerHTML='';
     var ds = new DataSet();
