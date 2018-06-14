@@ -69,7 +69,7 @@ function wordChart(data1) {
     });
 
     
-
+    data1 = data1.slice(0,7);
     let dv = new DataSet.View().source(data1)
     var range = dv.range('value');
     var min = range[1];
@@ -86,11 +86,21 @@ function wordChart(data1) {
         fontSize(d) {
             
             if (d.value) {
-                d.value*2
+                
                 if(max==min){
+                    console.log(d.text,12)
                     return 12;
                 }
-                return d.value*2;
+				if(d.value<10){
+                    console.log(d.text,(d.value*1+10))
+					return (d.value*1+10)
+				}
+				if(d.value>30){
+                    console.log(d.text,d.value*0.5+10)
+					return (d.value*0.5+10)
+                }
+                console.log(d.text,d.value*1.5)
+                return d.value*1.5;
             }
 
             return 0;
@@ -105,8 +115,8 @@ function wordChart(data1) {
     })
     const chart = new G2.Chart({
         id: 'word',
-        // width: 500,
-        forceFit: true,
+         width: 400,
+        //forceFit: true,
         height: 300,
         padding: 0
     });
