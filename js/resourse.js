@@ -301,9 +301,7 @@ function downloadfile(fid,open){
         new Toast().showMsg('请先登录',1000);
         return;
     }
-    if(open==1){
-        $('#recommend-btn').click();
-    }
+    
     var user =new AjaxHandler();
     console.log(fid);
     user.downloadFile(fid,function(data,state){
@@ -315,6 +313,9 @@ function downloadfile(fid,open){
        //  a.download = fileName;
         // a.click();
     },function(){})
+    if(arguments.length==2){
+        return;
+    }
     user.getRecommend(fid,function(data,state) {
         var files=data.data.files;
         var blogs=data.data.blogs;
