@@ -136,58 +136,61 @@ function initLine(data2) {
         return;
     }
     var usedData = [{
-        month: 1,
+        month: '1月',
         upload: 0,
         download:0
     }, {
-        month: 2,
+        month: '2月',
         upload: 0,
         download: 0
     }, {
-        month: 3,
+        month: '3月',
         upload: 0,
         download: 0
     }, {
-        month: 4,
+        month: '4月',
         upload: 0,
         download: 0
     }, {
-        month: 5,
+        month: '5月',
         upload: 0,
         download: 0
     }, {
-        month: 6,
+        month: '6月',
         upload: 0,
         download: 0
     }, {
-        month: 7,
+        month: '7月',
         upload: 0,
         download: 0
     }, {
-        month: 8,
+        month: '8月',
         upload: 0,
         download: 0
     }, {
-        month: 9,
+        month: '9月',
         upload: 0,
         download: 0
     }, {
-        month: 10,
+        month: '10月',
         upload: 0,
         download: 0
     }, {
-        month: 11,
+        month: '11月',
         upload: 0,
         download: 0
     }, {
-        month: 12,
+        month: '12月',
         upload: 0,
         download: 0
     }];
     data2.map(function(item){
         for(let i=0;i<=11;i++){
-            if(item.month==usedData[i].month){
+            if(item.month+'月'==usedData[i].month){
+                //console.log(item.month+'月',usedData[i].month)
                 usedData[i]=item;
+                usedData[i].month=item.month+'月';
+                //console.log(item,usedData);
                 break;
             }
         }
