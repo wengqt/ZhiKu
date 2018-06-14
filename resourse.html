@@ -118,13 +118,12 @@
 
         <!-- <div id="handout_wrap_inner"></div> -->
         <!-- <a href="http://localhost:8080/java.pdf">aaaaa</a> -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recommend" id="recommend-btn" >推荐</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recommend" id="recommend-btn" style="display: none">推荐</button>
         <div id="doc">
 
-           
+
         </div>
-        <div class="modal fade bs-example-modal-lg" id="recommend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-            style="margin-top: 100px">
+        <div class="modal fade bs-example-modal-lg" id="recommend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -137,43 +136,19 @@
                         <div id="doc-recom" class="alert alert-success col-sm-6" role="alert">
                             文档推荐：
                             <div style="margin: 10px;"></div>
-                            <div class="list-group" id="doc-list">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group \t item heading</p>
-                                </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
+                            <div class="list-group" id="doc-list" style="    height: 350px;
+                            overflow: auto;">
+                                
                             </div>
                         </div>
                         <div id="blog-recom" class="alert alert-info col-sm-6" role="alert">
                             博客推荐：
                             <div style="margin: 10px;"></div>
 
-                            <div class="list-group" id="blog-list">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
-                                <a href="#" class="list-group-item ">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">...List group item heading</p>
-                                </a>
+                            <div class="list-group" id="blog-list" style="    height: 350px;
+                            overflow: auto;">
                                 
+
                             </div>
                         </div>
                     </div>

@@ -4,8 +4,8 @@ function getCharts(){
     user.statistics(function (data,state) { 
         let all_graph = data.data;
         let _word = wordChart(all_graph.graph3);
-        let _line = initLine(all_graph.graph2);
-        let _pie = initPie(all_graph.graph1);
+        let _line = initLine(all_graph.graph1);
+        let _pie = initPie(all_graph.graph2);
         showTable(all_graph.form);
      },function(data,state){
         new Toast().showMsg('网络连接超时',1500);
@@ -23,7 +23,7 @@ function showTable(data){
     var table =document.getElementById('m_table');
     table.innerHTML='';
     var temp='';
-    table.map(function(item){
+    data.map(function(item){
         temp+=`<li class="list-group-item">${item.content}：\t${item.value}</li>`
         
     })
@@ -35,6 +35,7 @@ function showTable(data){
 
 function wordChart(data1) {
     //console.log(!Array.isArray(data1)||data1.length==0)
+    console.log(data1)
     if(!Array.isArray(data1)||data1.length==0 ){
         document.getElementById('word').innerHTML=`<p style="font-size:30px;color:lightgray;text-align:center;margin-top:100px;">暂无词云</p>`;
         return;
@@ -71,8 +72,10 @@ function wordChart(data1) {
 
     let dv = new DataSet.View().source(data1)
     var range = dv.range('value');
-    var min = range[0];
-    var max = range[1];
+    var min = range[1];
+    var max = range[0];
+   // console.log(range)
+    //console.log(max,min)
     dv.transform({
         type: 'tag-cloud',
         fields: ['text', 'value'], // 参与标签云layout的字段集
@@ -81,9 +84,15 @@ function wordChart(data1) {
         padding: 0,
         spiral: 'rectangular', // 标签螺旋排布规律函数 'archimedean' || 'rectangular' || {function}
         fontSize(d) {
+            
             if (d.value) {
-                return (d.value - min) / (max - min) * (80 - 24) + 24;
+                d.value*2
+                if(max==min){
+                    return 12;
+                }
+                return d.value*2;
             }
+
             return 0;
         }, 
         text(d) {
@@ -108,7 +117,7 @@ function wordChart(data1) {
     });
     chart.source(dv);
     chart.coord().reflect();
-    chart.point().position('x*y').color('category').shape('cloud').tooltip('text*category').active({
+    chart.point().position('x*y').color('text').shape('cloud').tooltip('text').active({
         // 设置是否允许选中以及选中样式
         mode: 'single', // 多选还是单选
         style: {
@@ -176,7 +185,7 @@ function initLine(data2) {
         download: 0
     }];
     data2.map(function(item){
-        for(let i=1;i<=12;i++){
+        for(let i=0;i<=11;i++){
             if(item.month==usedData[i].month){
                 usedData[i]=item;
                 break;

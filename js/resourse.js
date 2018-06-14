@@ -318,6 +318,9 @@ function downloadfile(fid,open){
     user.getRecommend(fid,function(data,state) {
         var files=data.data.files;
         var blogs=data.data.blogs;
+        if(data.status==300){
+            new Toast().showMsg('暂无推荐',1500);
+        }
         if(Array.isArray(files)&&files.length!=0){
             var doc_div = document.getElementById('doc-list');
             doc_div.innerHTML='';
@@ -330,6 +333,10 @@ function downloadfile(fid,open){
             </a>`;
             doc_div.innerHTML+=temp;
             })
+        }else{
+            var doc_div = document.getElementById('doc-list');
+            doc_div.innerHTML=`<a class="list-group-item ">
+            <h4 class="list-group-item-heading" style="color:lightgray">暂无推荐文档</h4></a>`;
         }
         if(Array.isArray(blogs)&&blogs.length!=0){
             var blog_div = document.getElementById('blog-list');
@@ -342,13 +349,17 @@ function downloadfile(fid,open){
             </a>`;
             blog_div.innerHTML+=temp;
             })
+        }else{
+            var blog_div = document.getElementById('blog-list');
+            blog_div.innerHTML=`<a class="list-group-item ">
+            <h4 class="list-group-item-heading" style="color:lightgray">暂无推荐博客</h4></a>`;
         }
        
-        var blog_h = document.getElementById('blog-recom').offsetHeight;
-        var file_h = document.getElementById('doc-recom').offsetHeight;
-        var all_h =  blog_h>file_h?blog_h:file_h;
-        document.getElementById('blog-recom').style.height=all_h+'px';
-        document.getElementById('doc-recom').style.height=all_h+'px';
+        // var blog_h = document.getElementById('blog-recom').offsetHeight;
+        // var file_h = document.getElementById('doc-recom').offsetHeight;
+        // var all_h =  blog_h>file_h?blog_h:file_h;
+        // document.getElementById('blog-recom').style.height=all_h+'px';
+        // document.getElementById('doc-recom').style.height=all_h+'px';
         $('#recommend-btn').click();
     },function(data){
         new Toast().showMsg("网络异常,推荐失败",1500);
