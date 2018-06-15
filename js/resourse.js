@@ -1,6 +1,6 @@
 var searchPage = 1;
 var method,course,xid,mid,page;
-var lastMethod;
+var keyword;
 var isLoading = false;
 
 
@@ -105,20 +105,20 @@ if(document.getElementById('dropdownMenu5')){
         })
         
     }
-    // document.getElementById('searchBtn').onclick = function(){
-    //     if(document.getElementById('dropdownMenu5').value.trim()==''){
-    //         new Toast().showMsg("请输入课程",1000);
-    //     }else{
-    //         searchAll(1);        
-    //     }
-    // }
+    document.getElementById('searchBtn').onclick = function(){
+        if(document.getElementById('dropdownMenu5').value.trim()==''){
+            new Toast().showMsg("请输入课程",1000);
+        }else{
+            searchAll(3,undefined,document.getElementById('dropdownMenu5').value.trim());        
+        }
+    }
 }
 
 
 
 function searchAll(meth,cid,kcnm){
     console.log(meth);
-    if(meth==1){
+    if(meth==3){
         console.log(kcnm)
         document.getElementById('dropdownMenu5').value= kcnm
         console.log(document.getElementById('dropdownMenu5').value);
@@ -140,7 +140,12 @@ function searchAll(meth,cid,kcnm){
             }
         }
         if(cid==undefined){
-            new Toast().showMsg("请输入有效课程",1000);
+            //new Toast().showMsg("请输入有效课程",1000);
+            docList =[];
+            method=meth;
+            searchPage = 1;
+            keyword=kcnm;
+            searchByTag(kcnm,searchPage);
         }else{
 
         }
@@ -170,6 +175,22 @@ function searchBymajor(maid){
     mid = maid ;
     searchPage = 1;
     searchDocument(searchPage);
+}
+
+function searchByTag(kw,page){
+    var user =new AjaxHandler();
+    console.log(method);
+    user.searchTag(kw,page,function(data){
+        if(data.status==200){
+            docList = docList.concat(data.data);
+            console.log(data.data);
+            console.log(docList)
+            showList();
+            isLoading = false;
+        }
+    },function(){
+
+    })
 }
 
 function searchDocument(page){
@@ -285,7 +306,12 @@ window.onscroll = function(){
                 isLoading = true;
                 searchPage++
                 console.log(searchPage)
-                searchDocument(searchPage);
+                if(method==3){
+                    searchByTag(keyword,searchPage);
+                }else{
+                    searchDocument(searchPage);
+                }
+                
             }
             
         
@@ -329,7 +355,7 @@ function downloadfile(fid,open){
                 
                 var temp=`<a href="javascript:downloadfile(${item.fid},1)" class="list-group-item ">
                 <h4 class="list-group-item-heading">${item.fileinfo.name}</h4>
-                <p class="list-group-item-text">上传自：${item.nickname}\t\t课程：${item.fileinfo.course}\t\t下载：${dncnt}次</p>
+                <p class="list-group-item-text">上传自：${item.nickname}\t\t下载：${item.fileinfo.dncnt}次</p>
                 <p class="list-group-item-text">描述：${item.fileinfo.desc}</p>
             </a>`;
             doc_div.innerHTML+=temp;
@@ -343,9 +369,9 @@ function downloadfile(fid,open){
             var blog_div = document.getElementById('blog-list');
             blog_div.innerHTML='';
             blogs.map(function(item){
-                var temp=`<a href=${item.url} class="list-group-item ">
+                var temp=`<a href="javascript:openPage('${item.url}')" class="list-group-item ">
                 <h4 class="list-group-item-heading">${item.title}</h4>
-                <p class="list-group-item-text">时间：${item.date}\t\t作者：${item.auth}\t\t浏览量：${scancut}次</p>
+                <p class="list-group-item-text">时间：${item.date}\t\t作者：${item.auth}\t\t浏览量：${item.scancut}次</p>
                 <p class="list-group-item-text">链接：${item.url}</p>
             </a>`;
             blog_div.innerHTML+=temp;
@@ -371,4 +397,7 @@ function downloadfile(fid,open){
 function preview(fid){
     window.open('preview.html?'+fid);
 
+}
+function openPage(url){
+    window.open(url);
 }

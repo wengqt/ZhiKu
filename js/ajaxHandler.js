@@ -516,6 +516,21 @@ function AjaxHandler(){
 
       }
 
+      ajaxHandler.prototype.searchTag = function(kw,page,success,failed){
+        success = typeof success ==='function'?success:new Function();
+        failed = typeof failed ==='function'?failed:new Function();
+        $.ajax({
+            url:API.tagsearch,
+            type:'GET',
+            data:{kw,page},
+            dataType:"JSON",
+            success:function(data,state){
+                // console.log(data,state)
+                success(data,state)},
+            error:function(data,state){
+                failed(data,state)}
+        })
+    }
 
     return new ajaxHandler();
 
